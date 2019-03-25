@@ -12,53 +12,49 @@
                             <h3><i class="fas fa-bong"></i> {{ $event->name }}</h3>
                             <hr>
                             <form action="">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" value="{{ $event->name }}"
-                                           class="form-control cursor-not-allowed" disabled>
-                                </div>
+                                <inv-form-group label="Name" name="name" value="{{ $event->name }}"
+                                                is-disabled="true"></inv-form-group>
+
+                                <inv-form-group label="Address" name="address"
+                                                value="{{ $event->address }}" is-disabled="true"></inv-form-group>
+
+                                <inv-form-group label="Description" name="description"
+                                                type="textarea"
+                                                value="{{  $event->description }}" is-disabled="true">
+                                </inv-form-group>
+
+                                <inv-form-group label="RSVP" name="rsvp_by"
+                                                value="{{ Carbon::parse($event->rsvp_by)->toDayDateTimeString() }}"
+                                                is-disabled="true"></inv-form-group>
 
                                 <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" id="address" name="address" value="{{ $event->address }}"
-                                           class="form-control cursor-not-allowed" disabled>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea id="description" name="description" cols="30" rows="4"
-                                              class="form-control cursor-not-allowed"
-                                              disabled>{{ $event->description }}
-                                    </textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="rsvp_by">RSVP</label>
-                                    <input type="text" id="rsvp_by" name="rsvp_by" value="{{  Carbon::parse($event->rsvp_by)->toDayDateTimeString()  }}"
-                                           class="form-control cursor-not-allowed" disabled>
+                                    <div class="row">
+                                        <inv-form-group label="Start Date" name="start_date" class="col-6"
+                                                        type="date"
+                                                        value="{{  Carbon::parse($event->starts_at)->toDateString() }}"
+                                                        is-disabled="true">
+                                        </inv-form-group>
+                                        <inv-form-group label="Start Time" name="start_time" class="col-6"
+                                                        type="time"
+                                                        value="{{ Carbon::parse($event->starts_at)->toTimeString() }}"
+                                                        is-disabled="true">
+                                        </inv-form-group>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                   <div class="row">
-                                       <div class="col-6">
-                                           <label for="starts_at">Starts at</label>
-                                           <input type="text" id="starts_at" name="starts_at" value="{{ Carbon::parse($event->starts_at)->toDayDateTimeString() }}"
-                                                  class="form-control cursor-not-allowed" disabled>
-                                       </div>
-                                       <div class="col">
-                                           <label for="ends_at">Ends at</label>
-                                           <input type="text" id="ends_at" name="ends_at" value="{{  Carbon::parse($event->ends_at)->toDayDateTimeString()  }}"
-                                                  class="form-control cursor-not-allowed" disabled>
-                                       </div>
-                                   </div>
+                                    <div class="row">
+                                        <inv-form-group label="End Date" name="end_date" class="col-6"
+                                                        type="date"
+                                                        value="{{  Carbon::parse($event->ends_at)->toDateString() }}"
+                                                        is-disabled="true">
+                                        </inv-form-group>
+                                        <inv-form-group label="End Time" name="end_time" class="col-6"
+                                                        type="time"
+                                                        value="{{ Carbon::parse($event->ends_at)->toTimeString() }}"
+                                                        is-disabled="true">
+                                        </inv-form-group>
+                                    </div>
                                 </div>
-
-
-
-
-
-
-
-
-
                             </form>
                         </div>
                     </div>

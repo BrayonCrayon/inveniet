@@ -74,13 +74,13 @@ const colors = {
   'orange-lighter': '#fcd9b6',
   'orange-lightest': '#fff5eb',
 
-  'yellow-darkest': '#453411',
-  'yellow-darker': '#684f1d',
-  'yellow-dark': '#f2d024',
-  yellow: '#ffed4a',
-  'yellow-light': '#fff382',
-  'yellow-lighter': '#fff9c2',
-  'yellow-lightest': '#fcfbeb',
+  'yellow-darkest': '#8D2B0B',
+  'yellow-darker': '#B44D12',
+  'yellow-dark': '#CB6E17',
+  yellow: '#DE911D',
+  'yellow-light': '#F0B429',
+  'yellow-lighter': '#FCE588',
+  'yellow-lightest': '#FFFBEA',
 
   'green-darkest': '#0f2f21',
   'green-darker': '#1a4731',
@@ -129,6 +129,23 @@ const colors = {
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
+
+  'primary-darkest': '#3C0B0B',
+  'primary-darker': '#791616',
+  'primary-dark': '#B52020',
+  primary: '#C92424',
+  'primary-light': '#D96666',
+  'primary-lighter': '#E9A7A7',
+  'primary-lightest': '#FAE9E9',
+
+  'secondary-darkest': '#4B3814',
+  'secondary-darker': '#956F28',
+  'secondary-dark': '#E0A73B',
+  secondary: '#F9B942',
+  'secondary-light': '#FBCE7B',
+  'secondary-lighter': '#FDE3B3',
+  'secondary-lightest': '#FEF8EC',
+
 };
 
 module.exports = {

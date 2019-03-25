@@ -24,64 +24,42 @@
                                 @csrf
                                 @method('PUT')
 
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" value="{{ $event->name }}"
-                                           class="form-control" required>
-                                </div>
+                                <inv-form-group label="Name" name="name" value="{{ $event->name }}"></inv-form-group>
 
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" id="address" name="address" value="{{ $event->address }}"
-                                           class="form-control" required>
-                                </div>
+                                <inv-form-group label="Address" name="address"
+                                                value="{{ $event->address }}"></inv-form-group>
 
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea id="description" name="description" cols="30" rows="4"
-                                              class="form-control"
-                                              required>{{ $event->description }}
-                                    </textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="rsvp_by">RSVP</label>
-                                    <input type="text" id="rsvp_by" name="rsvp_by"
-                                           value="{{  Carbon::parse($event->rsvp_by)->toDayDateTimeString()  }}"
-                                           class="form-control" required>
-                                </div>
+                                <inv-form-group label="Description" name="description"
+                                                type="textarea"
+                                                value="{{  $event->description }}">
+                                </inv-form-group>
+
+                                <inv-form-group label="RSVP" name="rsvp_by"
+                                                value="{{ Carbon::parse($event->rsvp_by)->toDayDateTimeString() }}"
+                                ></inv-form-group>
 
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <label for="start_date">Start Date</label>
-                                            <input type="date" id="start_date" name="start_date"
-                                                   class="form-control"
-                                                   value="{{  Carbon::parse($event->starts_at)->toDateString() }}"
-                                                   required>
-                                        </div>
-                                        <div class="col">
-                                            <label for="start_time">Start Time</label>
-                                            <input type="time" id="start_time" name="start_time"
-                                                   value="{{  Carbon::parse($event->starts_at)->toTimeString() }}"
-                                                   class="form-control" required>
-                                        </div>
+                                        <inv-form-group label="Start Date" name="start_date" class="col-6"
+                                                        type="date"
+                                                        value="{{  Carbon::parse($event->starts_at)->toDateString() }}">
+                                        </inv-form-group>
+                                        <inv-form-group label="Start Time" name="start_time" class="col-6"
+                                                        type="time"
+                                                        value="{{ Carbon::parse($event->starts_at)->toTimeString() }}">
+                                        </inv-form-group>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <label for="end_date">End Date</label>
-                                            <input type="date" id="end_date" name="end_date"
-                                                   class="form-control"
-                                                   value="{{  Carbon::parse($event->ends_at)->toDateString() }}"
-                                                   required>
-                                        </div>
-                                        <div class="col">
-                                            <label for="end_time">End Time</label>
-                                            <input type="time" id="end_time" name="end_time"
-                                                   value="{{  Carbon::parse($event->ends_at)->toTimeString() }}"
-                                                   class="form-control" required>
-                                        </div>
+                                        <inv-form-group label="End Date" name="end_date" class="col-6"
+                                                        type="date"
+                                                        value="{{  Carbon::parse($event->ends_at)->toDateString() }}">
+                                        </inv-form-group>
+                                        <inv-form-group label="End Time" name="end_time" class="col-6"
+                                                        type="time"
+                                                        value="{{ Carbon::parse($event->ends_at)->toTimeString() }}">
+                                        </inv-form-group>
                                     </div>
                                 </div>
 
