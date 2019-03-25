@@ -1,10 +1,7 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
-
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -16,7 +13,6 @@
 @tailwind utilities;
 
 
-
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -26,6 +22,28 @@
   transition: all 0.2s;
 }
 
+.timeline-ball {
+  margin-top: 6%;
+
+  &::after {
+    padding: 0.25rem 0.85rem;
+    content: ' ';
+    border-radius: 90%;
+    margin-left: -1rem;
+    @apply bg-grey-darker;
+  }
+}
+
+.timeline-border-gradient {
+  @apply border-l-4 border-grey-darker;
+  border-image: linear-gradient(
+                  to bottom,
+                  transparent,
+                  #606f7b 20%,
+                  #606f7b 80%,
+                  rgba(0, 0, 0, 0)
+  ) 90 100%;
+}
 
 //body {
 //  background: #fbf4f4;

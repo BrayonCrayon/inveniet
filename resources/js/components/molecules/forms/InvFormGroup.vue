@@ -5,6 +5,28 @@
   >
     <inv-label>{{ label }}</inv-label>
     <inv-text-input
+      v-if="type === 'text'"
+      v-model="inputValue"
+      :name="name"
+      :disabled="isDisabled"
+      @input="emitInput"
+    />
+    <inv-date-input
+      v-if="type === 'date'"
+      v-model="inputValue"
+      :name="name"
+      :disabled="isDisabled"
+      @input="emitInput"
+    />
+    <inv-time-input
+      v-if="type === 'time'"
+      v-model="inputValue"
+      :name="name"
+      :disabled="isDisabled"
+      @input="emitInput"
+    />
+    <inv-textarea
+      v-if="type === 'textarea'"
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
@@ -34,6 +56,11 @@ export default {
       required: false,
       type: String,
       default: '',
+    },
+    type: {
+      required: false,
+      type: String,
+      default: 'text',
     },
   },
   data() {
