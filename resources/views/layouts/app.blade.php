@@ -13,8 +13,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    {{--<link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
+    {{--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">--}}
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,9 +24,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-red shadow text-white">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-primary shadow text-white">
             <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
+                <a class="navbar-primary text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item hover:bg-red-dark rounded">
+                        <li class="nav-item hover:bg-primary-dark rounded">
                             <a class="nav-link text-white " href="{{ route('event.index') }}">Events</a>
                         </li>
                     </ul>

@@ -24,18 +24,11 @@
                                 @csrf
                                 @method('PUT')
 
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" value="{{ $event->name }}"
-                                           class="form-control" required>
-                                </div>
+                                <inv-form-group label="Name" name="name" value="{{ $event->name }}"></inv-form-group>
 
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" id="address" name="address" value="{{ $event->address }}"
-                                           class="form-control" required>
-                                </div>
-
+                                <inv-form-group label="Address" name="address"
+                                                value="{{ $event->address }}"></inv-form-group>
+                                
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea id="description" name="description" cols="30" rows="4"
@@ -43,6 +36,7 @@
                                               required>{{ $event->description }}
                                     </textarea>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="rsvp_by">RSVP</label>
                                     <input type="text" id="rsvp_by" name="rsvp_by"

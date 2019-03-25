@@ -17,10 +17,11 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" name="name"
-                                           class="form-control" required>
+                                    <inv-label target="name">Name</inv-label>
+                                    <inv-text-input name="name" value="Starting Value"></inv-text-input>
                                 </div>
+
+                                <inv-form-group label="Name" name="name" value="Something"></inv-form-group>
 
                                 <div class="form-group">
                                     <label for="address">Address</label>

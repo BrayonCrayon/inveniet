@@ -14,8 +14,7 @@
                             <form action="">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" value="{{ $event->name }}"
-                                           class="form-control cursor-not-allowed" disabled>
+                                    <inv-text-input name="name" value="{{ $event->name }}" disabled></inv-text-input>
                                 </div>
 
                                 <div class="form-group">
@@ -33,30 +32,26 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="rsvp_by">RSVP</label>
-                                    <input type="text" id="rsvp_by" name="rsvp_by" value="{{  Carbon::parse($event->rsvp_by)->toDayDateTimeString()  }}"
+                                    <input type="text" id="rsvp_by" name="rsvp_by"
+                                           value="{{  Carbon::parse($event->rsvp_by)->toDayDateTimeString()  }}"
                                            class="form-control cursor-not-allowed" disabled>
                                 </div>
                                 <div class="form-group">
-                                   <div class="row">
-                                       <div class="col-6">
-                                           <label for="starts_at">Starts at</label>
-                                           <input type="text" id="starts_at" name="starts_at" value="{{ Carbon::parse($event->starts_at)->toDayDateTimeString() }}"
-                                                  class="form-control cursor-not-allowed" disabled>
-                                       </div>
-                                       <div class="col">
-                                           <label for="ends_at">Ends at</label>
-                                           <input type="text" id="ends_at" name="ends_at" value="{{  Carbon::parse($event->ends_at)->toDayDateTimeString()  }}"
-                                                  class="form-control cursor-not-allowed" disabled>
-                                       </div>
-                                   </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="starts_at">Starts at</label>
+                                            <input type="text" id="starts_at" name="starts_at"
+                                                   value="{{ Carbon::parse($event->starts_at)->toDayDateTimeString() }}"
+                                                   class="form-control cursor-not-allowed" disabled>
+                                        </div>
+                                        <div class="col">
+                                            <label for="ends_at">Ends at</label>
+                                            <input type="text" id="ends_at" name="ends_at"
+                                                   value="{{  Carbon::parse($event->ends_at)->toDayDateTimeString()  }}"
+                                                   class="form-control cursor-not-allowed" disabled>
+                                        </div>
+                                    </div>
                                 </div>
-
-
-
-
-
-
-
 
 
                             </form>

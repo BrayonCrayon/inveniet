@@ -12,9 +12,10 @@
                         <div class="card-body">
                             <div class="flex justify-between">
                                 <h3>My Events</h3>
-                                <a href="{{ route('event.create') }}" class="btn text-grey-darker hover:bg-green-light">
-                                    <i class="fas fa-plus"></i> Create Event
-                                </a>
+
+                                <inv-button link="{{ route('event.create') }}">
+                                    <i class="fas fa-plus"></i> Create Event Button
+                                </inv-button>
                             </div>
                             <hr>
                             <div class="list-group">
@@ -32,19 +33,16 @@
 
                                         <p>{{ $event->description }}</p>
 
-                                        <div class="flex ">
-                                            <a href="{{ route('event.show', ['id' => $event->id]) }}"
-                                               class="no-underline py-2 px-3 rounded bg-blue-darker hover:bg-blue-dark text-white hover:no-underline">
+                                        <div class="flex">
+                                            <inv-button link="{{ route('event.show', ['id' => $event->id]) }}">
                                                 <i class="fas fa-search-location"></i> Take a look
-                                            </a>
+                                            </inv-button>
 
-                                            <a href="{{ route('event.edit', ['id' => $event->id]) }}"
-                                               class="no-underline py-2 px-3 rounded bg-blue-darker hover:bg-blue-dark text-white hover:no-underline mx-2">
+                                            <inv-button link="{{ route('event.edit', ['id' => $event->id]) }}" class="mx-2">
                                                 <i class="fas fa-pencil-alt"></i> Edit
-                                            </a>
+                                            </inv-button>
                                         </div>
                                     </div>
-
 
                                 @endforeach
                             </div>
