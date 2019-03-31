@@ -17,11 +17,13 @@ class CreateUserRelationshipTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('relating_user_id');
             $table->unsignedBigInteger('related_user_id');
-            $table->integer('user_relationship_type_id');
+            $table->unsignedBigInteger('user_relationship_type_id');
+            $table->timestamps();
+
+            /* Add Constraints */
             $table->foreign('user_relationship_type_id')->references('id')->on('user_relationship_type');
             $table->foreign('relating_user_id')->references('id')->on('users');
             $table->foreign('related_user_id')->references('id')->on('users');
-            $table->timestamps();
         });
     }
 
