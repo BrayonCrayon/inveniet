@@ -2,25 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\User;
 use Illuminate\Console\Command;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Artisan;
 
-class RoleSetup extends Command
+class DatabaseSetup extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'role:setup';
+    protected $signature = 'db:setup';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Setup role functionality for site setup';
+    protected $description = 'Run Migrations, seeders and role:setup';
 
     /**
      * Create a new command instance.
@@ -39,12 +38,8 @@ class RoleSetup extends Command
      */
     public function handle()
     {
-        $adminUser = User::where('email', 'admin@admin.com')->first();
-
-        $adminRole = Role::create([
-            'name' => 'admin'
-        ]);
-
-        $adminUser->assignRole('admin');
+        $this->call('migrate:fresh');
+        $this->call('db:seed');
+        $this->call('role:setup');
     }
 }

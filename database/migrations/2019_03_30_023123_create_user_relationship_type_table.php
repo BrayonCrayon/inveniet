@@ -13,11 +13,12 @@ class CreateUserRelationshipTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_relationship_type', function (Blueprint $table) {
+        Schema::create('user_relationship_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('relationship_type');
-            $table->unique('relationship_type', 'unique_relationship_type');
+            $table->string('name');
             $table->timestamps();
+
+            $table->unique('name', 'unique_relationship_type');
         });
     }
 

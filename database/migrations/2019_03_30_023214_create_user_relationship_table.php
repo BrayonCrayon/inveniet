@@ -13,16 +13,16 @@ class CreateUserRelationshipTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_relationship', function (Blueprint $table) {
+        Schema::create('user_relationships', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('relating_user_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('related_user_id');
             $table->unsignedBigInteger('user_relationship_type_id');
             $table->timestamps();
 
             /* Add Constraints */
-            $table->foreign('user_relationship_type_id')->references('id')->on('user_relationship_type');
-            $table->foreign('relating_user_id')->references('id')->on('users');
+            $table->foreign('user_relationship_type_id')->references('id')->on('user_relationship_types');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('related_user_id')->references('id')->on('users');
         });
     }
@@ -34,6 +34,6 @@ class CreateUserRelationshipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_relationship');
+        Schema::dropIfExists('user_relationships');
     }
 }
