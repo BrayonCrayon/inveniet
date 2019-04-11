@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class UserRelationshipsController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,25 +14,7 @@ class UserRelationshipsController extends Controller
      */
     public function index()
     {
-        $contacts = auth()->user()->contacts;
-        return view('contacts.index', [
-            'contacts' => $contacts
-        ]);
-    }
 
-    /**
-     * Display a listing of Users that are
-     *      not related to the current user.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search()
-    {
-        $searchedContacts = DB::table('users')->where([
-            ['name', 'like', request('search') . '%' ],
-            ['id', '<>', auth()->user()]
-        ])->get();
-        return view('contacts.index', ['contacts' => $searchedContacts]);
     }
 
     /**
