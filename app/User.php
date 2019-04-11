@@ -60,4 +60,33 @@ class User extends Authenticatable
         return User::whereIn('id', $this->relationships->pluck('related_user_id'))->get();
     }
 
+
+    /**
+     * @param $query
+     * @return mixed (Filters out the logged in user out of the result set.)
+     */
+    public function scopeNotMe($query) {
+        return $query->where('id', '<>', auth()->user()->id);
+    }
+
+
+    /**
+     * @param $query
+     * @param $name
+     * @return mixed (Restricts results for any users that have a name like)
+     */
+    public function scopeNameLike($query, $name)
+    {
+        return $query->where('name', 'like', $name . '%');
+    }
+
+    /**
+     * @param $query
+     * @return mixed (Filters out any users that are already related to the logged in user)
+     */
+    public function scopeNotMyContacts($query)
+    {
+        return $query->whereNotIn('id', auth()->user()->contacts->pluck('id'));
+    }
+
 }

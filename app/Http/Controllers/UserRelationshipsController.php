@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserRelationshipsController extends Controller
 {
@@ -28,10 +28,9 @@ class UserRelationshipsController extends Controller
      */
     public function search()
     {
-        $searchedContacts = DB::table('users')->where([
-            ['name', 'like', request('search') . '%' ],
-            ['id', '<>', auth()->user()]
-        ])->get();
+        $searchedContacts = User::notMe()->nameLike(request('search'))
+                                         ->notMyContacts()->get();
+
         return view('contacts.index', ['contacts' => $searchedContacts]);
     }
 
@@ -64,7 +63,7 @@ class UserRelationshipsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
