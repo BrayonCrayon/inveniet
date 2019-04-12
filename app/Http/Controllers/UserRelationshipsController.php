@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use \App\User;
+use \App\UserRelationship;
+use \App\UserRelationshipType;
+use \App\Http\Requests\UserRelationshipsRequest;
 use Illuminate\Http\Request;
 
 class UserRelationshipsController extends Controller
@@ -24,12 +27,16 @@ class UserRelationshipsController extends Controller
      * Display a listing of Users that are
      *      not related to the current user.
      *
+     * NOTE: (... ?? '') If search is not defined
+     *          have it default to an empty string.
      * @return \Illuminate\Http\Response
      */
     public function search()
     {
-        $searchedContacts = User::notMe()->nameLike(request('search'))
-                                         ->notMyContacts()->get();
+        $searchedContacts = User::orderBy('name', 'asc')
+            ->notMe()
+            ->nameLike(request('search') ?? '')
+            ->notMyContacts()->get();
 
         return view('contacts.index', ['contacts' => $searchedContacts]);
     }
@@ -52,7 +59,13 @@ class UserRelationshipsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        UserRelationship::create([
+            'user_id' => auth()->user()->id,
+            'related_user_id' => $request->get('user_id'),
+            'user_relationship_type_id' => UserRelationshipType::find(1)->id,
+        ]);
+
+        return redirect('contacts');
     }
 
     /**
@@ -95,8 +108,13 @@ class UserRelationshipsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user_id)
     {
-        //
+        $relationship = UserRelationship::where('user_id', '=', auth()->user()->id)
+            ->where('related_user_id', '=', $user_id)->first();
+
+        $relationship->delete();
+
+        return redirect('contacts');
     }
 }

@@ -52,12 +52,20 @@ class User extends Authenticatable
         return $this->hasMany(UserRelationship::class);
     }
 
+
     /**
      * @return mixed
      */
-    public function getContactsAttribute()
-    {
+    public function getContactsAttribute() {
         return User::whereIn('id', $this->relationships->pluck('related_user_id'))->get();
+    }
+
+
+    /**
+     *
+     */
+    public function setContactsAttribute($related_user_id) {
+        auth()->user()->relationship()->attach($related_user_id);
     }
 
 
@@ -73,7 +81,7 @@ class User extends Authenticatable
     /**
      * @param $query
      * @param $name
-     * @return mixed (Restricts results for any users that have a name like)
+     * @return mixed (Restricts results for any users that have a name like $name)
      */
     public function scopeNameLike($query, $name)
     {
@@ -89,4 +97,11 @@ class User extends Authenticatable
         return $query->whereNotIn('id', auth()->user()->contacts->pluck('id'));
     }
 
+
+    public function isContact($related_user_id)
+    {
+        $contact = $this->relationships->where('related_user_id', '=', $related_user_id)->first();
+
+        return isset($contact) ? true : false;
+    }
 }
