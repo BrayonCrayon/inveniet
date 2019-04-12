@@ -39,6 +39,7 @@
 												</div >
 
 
+												{{-- TODO: Get the Edit link and the delete button on one row.--}}
 												<div class="contents-baseline text-grey-darkest ml-2" >
 													<a href="{{ route('event.edit', ['id' => $event->id]) }}"
 													   class="contents-baseline text-grey-darkest" >

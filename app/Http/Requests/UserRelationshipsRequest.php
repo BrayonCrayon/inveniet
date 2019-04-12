@@ -24,9 +24,9 @@ class UserRelationshipsRequest extends FormRequest
     public function rules()
     {
         return [
-//            'user_id' => 'required',
+            'user_id' => 'required',
             'related_user_id' => 'required',
-//            'user_relationship_type_id' => 'required',
+            'user_relationship_type_id' => 'required',
         ];
     }
 }

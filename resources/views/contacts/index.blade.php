@@ -46,7 +46,6 @@
 													</div >
 												</div >
 												<div class="col-6" >
-													{{-- TODO: Make Add/Delete btn conditional if the user is already in contacts --}}
 													<div class="row justify-content-end" >
 														@if( auth()->user()->isContact($contact->id) )
 															<form method="POST"

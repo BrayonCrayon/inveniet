@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use \App\User;
-use \App\UserRelationship;
-use \App\UserRelationshipType;
-use \App\Http\Requests\UserRelationshipsRequest;
+use App\User;
+use App\UserRelationship;
+use App\UserRelationshipType;
 use Illuminate\Http\Request;
 
 class UserRelationshipsController extends Controller
@@ -57,6 +56,7 @@ class UserRelationshipsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+    // TODO: Use UserRelationshipsRequest class for validation
     public function store(Request $request)
     {
         UserRelationship::create([
@@ -110,6 +110,7 @@ class UserRelationshipsController extends Controller
      */
     public function destroy($user_id)
     {
+        // TODO: Find a way to return one instead of building a collection and returning the first one from that collection
         $relationship = UserRelationship::where('user_id', '=', auth()->user()->id)
             ->where('related_user_id', '=', $user_id)->first();
 

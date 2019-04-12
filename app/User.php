@@ -2,9 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -56,7 +55,8 @@ class User extends Authenticatable
     /**
      * @return mixed
      */
-    public function getContactsAttribute() {
+    public function getContactsAttribute()
+    {
         return User::whereIn('id', $this->relationships->pluck('related_user_id'))->get();
     }
 
@@ -64,7 +64,9 @@ class User extends Authenticatable
     /**
      *
      */
-    public function setContactsAttribute($related_user_id) {
+    // TODO: See if this is a better option then the functionality in UserRelationshipsController@store.
+    public function setContactsAttribute($related_user_id)
+    {
         auth()->user()->relationship()->attach($related_user_id);
     }
 
@@ -73,7 +75,8 @@ class User extends Authenticatable
      * @param $query
      * @return mixed (Filters out the logged in user out of the result set.)
      */
-    public function scopeNotMe($query) {
+    public function scopeNotMe($query)
+    {
         return $query->where('id', '<>', auth()->user()->id);
     }
 
@@ -98,6 +101,10 @@ class User extends Authenticatable
     }
 
 
+    /**
+     * @param $related_user_id
+     * @return bool ( Determines if you have a relation with the provided $related_user_id )
+     */
     public function isContact($related_user_id)
     {
         $contact = $this->relationships->where('related_user_id', '=', $related_user_id)->first();
