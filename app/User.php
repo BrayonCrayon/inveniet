@@ -63,7 +63,7 @@ class User extends Authenticatable
      */
     public function getContactsAttribute()
     {
-        return User::whereIn('id', $this->relationships->pluck('related_user_id'))->get();
+        return User::myContacts()->get();
     }
 
 
@@ -118,6 +118,10 @@ class User extends Authenticatable
         return isset($contact) ? true : false;
     }
 
+    public function scopeMyContacts($query)
+    {
+        return $query->whereIn('id', $this->relationships->pluck('related_user_id'));
+    }
 
     /**
      * @param $related_user_id

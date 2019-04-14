@@ -7,23 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Attendee extends Model
 {
 
-
     /**
-     * @return mixed ( Retrieves the associated user )
+     * Retrieves the associated user
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getUserAttribute()
+    public function user()
     {
-        return User::findOrFail($this->user_id);
+        return $this->belongsTo(User::class);
     }
 
-
     /**
-     * @return mixed ( Gets the attendee's type for the event. )
+     * Gets the attendee's type for the event.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getAttendeeTypeAttribute()
+    public function attendeeType()
     {
-        return AttendeeType::findOrFail($this->attendee_type_id);
+        return $this->belongsTo(AttendeeType::class);
     }
-
 
 }

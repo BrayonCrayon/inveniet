@@ -16,7 +16,7 @@ class UserRelationshipsController extends Controller
      */
     public function index()
     {
-        $contacts = auth()->user()->contacts;
+        $contacts = auth()->user()->myContacts()->paginate();
         $relationshipTypes = UserRelationshipType::all(['id', 'name']);
 
         return view('contacts.index', [
@@ -38,7 +38,7 @@ class UserRelationshipsController extends Controller
         $searchedContacts = User::orderBy('name', 'asc')
             ->notMe()
             ->nameLike(request('search') ?? '')
-            ->notMyContacts()->get();
+            ->notMyContacts()->paginate();
         $relationshipTypes = UserRelationshipType::all(['id', 'name']);
 
         return view('contacts.index', [
