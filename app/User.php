@@ -52,6 +52,12 @@ class User extends Authenticatable
     }
 
 
+    public function attendingEvents()
+    {
+        return $this->hasMany(Attendee::class);
+    }
+
+
     /**
      * @return mixed
      */
@@ -110,5 +116,16 @@ class User extends Authenticatable
         $contact = $this->relationships->where('related_user_id', '=', $related_user_id)->first();
 
         return isset($contact) ? true : false;
+    }
+
+
+    /**
+     * @param $related_user_id
+     * @return mixed ( Finds the relationship type between the logged in user and a related user )
+     */
+    public function contactRelationship($related_user_id)
+    {
+        $relationship = UserRelationship::findRelationship($related_user_id)->first();
+        return UserRelationshipType::findOrFail($relationship->user_relationship_type_id)->name;
     }
 }

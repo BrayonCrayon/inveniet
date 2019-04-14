@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserRelationshipTypeTable extends Migration
+class CreateAttendeeTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateUserRelationshipTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_relationship_types', function (Blueprint $table) {
+        Schema::create('attendee_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
 
-            $table->unique('name', 'unique_relationship_type');
+            $table->unique('name', 'unique_attendee_type');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateUserRelationshipTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_relationship_types');
+        Schema::dropIfExists('attendee_types');
     }
 }

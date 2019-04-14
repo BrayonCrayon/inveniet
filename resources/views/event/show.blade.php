@@ -55,6 +55,30 @@
                                         </inv-form-group>
                                     </div>
                                 </div>
+
+                                <div class="list-group" >
+                                    @foreach($attendees as $attendee)
+                                        <div class="list-group-item" >
+                                            <div class="col-12" >
+                                                <div class="row" >
+                                                    <div class="col-4" >
+                                                        <div class="font-bold text-grey-darkest" >
+                                                            {{ $attendee->user->name }}
+                                                        </div >
+                                                        <div class="text-grey-dark text-sm" >
+                                                            {{ $attendee->user->email }}
+                                                        </div >
+                                                    </div >
+                                                    <div class="col-4">
+                                                        <div class="font-bold text-grey-darkest" >
+                                                            {{ $attendee->attendeeType->name }}
+                                                        </div >
+                                                    </div>
+                                                </div >
+                                            </div >
+                                        </div >
+                                    @endforeach
+                                </div >
                             </form>
                         </div>
                     </div>

@@ -24,7 +24,12 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::orderByDesc('id')->paginate(10);
+        $events = Event::select('events.*')
+            ->join('attendees', 'events.id', 'attendees.event_id')
+            ->where('attendees.user_id', '=', auth()->user()->id)
+            ->orderByDesc('events.id')
+            ->paginate(10);
+
         return view('event.index', [
             'events' => $events
         ]);
@@ -49,12 +54,12 @@ class EventsController extends Controller
     public function store(EventRequest $request)
     {
         Event::create([
-            'name'        => $request->get('name'),
-            'address'     => $request->get('address'),
+            'name' => $request->get('name'),
+            'address' => $request->get('address'),
             'description' => $request->get('description'),
-            'rsvp_by'     => Carbon::parse($request->get('rsvp_by')),
-            'starts_at'   => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
-            'ends_at'     => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
+            'rsvp_by' => Carbon::parse($request->get('rsvp_by')),
+            'starts_at' => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
+            'ends_at' => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
         ]);
 
         return redirect()->action('EventsController@index')->with('message', 'Event Created! :D');
@@ -63,28 +68,31 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $event = Event::findOrFail($id);
         return view('event.show', [
-            'event' => $event
+            'event' => $event,
+            'attendees' => $event->eventAttendees,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $event = Event::findOrFail($id);
+
         return view('event.edit', [
-            'event' => $event
+            'event' => $event,
+            'attendees' => $event->eventAttendees,
         ]);
     }
 
@@ -92,7 +100,7 @@ class EventsController extends Controller
      * Update the specified resource in storage.
      *
      * @param EventRequest $request
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(EventRequest $request, $id)
@@ -100,12 +108,12 @@ class EventsController extends Controller
         $event = Event::findOrFail($id);
 
         $event->update([
-            'name'        => $request->get('name'),
-            'address'     => $request->get('address'),
+            'name' => $request->get('name'),
+            'address' => $request->get('address'),
             'description' => $request->get('description'),
-            'rsvp_by'     => Carbon::parse($request->get('rsvp_by')),
-            'starts_at'   => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
-            'ends_at'     => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
+            'rsvp_by' => Carbon::parse($request->get('rsvp_by')),
+            'starts_at' => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
+            'ends_at' => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
         ]);
 
         return back()->with('message', 'Event Updated');
@@ -114,7 +122,7 @@ class EventsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -16,31 +16,14 @@
 							<form action="{{ route('event.store') }}" method="POST" >
 								@csrf
 
-								<div class="form-group" >
-									<inv-label target="name" >Name</inv-label >
-									<inv-text-input name="name" ></inv-text-input >
-								</div >
-
 								<inv-form-group label="Name" name="name" ></inv-form-group >
 
-								<div class="form-group" >
-									<label for="address" >Address</label >
-									<input type="text" id="address" name="address"
-									       class="form-control" required >
-								</div >
+								<inv-form-group label="Address" name="address" ></inv-form-group >
 
-								<div class="form-group" >
-									<label for="description" >Description</label >
-									<textarea id="description" name="description" cols="30" rows="4"
-									          class="form-control"
-									          required >
-                                    </textarea >
-								</div >
-								<div class="form-group" >
-									<label for="rsvp_by" >RSVP</label >
-									<input type="date" id="rsvp_by" name="rsvp_by"
-									       class="form-control" required >
-								</div >
+								<inv-form-group label="Description" name="description" type="textarea" ></inv-form-group >
+
+								<inv-form-group label="RSVP" name="rsvp_by" type="date" ></inv-form-group >
+
 								<div class="form-group" >
 									<div class="row" >
 										<div class="col-6" >

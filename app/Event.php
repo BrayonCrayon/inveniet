@@ -16,4 +16,14 @@ class Event extends Model
     {
         return Carbon::parse($this->starts_at)->diffForHumans();
     }
+
+
+    /**
+     *  Retrieves all Attendees(Users) that are attending the specified Event
+     */
+    public function getEventAttendeesAttribute()
+    {
+        return Attendee::where('event_id', '=', $this->id)->get();
+    }
+
 }
