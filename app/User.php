@@ -125,11 +125,10 @@ class User extends Authenticatable
 
     /**
      * @param $related_user_id
-     * @return mixed ( Finds the relationship type between the logged in user and a related user )
+     * @return mixed ( Finds the relationship between the logged in user and a related user )
      */
     public function contactRelationship($related_user_id)
     {
-        $relationship = UserRelationship::findRelationship($related_user_id)->first();
-        return UserRelationshipType::findOrFail($relationship->user_relationship_type_id)->name;
+        return UserRelationship::findRelationship($related_user_id)->first();
     }
 }

@@ -23,3 +23,7 @@ Route::resource('user', 'UserController');
 Route::resource('event', 'EventsController');
 Route::get('contacts/search', 'UserRelationshipsController@search');
 Route::resource('contacts', 'UserRelationshipsController');
+
+Route::resource('relationship-requests', 'UserRelationshipRequestsController');
+
+Route::put('relationship-requests/{relationship}/accept', 'Relationships\AcceptRelationshipRequestController')->name('relationship-requests.accept');

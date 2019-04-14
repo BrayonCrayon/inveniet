@@ -11,6 +11,6 @@ class UserRelationshipSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\UserRelationship::class, 150)->create();
+        factory(App\UserRelationship::class, 500)->create();
     }
 }

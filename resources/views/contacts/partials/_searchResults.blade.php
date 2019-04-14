@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-7">
                                 <div class="font-bold text-grey-darkest">
                                     {{ $contact->name }}
                                 </div>
@@ -14,8 +14,16 @@
                                 </div>
                             </div>
                             @if( auth()->user()->isContact($contact->id) )
-                                <div class="col font-bold text-grey-darkest">
-                                    Relation: {{ auth()->user()->contactRelationship($contact->id) }}
+                                <div class="col text-grey-darkest">
+                                    <div class="font-bold">
+                                        Relation:
+                                    </div>
+                                    {{ auth()->user()->contactRelationship($contact->id)->type->name }}
+                                </div>
+
+                                <div class="col  text-grey-darkest">
+                                    <div class="font-bold">Status:
+                                    </div> {{ auth()->user()->contactRelationship($contact->id)->status->name }}
                                 </div>
                             @endif
                         </div>

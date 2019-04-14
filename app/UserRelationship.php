@@ -9,8 +9,11 @@ class UserRelationship extends Model
     protected $fillable = [
         'user_id',
         'related_user_id',
-        'user_relationship_type_id'
+        'user_relationship_type_id',
+        'relationship_status_id',
     ];
+
+    protected $with = ['status', 'type', 'relatedUser', 'user'];
 
 
     public function relationshipType()
@@ -22,12 +25,40 @@ class UserRelationship extends Model
     public function addRelationship($user_id, $relationshipType_id)
     {
         UserRelationship::create([
-            'user_id' => auth()->user()->id,
-            'related_user_id' => $user_id,
+            'user_id'                   => auth()->user()->id,
+            'related_user_id'           => $user_id,
             'user_relationship_type_id' => $relationshipType_id,
         ]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function status()
+    {
+        return $this->belongsTo(RelationshipStatus::class, 'relationship_status_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->belongsTo(UserRelationshipType::class, 'user_relationship_type_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function relatedUser()
+    {
+        return $this->belongsTo(User::class, 'related_user_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     /**
      * @param $query
@@ -38,5 +69,11 @@ class UserRelationship extends Model
     {
         return $query->where('user_id', '=', auth()->user()->id)
             ->where('related_user_id', '=', $user_id);
+    }
+
+    public function scopePendingRequests($query)
+    {
+        return $query->where('related_user_id', auth()->user()->id)->where('relationship_status_id',
+            RelationshipStatus::PENDING_STATUS);
     }
 }
