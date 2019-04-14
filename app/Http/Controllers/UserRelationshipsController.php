@@ -117,7 +117,6 @@ class UserRelationshipsController extends Controller
     {
         $user = User::findOrFail($user_id);
 
-        // TODO: Find a way to return one instead of building a collection and returning the first one from that collection
         $relationship = UserRelationship::findRelationship($user->id)->first();
         $relationship->delete();
 

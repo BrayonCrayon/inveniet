@@ -20,6 +20,7 @@ class CreateUserRelationshipTable extends Migration
             $table->unsignedBigInteger('user_relationship_type_id');
             $table->unsignedBigInteger('relationship_status_id')->default(1);
             $table->timestamps();
+            $table->softDeletes();
 
             /* Add Constraints */
             $table->foreign('user_relationship_type_id')->references('id')->on('user_relationship_types');

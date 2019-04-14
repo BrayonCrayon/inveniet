@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserRelationship extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'user_id',
         'related_user_id',

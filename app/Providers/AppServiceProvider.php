@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Observers\UserRelationshipObserver;
+use App\UserRelationship;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        UserRelationship::observe(UserRelationshipObserver::class);
     }
 }

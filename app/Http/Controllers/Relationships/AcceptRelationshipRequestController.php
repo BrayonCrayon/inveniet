@@ -23,13 +23,6 @@ class AcceptRelationshipRequestController extends Controller
             'relationship_status_id' => RelationshipStatus::ACCEPTED_STATUS
         ]);
 
-        UserRelationship::create([
-            'user_id'                   => $relationship->related_user_id,
-            'related_user_id'           => $relationship->user_id,
-            'user_relationship_type_id' => $relationship->user_relationship_type_id,
-            'relationship_status_id'    => RelationshipStatus::ACCEPTED_STATUS
-        ]);
-
         return redirect('contacts');
     }
 }
