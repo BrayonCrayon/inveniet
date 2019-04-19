@@ -20,7 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('user', 'UserController');
+
+Route::get('event/search', 'EventsController@search');
 Route::resource('event', 'EventsController');
+
 Route::get('contacts/search', 'UserRelationshipsController@search');
 Route::resource('contacts', 'UserRelationshipsController');
 

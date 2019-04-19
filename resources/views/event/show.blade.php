@@ -56,6 +56,8 @@
                                     </div>
                                 </div>
 
+
+
                                 <div class="list-group" >
                                     @foreach($attendees as $attendee)
                                         <div class="list-group-item" >
@@ -80,6 +82,13 @@
                                     @endforeach
                                 </div >
                             </form>
+                            <div class="flex justify-end">
+                                {{--									<button class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow" >--}}
+                                {{--										Invite--}}
+                                {{--									</button >--}}
+                                <button id="show-modal" @click="showModal = true">Invite</button>
+                                <inv-attendee-modal :show="true" @close="showModal = true"></inv-attendee-modal >
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EventSeeder::class);
         $this->call(UserRelationshipTypeSeeder::class);
         $this->call(AttendeeTypeSeeder::class);
+        $this->call(AttendeeStatusSeeder::class);
         $this->call(AttendeeSeeder::class);
         $this->call(RelationshipStatusSeeder::class);
         $this->call(UserRelationshipSeeder::class);

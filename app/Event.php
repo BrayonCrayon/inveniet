@@ -12,6 +12,10 @@ class Event extends Model
 
     protected $guarded = [];
 
+    /**
+     * @return string
+     * (Returns a date that is in readable format.)
+     */
     public function getStartsAtDiffAttribute()
     {
         return Carbon::parse($this->starts_at)->diffForHumans();
@@ -24,6 +28,30 @@ class Event extends Model
     public function getEventAttendeesAttribute()
     {
         return Attendee::where('event_id', '=', $this->id)->get();
+    }
+
+
+    /**
+     * @param $query
+     * @return mixed (Finds all Events the logged in user is attending)
+     */
+    public function scopeEventsCurrentlyIn($query)
+    {
+        return $query->select('events.*')
+            ->join('attendees', 'events.id', 'attendees.event_id')
+            ->where('attendees.user_id', '=', auth()->user()->id);
+    }
+
+
+    /**
+     * @param $query
+     * @return mixed (Finds all Events the logged in user is not attending)
+     */
+    public function scopeEventsCurrentlyNotIn($query)
+    {
+        return $query->select('events.*')
+            ->join('attendees', 'events.id', 'attendees.event_id')
+            ->where('attendees.user_id', '!=', auth()->user()->id);
     }
 
 }

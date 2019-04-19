@@ -63,6 +63,14 @@
 									</div >
 								</div >
 
+								<div class="flex justify-end">
+{{--									<button class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow" >--}}
+{{--										Invite--}}
+{{--									</button >--}}
+									<inv-attendee-modal :show="showModel" @close="showModal = false"></inv-attendee-modal >
+									<button id="show-modal" @click="showModal = true">Invite</button>
+								</div>
+
 								<div class="list-group" >
 									@foreach($attendees as $attendee)
 										<div class="list-group-item" >

@@ -17,6 +17,8 @@ class CreateRelationshipStatusesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
+
+            /* CONSTRAINTS */
             $table->unique('name', 'unique_relationship_status');
         });
     }

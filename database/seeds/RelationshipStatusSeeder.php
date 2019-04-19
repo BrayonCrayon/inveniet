@@ -14,17 +14,17 @@ class RelationshipStatusSeeder extends Seeder
     {
         DB::table('relationship_statuses')->insert([
             [
-                'name'       => 'pending',
+                'name'       => 'Pending',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'declined',
+                'name'       => 'Declined',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'accepted',
+                'name'       => 'Accepted',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

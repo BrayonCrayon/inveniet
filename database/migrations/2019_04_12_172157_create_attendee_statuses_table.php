@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttendeeTypesTable extends Migration
+class CreateAttendeeStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateAttendeeTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendee_types', function (Blueprint $table) {
+        Schema::create('attendee_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
 
             /* CONSTRAINTS */
-            $table->unique('name', 'unique_attendee_type');
+            $table->unique('name', 'unique_attendee_statuses');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateAttendeeTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendee_types');
+        Schema::dropIfExists('attendee_statuses');
     }
 }
