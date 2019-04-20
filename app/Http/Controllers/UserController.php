@@ -14,8 +14,18 @@ class UserController extends Controller
      */
     public function index()
     {
-
+        $usersToInvite = [];
+        return view('user.index', compact('usersToInvite'));
     }
+
+
+    public function search()
+    {
+        $usersToInvite = User::where('id', '!=', auth()->user()->id)
+            ->where('name', 'like', request('search') . '%')->get();
+        return view('user.index', compact('usersToInvite'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

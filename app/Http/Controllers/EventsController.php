@@ -40,7 +40,7 @@ class EventsController extends Controller
     {
         $events = Event::eventsCurrentlyNotIn()
             ->where('events.name', 'like', request('search') . '%')
-            ->orderByDesc('events.starts_at')
+            ->orderBy('events.starts_at')
             ->paginate(10);
 
         return view('event.index', [

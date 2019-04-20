@@ -3,98 +3,91 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="col-12">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3><i class="fas fa-bong"></i> {{ $event->name }}</h3>
-                            <hr>
-                            <form action="">
-                                <inv-form-group label="Name" name="name" value="{{ $event->name }}"
-                                                is-disabled="true"></inv-form-group>
+	<div class="container" >
+		<div class="col-12" >
+			<div class="row" >
+				<div class="col" >
+					<div class="card" >
+						<div class="card-body" >
+							<h3 ><i class="fas fa-bong" ></i > {{ $event->name }}</h3 >
+							<hr >
+							<form action="" >
+								<inv-form-group label="Name" name="name" value="{{ $event->name }}"
+								                is-disabled="true" ></inv-form-group >
 
-                                <inv-form-group label="Address" name="address"
-                                                value="{{ $event->address }}" is-disabled="true"></inv-form-group>
+								<inv-form-group label="Address" name="address"
+								                value="{{ $event->address }}" is-disabled="true" ></inv-form-group >
 
-                                <inv-form-group label="Description" name="description"
-                                                type="textarea"
-                                                value="{{  $event->description }}" is-disabled="true">
-                                </inv-form-group>
+								<inv-form-group label="Description" name="description"
+								                type="textarea"
+								                value="{{  $event->description }}" is-disabled="true" >
+								</inv-form-group >
 
-                                <inv-form-group label="RSVP" name="rsvp_by"
-                                                value="{{ Carbon::parse($event->rsvp_by)->toDayDateTimeString() }}"
-                                                is-disabled="true"></inv-form-group>
+								<inv-form-group label="RSVP" name="rsvp_by"
+								                value="{{ Carbon::parse($event->rsvp_by)->toDayDateTimeString() }}"
+								                is-disabled="true" ></inv-form-group >
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <inv-form-group label="Start Date" name="start_date" class="col-6"
-                                                        type="date"
-                                                        value="{{  Carbon::parse($event->starts_at)->toDateString() }}"
-                                                        is-disabled="true">
-                                        </inv-form-group>
-                                        <inv-form-group label="Start Time" name="start_time" class="col-6"
-                                                        type="time"
-                                                        value="{{ Carbon::parse($event->starts_at)->toTimeString() }}"
-                                                        is-disabled="true">
-                                        </inv-form-group>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <inv-form-group label="End Date" name="end_date" class="col-6"
-                                                        type="date"
-                                                        value="{{  Carbon::parse($event->ends_at)->toDateString() }}"
-                                                        is-disabled="true">
-                                        </inv-form-group>
-                                        <inv-form-group label="End Time" name="end_time" class="col-6"
-                                                        type="time"
-                                                        value="{{ Carbon::parse($event->ends_at)->toTimeString() }}"
-                                                        is-disabled="true">
-                                        </inv-form-group>
-                                    </div>
-                                </div>
+								<div class="form-group" >
+									<div class="row" >
+										<inv-form-group label="Start Date" name="start_date" class="col-6"
+										                type="date"
+										                value="{{  Carbon::parse($event->starts_at)->toDateString() }}"
+										                is-disabled="true" >
+										</inv-form-group >
+										<inv-form-group label="Start Time" name="start_time" class="col-6"
+										                type="time"
+										                value="{{ Carbon::parse($event->starts_at)->toTimeString() }}"
+										                is-disabled="true" >
+										</inv-form-group >
+									</div >
+								</div >
+								<div class="form-group" >
+									<div class="row" >
+										<inv-form-group label="End Date" name="end_date" class="col-6"
+										                type="date"
+										                value="{{  Carbon::parse($event->ends_at)->toDateString() }}"
+										                is-disabled="true" >
+										</inv-form-group >
+										<inv-form-group label="End Time" name="end_time" class="col-6"
+										                type="time"
+										                value="{{ Carbon::parse($event->ends_at)->toTimeString() }}"
+										                is-disabled="true" >
+										</inv-form-group >
+									</div >
+								</div >
 
 
+								<div class="list-group" >
+									@foreach($attendees as $attendee)
+										<div class="list-group-item" >
+											<div class="col-12" >
+												<div class="row" >
+													<div class="col-4" >
+														<div class="font-bold text-grey-darkest" >
+															{{ $attendee->user->name }}
+														</div >
+														<div class="text-grey-dark text-sm" >
+															{{ $attendee->user->email }}
+														</div >
+													</div >
+													<div class="col-4" >
+														<div class="font-bold text-grey-darkest" >
+															{{ $attendee->attendeeType->name }}
+														</div >
+													</div >
+												</div >
+											</div >
+										</div >
+									@endforeach
+								</div >
+							</form >
 
-                                <div class="list-group" >
-                                    @foreach($attendees as $attendee)
-                                        <div class="list-group-item" >
-                                            <div class="col-12" >
-                                                <div class="row" >
-                                                    <div class="col-4" >
-                                                        <div class="font-bold text-grey-darkest" >
-                                                            {{ $attendee->user->name }}
-                                                        </div >
-                                                        <div class="text-grey-dark text-sm" >
-                                                            {{ $attendee->user->email }}
-                                                        </div >
-                                                    </div >
-                                                    <div class="col-4">
-                                                        <div class="font-bold text-grey-darkest" >
-                                                            {{ $attendee->attendeeType->name }}
-                                                        </div >
-                                                    </div>
-                                                </div >
-                                            </div >
-                                        </div >
-                                    @endforeach
-                                </div >
-                            </form>
-                            <div class="flex justify-end">
-                                {{--									<button class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow" >--}}
-                                {{--										Invite--}}
-                                {{--									</button >--}}
-                                <button id="show-modal" @click="showModal = true">Invite</button>
-                                <inv-attendee-modal :show="true" @close="showModal = true"></inv-attendee-modal >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+						</div >
+					</div >
+				</div >
+			</div >
+		</div >
+	</div >
 
 
 
