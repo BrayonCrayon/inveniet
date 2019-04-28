@@ -44,7 +44,7 @@ class UserRelationshipsController extends Controller
             ->notMyContacts()->paginate();
         $relationshipTypes = UserRelationshipType::all(['id', 'name']);
 
-        return view('contacts.index', [
+        return view('contacts.search', [
             'contacts' => $searchedContacts,
             'relationshipTypes' => $relationshipTypes,
         ]);

@@ -43,7 +43,7 @@ class EventsController extends Controller
             ->orderBy('events.starts_at')
             ->paginate(10);
 
-        return view('event.index', [
+        return view('event.search', [
            'events' => $events
         ]);
     }

@@ -18,12 +18,13 @@ class UserController extends Controller
         return view('user.index', compact('usersToInvite'));
     }
 
-
     public function search()
     {
         $usersToInvite = User::where('id', '!=', auth()->user()->id)
-            ->where('name', 'like', request('search') . '%')->get();
-        return view('user.index', compact('usersToInvite'));
+            ->where('name', 'like', request('search') . '%')
+            ->orderBy('name')
+            ->get();
+        return response()->json([ 'usersToInvite' => $usersToInvite ]);
     }
 
 

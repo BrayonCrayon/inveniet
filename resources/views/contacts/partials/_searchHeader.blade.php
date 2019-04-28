@@ -1,7 +1,7 @@
 <div class="col-12">
     <div class="row">
         <div class="col-6">
-            <h3 class="card-title ">My Relationships</h3>
+            <h3 class="card-title ">Relationships</h3>
         </div>
         <div class="col-6">
             <div class="row">

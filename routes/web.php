@@ -20,15 +20,21 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*  USER ROUTES  */
-Route::get('user/search', 'UserController@search');
+Route::post('user/search', 'UserController@search');
 Route::resource('user', 'UserController');
 
 /*  EVENT ROUTES  */
-Route::get('event/search', 'EventsController@search');
+Route::get('event/search', [
+    'as' => 'event.search',
+    'uses' => 'EventsController@search',
+]);
 Route::resource('event', 'EventsController');
 
 /*  CONTACT ROUTES  */
-Route::get('contacts/search', 'UserRelationshipsController@search');
+Route::get('contacts/search', [
+    'as' => 'contacts.search',
+    'uses' => 'UserRelationshipsController@search',
+]);
 Route::resource('contacts', 'UserRelationshipsController');
 
 /*  RELATIONSHIP REQUEST ROUTES  */

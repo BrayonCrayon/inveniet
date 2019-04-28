@@ -37,11 +37,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item hover:bg-primary-dark rounded">
-                            <a class="nav-link text-white " href="{{ route('event.index') }}">Events</a>
+                            <a class="nav-link text-white " href="{{ route('event.search') }}">Events</a>
                         </li>
 
                         <li class="nav-item hover:bg-primary-dark rounded">
-                            <a class="nav-link text-white " href="{{ route('contacts.index') }}">Relationship's</a>
+                            <a class="nav-link text-white " href="{{ route('contacts.search') }}">Relationship's</a>
                         </li>
 
                         <li class="nav-item hover:bg-primary-dark rounded">
@@ -79,6 +79,15 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <a href="{{ route('contacts.index') }}"
+                                       class="dropdown-item">
+                                        My Relationship's
+                                    </a>
+                                    <a href="{{ route('event.index') }}"
+                                       class="dropdown-item">
+                                        My Events
+                                    </a>
                                 </div>
                             </li>
                         @endguest
