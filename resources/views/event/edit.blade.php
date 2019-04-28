@@ -63,6 +63,10 @@
 									</div >
 								</div >
 
+								<div class="flex justify-end">
+									<inv-attendee-modal event-id="{{ $event->id }}"></inv-attendee-modal >
+								</div>
+
 								<div class="list-group" >
 									@foreach($attendees as $attendee)
 										<div class="list-group-item" >

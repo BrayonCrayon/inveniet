@@ -4,6 +4,7 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/src/index';
 
 
 @tailwind preflight;
@@ -43,5 +44,11 @@
                   #606f7b 80%,
                   rgba(0, 0, 0, 0)
   ) 90 100%;
+}
+
+.list-group-scrollable {
+  max-height: 300px;
+  margin-bottom: 10px;
+  overflow-y: scroll;
 }
 

@@ -1,9 +1,9 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class AttendeeTypeSeeder extends Seeder
+class AttendeeStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,17 +12,17 @@ class AttendeeTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('attendee_types')->insert([
+        DB::table('attendee_statuses')->insert([
             [
-                'name'       => 'host',
+                'name'       => 'Attending',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'guest',
+                'name'       => 'Not Attending',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
+            ]
         ]);
     }
 }

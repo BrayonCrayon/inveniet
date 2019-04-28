@@ -24,14 +24,27 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::select('events.*')
-            ->join('attendees', 'events.id', 'attendees.event_id')
-            ->where('attendees.user_id', '=', auth()->user()->id)
-            ->orderByDesc('events.id')
+        $events = Event::eventsCurrentlyIn()
+            ->orderBy('events.starts_at')
             ->paginate(10);
 
         return view('event.index', [
             'events' => $events
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search()
+    {
+        $events = Event::eventsCurrentlyNotIn()
+            ->where('events.name', 'like', request('search') . '%')
+            ->orderBy('events.starts_at')
+            ->paginate(10);
+
+        return view('event.search', [
+           'events' => $events
         ]);
     }
 

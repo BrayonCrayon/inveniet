@@ -52,6 +52,9 @@ class User extends Authenticatable
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function attendingEvents()
     {
         return $this->hasMany(Attendee::class);
@@ -118,10 +121,16 @@ class User extends Authenticatable
         return isset($contact) ? true : false;
     }
 
+
+    /**
+     * @param $query
+     * @return mixed ()
+     */
     public function scopeMyContacts($query)
     {
         return $query->whereIn('id', $this->relationships->pluck('related_user_id'));
     }
+
 
     /**
      * @param $related_user_id

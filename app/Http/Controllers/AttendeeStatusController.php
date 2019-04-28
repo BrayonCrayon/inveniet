@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\AttendeeStatus;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AttendeeStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,19 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $usersToInvite = [];
-        return view('user.index', compact('usersToInvite'));
+        //
     }
-
-    public function search()
-    {
-        $usersToInvite = User::where('id', '!=', auth()->user()->id)
-            ->where('name', 'like', request('search') . '%')
-            ->orderBy('name')
-            ->get();
-        return response()->json([ 'usersToInvite' => $usersToInvite ]);
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +30,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -52,10 +41,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\AttendeeStatus  $attendeeStatus
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(AttendeeStatus $attendeeStatus)
     {
         //
     }
@@ -63,10 +52,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  \App\AttendeeStatus  $attendeeStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(AttendeeStatus $attendeeStatus)
     {
         //
     }
@@ -74,11 +63,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\AttendeeStatus  $attendeeStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AttendeeStatus $attendeeStatus)
     {
         //
     }
@@ -86,10 +75,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  \App\AttendeeStatus  $attendeeStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(AttendeeStatus $attendeeStatus)
     {
         //
     }

@@ -3,7 +3,7 @@
         <div class="list-group-item">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-8">
                         <div class="row">
                             <div class="col-7">
                                 <div class="font-bold text-grey-darkest">
@@ -28,7 +28,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="row justify-content-end">
                             @if( auth()->user()->isContact($contact->id) )
                                 <form id="DELETE_CONTACT_FORM_{{ $contact->id }}"

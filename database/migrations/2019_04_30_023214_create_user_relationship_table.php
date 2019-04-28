@@ -22,7 +22,7 @@ class CreateUserRelationshipTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            /* Add Constraints */
+            /* Constraints */
             $table->foreign('user_relationship_type_id')->references('id')->on('user_relationship_types');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('related_user_id')->references('id')->on('users');

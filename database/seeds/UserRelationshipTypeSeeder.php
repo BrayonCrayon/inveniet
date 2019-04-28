@@ -16,33 +16,33 @@ class UserRelationshipTypeSeeder extends Seeder
         DB::table('user_relationship_types')->insert([
             [
                 'name'       => 'friend',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name'       => 'best friend',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name'       => 'spouse',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name'       => 'sibling',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name'       => 'co-worker',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name'       => 'pet',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

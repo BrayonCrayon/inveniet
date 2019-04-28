@@ -19,15 +19,10 @@ class UserRelationshipsController extends Controller
      */
     public function index()
     {
-
-
-//        dd(now());
-         StartAnnoyingBrady::dispatch();
-        //        auth()->user()->notify(new AnnoyBrady());
-
-        dd(now());
-        dd("HERE");
-        $contacts          = auth()->user()->myContacts()->paginate();
+        $contacts = auth()->user()
+            ->myContacts()
+            ->orderBy('name', 'asc')
+            ->paginate();
         $relationshipTypes = UserRelationshipType::all(['id', 'name']);
 
         return view('contacts.index', [
@@ -52,8 +47,8 @@ class UserRelationshipsController extends Controller
             ->notMyContacts()->paginate();
         $relationshipTypes = UserRelationshipType::all(['id', 'name']);
 
-        return view('contacts.index', [
-            'contacts'          => $searchedContacts,
+        return view('contacts.search', [
+            'contacts' => $searchedContacts,
             'relationshipTypes' => $relationshipTypes,
         ]);
     }
@@ -71,7 +66,7 @@ class UserRelationshipsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     // TODO: Use UserRelationshipsRequest class for validation
@@ -87,7 +82,7 @@ class UserRelationshipsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -98,7 +93,7 @@ class UserRelationshipsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -109,8 +104,8 @@ class UserRelationshipsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -121,7 +116,7 @@ class UserRelationshipsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($user_id)

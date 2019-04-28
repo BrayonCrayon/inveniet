@@ -18,6 +18,7 @@ class CreateUserRelationshipTypeTable extends Migration
             $table->string('name');
             $table->timestamps();
 
+            /* CONSTRAINTS */
             $table->unique('name', 'unique_relationship_type');
         });
     }
