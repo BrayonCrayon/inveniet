@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StartAnnoyingBrady;
 use App\User;
 use App\UserRelationship;
 use App\UserRelationshipType;
+use Carbon\Carbon;
+use Carbon\CarbonTimeZone;
 use Illuminate\Http\Request;
 
 class UserRelationshipsController extends Controller
@@ -16,11 +19,19 @@ class UserRelationshipsController extends Controller
      */
     public function index()
     {
-        $contacts = auth()->user()->myContacts()->paginate();
+
+
+//        dd(now());
+         StartAnnoyingBrady::dispatch();
+        //        auth()->user()->notify(new AnnoyBrady());
+
+        dd(now());
+        dd("HERE");
+        $contacts          = auth()->user()->myContacts()->paginate();
         $relationshipTypes = UserRelationshipType::all(['id', 'name']);
 
         return view('contacts.index', [
-            'contacts' => $contacts,
+            'contacts'          => $contacts,
             'relationshipTypes' => $relationshipTypes,
         ]);
     }
@@ -42,7 +53,7 @@ class UserRelationshipsController extends Controller
         $relationshipTypes = UserRelationshipType::all(['id', 'name']);
 
         return view('contacts.index', [
-            'contacts' => $searchedContacts,
+            'contacts'          => $searchedContacts,
             'relationshipTypes' => $relationshipTypes,
         ]);
     }
@@ -66,7 +77,7 @@ class UserRelationshipsController extends Controller
     // TODO: Use UserRelationshipsRequest class for validation
     public function store(UserRelationship $userRelationship)
     {
-        $user = User::findOrFail(request('user_id'));
+        $user             = User::findOrFail(request('user_id'));
         $relationshipType = UserRelationshipType::findOrFail(request('relationshipType'));
         $userRelationship->addRelationship($user->id, $relationshipType->id);
 
