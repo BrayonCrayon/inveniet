@@ -20,11 +20,12 @@ class UserController extends Controller
 
     public function search()
     {
-        $usersToInvite = User::where('id', '!=', auth()->user()->id)
+        $users = User::where('id', '!=', auth()->user()->id)
             ->where('name', 'like', request('search') . '%')
             ->orderBy('name')
-            ->get();
-        return response()->json([ 'usersToInvite' => $usersToInvite ]);
+            ->get(['id','name']);
+
+        return response()->json($users);
     }
 
 

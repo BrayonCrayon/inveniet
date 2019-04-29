@@ -41,3 +41,6 @@ Route::resource('contacts', 'UserRelationshipsController');
 Route::resource('relationship-requests', 'UserRelationshipRequestsController');
 Route::put('relationship-requests/{relationship}/accept', 'Relationships\AcceptRelationshipRequestController')->name('relationship-requests.accept');
 
+
+Route::resource('attendees', 'AttendeeController');
+

@@ -1,17 +1,17 @@
 <template>
   <div>
-    <b-button
+    <button
       class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow"
       @click="showModal"
     >
       Invite a User
-    </b-button>
+    </button>
 
     <b-modal
       ref="modal-user-invite"
       hide-footer
+      size="xl"
       title="Select a User"
-      scrollable
     >
       <div class="col-12">
         <div class="row">
@@ -65,7 +65,10 @@
                 </div>
               </div>
             </div>
-            <div v-else class="text-nowrap">
+            <div
+              v-else
+              class="list-group-scrollable text-nowrap border flex flex-col justify-center text-center"
+            >
               No Users with a starting name of '{{ userSearch }}'
             </div>
           </div>
@@ -75,31 +78,29 @@
       <div class="col-12">
         <div class="row">
           <div class="col">
-            <b-button
-              class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow"
+            <button
+              class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow w-full"
               block
               @click="hideModal"
             >
               Cancel
-            </b-button>
+            </button>
           </div>
           <div class="col">
-            <form method="GET" action="/events/index">
-              <b-button
-                class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow"
-                block
-              >
-                Add Selected
-              </b-button>
-            </form>
+            <button
+              class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow w-full"
+              block
+              @click="addSelectedUsers"
+            >
+              Add Selected
+            </button>
           </div>
         </div>
       </div>
     </b-modal>
   </div>
 </template>
-<script >
-import axios from 'axios';
+<script>
 
 export default {
   props: {
@@ -113,27 +114,40 @@ export default {
     return {
       users: [],
       userSearch: '',
-      userInvites: [],
+      userInvites: [
+        { id: 2 },
+        { id: 8 },
+        { id: 3 },
+      ],
     };
   },
 
   watch: {
-    userSearch() {
+    userSearch(newVal, oldVal) {
+      if (!newVal) return;
       this.getUsers();
     },
   },
 
   methods: {
-    getUsers() {
-      axios.post('/user/search', {
-        search: this.userSearch,
-      })
-        .then((response) => {
-          this.users = response.data.usersToInvite;
-        })
-        .catch((error) => {
-          console.log(error);
+    async addSelectedUsers() {
+      try {
+        const { data } = await window.axios.post('/attendees');
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async getUsers() {
+      try {
+        const { data } = await window.axios.post('/user/search', {
+          search: this.userSearch,
         });
+        console.log(data);
+        this.users = data;
+      } catch (err) {
+        console.error(err);
+      }
     },
 
     addUser(userId) {
@@ -156,14 +170,14 @@ export default {
     },
 
     showModal() {
-      this.userInvites = [];
+      // this.userInvites = [];
       this.userSearch = '';
       this.users = [];
       this.$refs['modal-user-invite'].show();
     },
 
     hideModal() {
-      this.userInvites = [];
+      // this.userInvites = [];
       this.userSearch = '';
       this.users = [];
       this.$refs['modal-user-invite'].hide();
@@ -172,4 +186,4 @@ export default {
   },
 
 };
-</script >
+</script>

@@ -6,15 +6,27 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import BooestrapVue from 'bootstrap-vue';
+import BootstrapVue from 'bootstrap-vue';
 import Vue from 'vue';
+import axios from 'axios';
+
 
 require('./bootstrap');
 window.Vue = require('vue');
 
-Vue.use(BooestrapVue);
+window.Axios = axios;
 
+Vue.use(BootstrapVue);
 
+const headers = {
+  'X-CSRF-TOKEN': window.CSRF.csrfToken,
+  'X-Requested-With': 'XMLHttpRequest',
+};
+console.log(headers);
+
+axios.interceptors.request.use(({
+  header: headers,
+}));
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
