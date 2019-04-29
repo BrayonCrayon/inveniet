@@ -37,8 +37,13 @@ export default {
     };
   },
   mounted() {
-    this.inputValue = this.value;
     this.show = true;
+  },
+  updated() {
+    this.inputValue = this.value;
+  },
+  beforeUpdate() {
+    this.inputValue = this.value;
   },
   methods: {
     emitInput() {

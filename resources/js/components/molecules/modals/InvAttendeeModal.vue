@@ -114,11 +114,8 @@ export default {
     return {
       users: [],
       userSearch: '',
-      userInvites: [
-        { id: 2 },
-        { id: 8 },
-        { id: 3 },
-      ],
+      userInvites: [],
+      modalVisible: false,
     };
   },
 
@@ -133,17 +130,17 @@ export default {
     async addSelectedUsers() {
       try {
         const { data } = await window.axios.post('/attendees');
-        console.log(data);
+        /* ToDo: Add attendees to the event */
       } catch (err) {
         console.error(err);
       }
     },
     async getUsers() {
       try {
-        const { data } = await window.axios.post('/user/search', {
+        const { data } = await window.axios.post('/attendee/search', {
           search: this.userSearch,
+          eventId: this.eventId,
         });
-        console.log(data);
         this.users = data;
       } catch (err) {
         console.error(err);
@@ -169,17 +166,21 @@ export default {
       return index !== -1;
     },
 
-    showModal() {
-      // this.userInvites = [];
+    resetModal() {
+      this.userInvites = [];
       this.userSearch = '';
       this.users = [];
+    },
+
+    showModal() {
+      this.modalVisible = true;
+      this.resetModal();
       this.$refs['modal-user-invite'].show();
     },
 
     hideModal() {
-      // this.userInvites = [];
-      this.userSearch = '';
-      this.users = [];
+      this.modalVisible = false;
+      this.resetModal();
       this.$refs['modal-user-invite'].hide();
     },
 

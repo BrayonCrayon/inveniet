@@ -20,14 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*  USER ROUTES  */
-Route::post('user/search', 'UserController@search');
+Route::post('/attendee/search', 'Events\SearchNewAttendeesController');
 Route::resource('user', 'UserController');
 
 /*  EVENT ROUTES  */
 Route::get('event/search', [
-    'as' => 'event.search',
     'uses' => 'EventsController@search',
-]);
+])->name('event.search');
 Route::resource('event', 'EventsController');
 
 /*  CONTACT ROUTES  */
@@ -43,4 +42,5 @@ Route::put('relationship-requests/{relationship}/accept', 'Relationships\AcceptR
 
 
 Route::resource('attendees', 'AttendeeController');
+
 
