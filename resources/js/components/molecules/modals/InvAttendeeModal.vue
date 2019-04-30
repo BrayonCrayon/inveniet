@@ -4,7 +4,7 @@
       class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow"
       @click="showModal"
     >
-      Invite a User
+      <i class="fas fa-user-plus" />
     </button>
 
     <b-modal
@@ -16,11 +16,12 @@
       <div class="col-12">
         <div class="row">
           <div class="col">
-            <inv-text-input
+            <input
               v-model="userSearch"
-              name="search"
-              place-holder="Search For Users"
-            />
+              type="text"
+              placeholder="Search For Users"
+              class="form-control"
+            >
           </div>
         </div>
         <div class="row">
@@ -100,7 +101,7 @@
     </b-modal>
   </div>
 </template>
-<script>
+<script >
 
 export default {
   props: {
@@ -127,14 +128,26 @@ export default {
   },
 
   methods: {
+
+    /**
+     * Adds selected users to an event that corresponds to the eventId attribute.
+     */
     async addSelectedUsers() {
       try {
-        const { data } = await window.axios.post('/attendees');
+        const { data } = await window.axios.post('/attendees', {
+          eventId: this.eventId,
+          userInvites: this.userInvites,
+        });
         /* ToDo: Add attendees to the event */
       } catch (err) {
         console.error(err);
       }
     },
+
+    /**
+     * Retrieves Users that have a name like 'userSearch' and that are not in the event.
+     * @returns {Promise<void>}
+     */
     async getUsers() {
       try {
         const { data } = await window.axios.post('/attendee/search', {
@@ -147,6 +160,10 @@ export default {
       }
     },
 
+    /**
+     * Adds a userId to a list of current users the user would like to invite.
+     * @param userId
+     */
     addUser(userId) {
       if (!this.userAlreadyAdded(userId)) {
         this.userInvites.push(
@@ -157,29 +174,46 @@ export default {
       }
     },
 
+    /**
+     * Removes a user from the current users the user would like to invite.
+     * @param userId
+     */
     removeUser(userId) {
       this.userInvites = this.userInvites.filter(user => user.id !== userId);
     },
 
+    /**
+     * Checks to see if a user has already been added to the invite list.
+     * @param userId
+     * @returns {boolean}
+     */
     userAlreadyAdded(userId) {
       const index = this.userInvites.findIndex(user => user.id === userId);
       return index !== -1;
     },
 
+    /**
+     * Resets all attributes in the modal so that when the modal is hidden
+     *  it will not persist any old data.
+     */
     resetModal() {
       this.userInvites = [];
       this.userSearch = '';
       this.users = [];
     },
 
+    /**
+     * Shows the modal from either hidden state or new.
+     */
     showModal() {
-      this.modalVisible = true;
       this.resetModal();
       this.$refs['modal-user-invite'].show();
     },
 
+    /**
+     * Hides the modal
+     */
     hideModal() {
-      this.modalVisible = false;
       this.resetModal();
       this.$refs['modal-user-invite'].hide();
     },
@@ -187,4 +221,4 @@ export default {
   },
 
 };
-</script>
+</script >
