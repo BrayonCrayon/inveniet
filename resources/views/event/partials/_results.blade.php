@@ -11,20 +11,22 @@
 						{{ $event->starts_at_diff }}
 					</div >
 				</div >
-				<div class="contents-baseline text-grey-darkest ml-2 flex" >
-					<a href="{{ route('event.edit', ['id' => $event->id]) }}"
-					   class="btn hover:bg-green-lightest text-grey-darkest text-lg" >
-						Edit
-					</a >
-					<form action="{{ route('event.destroy', ['id' => $event->id]) }}"
-					      method="POST" >
-						@csrf
-						@method('DELETE')
-						<button class="btn hover:bg-red-lightest text-red-darkest text-lg" >
-							<i class="fas fa-dumpster-fire" ></i > Delete
-						</button >
-					</form >
-				</div >
+				@if(auth()->user()->isEventHost($event->id))
+					<div class="contents-baseline text-grey-darkest ml-2 flex" >
+						<a href="{{ route('event.edit', ['id' => $event->id]) }}"
+						   class="btn hover:bg-green-lightest text-grey-darkest text-lg" >
+							Edit
+						</a >
+						<form action="{{ route('event.destroy', ['id' => $event->id]) }}"
+						      method="POST" >
+							@csrf
+							@method('DELETE')
+							<button class="btn hover:bg-red-lightest text-red-darkest text-lg" >
+								<i class="fas fa-dumpster-fire" ></i > Delete
+							</button >
+						</form >
+					</div >
+				@endif
 			</div >
 
 			<p >{{ $event->description }}</p >

@@ -12,6 +12,8 @@ class Event extends Model
 
     protected $guarded = [];
 
+
+
     /**
      * @return string
      * (Returns a date that is in readable format.)
@@ -37,9 +39,7 @@ class Event extends Model
      */
     public function scopeEventsCurrentlyIn($query)
     {
-        return $query->select('events.*')
-            ->join('attendees', 'events.id', 'attendees.event_id')
-            ->where('attendees.user_id', '=', auth()->user()->id);
+        return $query->whereIn('id', auth()->user()->attendingEvents->pluck('event_id'));
     }
 
 
@@ -49,9 +49,7 @@ class Event extends Model
      */
     public function scopeEventsCurrentlyNotIn($query)
     {
-        return $query->select('events.*')
-            ->join('attendees', 'events.id', 'attendees.event_id')
-            ->where('attendees.user_id', '!=', auth()->user()->id);
+        return $query->whereNotIn('id', auth()->user()->attendingEvents->pluck('event_id'));
     }
 
 }

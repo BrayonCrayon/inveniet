@@ -1,6 +1,5 @@
 <template>
   <input
-    v-if="show"
     :id="name"
     v-model="inputValue"
     type="text"
@@ -32,12 +31,8 @@ export default {
   },
   data() {
     return {
-      show: false,
       inputValue: '',
     };
-  },
-  mounted() {
-    this.show = true;
   },
   updated() {
     this.inputValue = this.value;

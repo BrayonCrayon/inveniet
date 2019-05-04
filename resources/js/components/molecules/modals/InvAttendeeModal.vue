@@ -134,11 +134,13 @@ export default {
      */
     async addSelectedUsers() {
       try {
-        const { data } = await window.axios.post('/attendees', {
+        const { data } = await window.Axios.post('/attendee', {
           eventId: this.eventId,
           userInvites: this.userInvites,
         });
-        /* ToDo: Add attendees to the event */
+
+        if (data) this.hideModal();
+        location.reload();
       } catch (err) {
         console.error(err);
       }
@@ -150,7 +152,7 @@ export default {
      */
     async getUsers() {
       try {
-        const { data } = await window.axios.post('/attendee/search', {
+        const { data } = await window.Axios.post('/attendee/search', {
           search: this.userSearch,
           eventId: this.eventId,
         });
@@ -166,11 +168,7 @@ export default {
      */
     addUser(userId) {
       if (!this.userAlreadyAdded(userId)) {
-        this.userInvites.push(
-          {
-            id: userId,
-          },
-        );
+        this.userInvites.push(userId);
       }
     },
 
@@ -179,7 +177,7 @@ export default {
      * @param userId
      */
     removeUser(userId) {
-      this.userInvites = this.userInvites.filter(user => user.id !== userId);
+      this.userInvites = this.userInvites.filter(invitedUserId => invitedUserId !== userId);
     },
 
     /**
@@ -188,7 +186,7 @@ export default {
      * @returns {boolean}
      */
     userAlreadyAdded(userId) {
-      const index = this.userInvites.findIndex(user => user.id === userId);
+      const index = this.userInvites.findIndex(invitedUserId => invitedUserId === userId);
       return index !== -1;
     },
 

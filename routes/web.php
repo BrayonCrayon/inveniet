@@ -41,6 +41,6 @@ Route::put('relationship-requests/{relationship}/accept', 'Relationships\AcceptR
 
 /*  ATTENDEE ROUTES  */
 Route::post('/attendee/search', 'Events\SearchNewAttendeesController');
-Route::resource('attendees', 'AttendeeController');
+Route::resource('attendee', 'AttendeeController');
 
 

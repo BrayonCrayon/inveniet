@@ -71,16 +71,6 @@ class User extends Authenticatable
 
 
     /**
-     *
-     */
-    // TODO: See if this is a better option then the functionality in UserRelationshipsController@store.
-    public function setContactsAttribute($related_user_id)
-    {
-        auth()->user()->relationship()->attach($related_user_id);
-    }
-
-
-    /**
      * @param $query
      * @return mixed (Filters out the logged in user out of the result set.)
      */
@@ -139,5 +129,19 @@ class User extends Authenticatable
     public function contactRelationship($related_user_id)
     {
         return UserRelationship::findRelationship($related_user_id)->first();
+    }
+
+
+    /**
+     * @param $eventId
+     * @return bool ( Determines if the user has credentials to edit or delete the present event )
+     */
+    public function isEventHost($eventId)
+    {
+        $userAttendee = $this->attendingEvents()
+                            ->where('event_id', '=', $eventId)
+                            ->get()
+                            ->first();
+        return isset($userAttendee) && $userAttendee->attendeeType->id == AttendeeType::$HOST;
     }
 }

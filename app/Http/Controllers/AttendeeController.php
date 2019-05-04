@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Attendee;
+use \App\Attendee;
+use App\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AttendeeController extends Controller
@@ -30,18 +32,25 @@ class AttendeeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        return response()->json();
+        $userInvites = collect($request->get('userInvites'));
+        $eventId = $request->get('eventId');
+
+        $userInvites->every(function ($userId, $key) use ($eventId) {
+            Attendee::addAttendee($userId, $eventId, 2);
+        });
+
+        return response()->json(true);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Attendee  $attendee
+     * @param \App\Attendee $attendee
      * @return \Illuminate\Http\Response
      */
     public function show(Attendee $attendee)
@@ -52,7 +61,7 @@ class AttendeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Attendee  $attendee
+     * @param \App\Attendee $attendee
      * @return \Illuminate\Http\Response
      */
     public function edit(Attendee $attendee)
@@ -63,8 +72,8 @@ class AttendeeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Attendee  $attendee
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Attendee $attendee
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Attendee $attendee)
@@ -75,7 +84,7 @@ class AttendeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Attendee  $attendee
+     * @param \App\Attendee $attendee
      * @return \Illuminate\Http\Response
      */
     public function destroy(Attendee $attendee)

@@ -13,7 +13,7 @@
 				<div class="col">
 					<form method="GET" action="/event/search">
 						@csrf
-						<inv-text-input name="search" placeholder="Search For New Events"/>
+						<inv-text-input name="search" placeholder="Search For New Events"></inv-text-input>
 					</form>
 				</div>
 			</div>

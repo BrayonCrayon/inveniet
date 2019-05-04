@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Events;
 
+use App\Event;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,8 +31,12 @@ class SearchNewAttendeesController extends Controller
             'eventId' => 'required',
         ]);
 
-        $users = User::where('id', '!=', auth()->user()->id)
-            ->where('name', 'like', $request->get('search') . '%')
+        $event = new Event([
+            'id' => $request->get('eventId'),
+        ]);
+
+        $users = User::where('name', 'like', $request->get('search') . '%')
+            ->whereNotIn('id', $event->getEventAttendeesAttribute()->pluck('user_id'))
             ->orderBy('name')
             ->get(['id','name']);
 
