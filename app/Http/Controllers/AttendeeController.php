@@ -89,6 +89,7 @@ class AttendeeController extends Controller
      */
     public function destroy(Attendee $attendee)
     {
-        //
+        $attendee->delete();
+        return redirect()->back();
     }
 }

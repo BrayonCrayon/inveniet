@@ -72,8 +72,11 @@
 													</div >
 													<div class="col-4" >
 														<div class="font-bold text-grey-darkest" >
-															{{ $attendee->attendeeType->name }}
+															Attendee Type
 														</div >
+														<div class="text-grey-dark text-sm">
+															{{ $attendee->attendeeType->name }}
+														</div>
 													</div >
 												</div >
 											</div >
