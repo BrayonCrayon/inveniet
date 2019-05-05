@@ -41,6 +41,9 @@ Route::put('relationship-requests/{relationship}/accept', 'Relationships\AcceptR
 
 /*  ATTENDEE ROUTES  */
 Route::post('/attendee/search', 'Events\SearchNewAttendeesController');
+Route::post('/attendee/storeMany', [
+    'uses' => 'AttendeeController@storeMany'
+])->name('attendee.storeMany');
 Route::resource('attendee', 'AttendeeController');
 
 

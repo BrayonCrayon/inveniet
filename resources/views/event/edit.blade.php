@@ -94,7 +94,7 @@
 									<div class="list-group-item" >
 										<div class="col-12" >
 											<div class="row" >
-												<div class="col-4" >
+												<div class="col-10" >
 													<div class="font-bold text-grey-darkest" >
 														{{ $attendee->user->name }}
 													</div >
@@ -102,24 +102,18 @@
 														{{ $attendee->user->email }}
 													</div >
 												</div >
-												<div class="col-4" >
-													<div class="font-bold text-grey-darkest" >
-														Attendee Type
-													</div >
-													<div class="text-grey-dark text-sm">
-														{{ $attendee->attendeeType->name }}
-													</div>
-												</div >
-												<div class="col-4">
+												<div class="col-2">
 													<form action="{{ route('attendee.destroy',  $attendee ) }}" method="POST" >
 														@csrf
 														@method('DELETE')
-														<button class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow mx-2" >
-															Remove
+														<button class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow mx-2 justify-end" >
+															<i class="fa fa-user-times" ></i>
 														</button >
 													</form>
 												</div>
 											</div >
+											<inv-attendee-status attendee-type="{{ $attendee->attendeeType->name }}"
+											                     attendee-status="{{ $attendee->attendeeStatus->name }}"></inv-attendee-status>
 										</div >
 									</div >
 								@endforeach

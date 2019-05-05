@@ -131,6 +131,14 @@ class User extends Authenticatable
         return UserRelationship::findRelationship($related_user_id)->first();
     }
 
+    public function getUserAttendee($eventId)
+    {
+        return $this->attendingEvents()
+            ->where('event_id', '=', $eventId)
+            ->get()
+            ->first();
+    }
+
 
     /**
      * @param $eventId
@@ -138,10 +146,18 @@ class User extends Authenticatable
      */
     public function isEventHost($eventId)
     {
-        $userAttendee = $this->attendingEvents()
-                            ->where('event_id', '=', $eventId)
-                            ->get()
-                            ->first();
+        $userAttendee = $this->getUserAttendee($eventId);
         return isset($userAttendee) && $userAttendee->attendeeType->id == AttendeeType::$HOST;
+    }
+
+
+    /**
+     * @param $eventId
+     * @return bool ( Determines if the user is attending the event. )
+     */
+    public function isAttending($eventId)
+    {
+        $userAttendee = $this->getUserAttendee($eventId);
+        return isset($userAttendee);
     }
 }

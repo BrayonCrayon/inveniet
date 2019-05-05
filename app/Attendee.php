@@ -47,15 +47,16 @@ class Attendee extends Model
      * @param $user_id
      * @param $event_id
      * @param $attendee_type
+     * @param $attendee_status
      */
     //TODO: THIS METHOD SHOULD NOT BE STATIC TO BE CALLED FIND ANOTHER WAY TO CALL THIS METHOD
-    public static function addAttendee($userId, $eventId, $attendee_type)
+    public static function addAttendee($user_id, $event_id, $attendee_type, $attendee_status = 2)
     {
         Attendee::create([
-            'user_id' => $userId,
-            'event_id' => $eventId,
+            'user_id' => $user_id,
+            'event_id' => $event_id,
             'attendee_type_id' => $attendee_type,
-            'attendee_status_id' => 2,
+            'attendee_status_id' => $attendee_status,
         ]);
     }
 

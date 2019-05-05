@@ -31,18 +31,21 @@
 
 			<p >{{ $event->description }}</p >
 
-			<div class="flex my-2" >
-				<inv-button link="{{ route('event.show', ['id' => $event->id]) }}"
-				            color="grey" >
-					<i class="fas fa-search-location" ></i > Check it out
-				</inv-button >
-				{{--TODO: INTERGRATE THIS EVENT INTO GOOGLE CALENDAR--}}
-				{{--				<inv-button color="grey" class="mx-2">--}}
-				{{--					<i class="far fa-calendar-plus"></i> Add to Calendar--}}
-				{{--				</inv-button>--}}
+
+			@if(!auth()->user()->isEventHost($event->id))
+				<div class="flex my-2" >
+					<inv-button link="{{ route('event.show', ['id' => $event->id]) }}"
+					            color="grey" >
+						<i class="fas fa-search-location" ></i > Check it out
+					</inv-button >
+					{{--TODO: INTERGRATE THIS EVENT INTO GOOGLE CALENDAR--}}
+					{{--				<inv-button color="grey" class="mx-2">--}}
+					{{--					<i class="far fa-calendar-plus"></i> Add to Calendar--}}
+					{{--				</inv-button>--}}
 
 
-			</div >
+				</div >
+			@endif
 		</div >
 	</div >
 @empty

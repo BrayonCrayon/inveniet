@@ -7,35 +7,44 @@
 				<div class="col" >
 					<div class="card" >
 						<div class="card-body" >
-							<div class="col-12">
-								<div class="row">
-									<div class="col">
-										<h3 class="card-title">Contact Relationships</h3 >
-									</div>
-								</div>
-							</div>
+							<div class="col-12" >
+								<div class="row" >
+									<div class="col" >
+										<h3 class="card-title" ><i class="fas fa-inbox"></i>Requests</h3 >
+									</div >
+								</div >
+							</div >
 							<div class="list-group" >
 								@forelse($requests as $request)
 									<div class="list-group-item" >
 
-										<div class="flex justify-between" >
-											<div class="" >
-												{{ $request->user->name }}
-											</div >
-											<div class="" >
-												{{ $request->type->name }}
+										<div class="col-lg-12" >
+											<div class="row" >
+
+												<div class="col-6" >
+													<div class="font-bold text-grey-darkest" >
+														{{ $request->user->name }}
+													</div >
+													<div class="text-grey-dark text-sm" >
+														{{ $request->user->email }}
+													</div >
+												</div >
+
+												<div class="col-6 flex justify-end" >
+													<form action="{{ route('relationship-requests.accept', ['relationship' => $request]) }}"
+													      method="POST">
+														@csrf
+														@method('PUT')
+														<button class="btn bg-green-dark hover:bg-green-darker text-green-lightest py-1" >
+															<i class="fas fa-check-square fa-2x mx-6"></i>
+														</button >
+													</form >
+												</div >
+
 											</div >
 
-											<div class="" >
-												<form action="{{ route('relationship-requests.accept', ['relationship' => $request]) }}"
-												      method="POST" >
-													@csrf
-													@method('PUT')
-													<button class="btn bg-green-dark hover:bg-green-darker text-green-lightest" >
-														Accept
-													</button >
-												</form >
-											</div >
+											<inv-relationship-status relationship-type="{{ $request->type->name }}"
+											                         relationship-status="{{ $request->status->name }}"></inv-relationship-status>
 
 										</div >
 
@@ -52,3 +61,9 @@
 	</div >
 @endsection
 
+<script >
+    import InvRelationshipStatus from "../../js/components/molecules/relationship/InvRelationshipStatus";
+    export default {
+        components: {InvRelationshipStatus}
+    }
+</script >

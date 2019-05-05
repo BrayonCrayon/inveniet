@@ -40,7 +40,7 @@
                         </li>
 
                         <li class="nav-item hover:bg-primary-dark rounded">
-                            <a class="nav-link text-white " href="{{ route('contacts.search') }}">Relationship's</a>
+                            <a class="nav-link text-white " href="{{ route('contacts.search') }}">Relationships</a>
                         </li>
 
                         <li class="nav-item hover:bg-primary-dark rounded">

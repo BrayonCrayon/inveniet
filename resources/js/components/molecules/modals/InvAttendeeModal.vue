@@ -134,7 +134,7 @@ export default {
      */
     async addSelectedUsers() {
       try {
-        const { data } = await window.Axios.post('/attendee', {
+        const { data } = await window.Axios.post('/attendee/storeMany', {
           eventId: this.eventId,
           userInvites: this.userInvites,
         });

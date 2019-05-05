@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use \App\Attendee;
+use App\AttendeeStatus;
+use App\AttendeeType;
 use App\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -37,11 +39,23 @@ class AttendeeController extends Controller
      */
     public function store(Request $request)
     {
+        $event = Event::findOrFail($request->get('eventId'));
+        Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::$GUEST, AttendeeStatus::$ATTENDING);
+
+        return redirect()->action('EventsController@index')->with('message', 'You are Attending: ' . $event->name );
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function storeMany(Request $request)
+    {
         $userInvites = collect($request->get('userInvites'));
         $eventId = $request->get('eventId');
 
         $userInvites->every(function ($userId, $key) use ($eventId) {
-            Attendee::addAttendee($userId, $eventId, 2);
+            Attendee::addAttendee($userId, $eventId, AttendeeType::$GUEST);
         });
 
         return response()->json(true);
@@ -90,6 +104,6 @@ class AttendeeController extends Controller
     public function destroy(Attendee $attendee)
     {
         $attendee->delete();
-        return redirect()->back();
+        return redirect()->route((auth()->user()->id === $attendee->user_id) ? 'event.show' : 'event.edit', ['id' => $attendee->event_id]);
     }
 }
