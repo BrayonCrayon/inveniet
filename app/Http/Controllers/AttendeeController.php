@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use \App\Attendee;
-use App\AttendeeStatus;
-use App\AttendeeType;
-use App\Event;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use \App\AttendeeStatus;
+use \App\AttendeeType;
+use \App\Event;
+use \Carbon\Carbon;
+use \Illuminate\Http\Request;
 
 class AttendeeController extends Controller
 {
@@ -54,8 +54,9 @@ class AttendeeController extends Controller
         $userInvites = collect($request->get('userInvites'));
         $eventId = $request->get('eventId');
 
-        $userInvites->every(function ($userId, $key) use ($eventId) {
-            Attendee::addAttendee($userId, $eventId, AttendeeType::$GUEST);
+        $userInvites->each(function ($item, $key) use ($eventId) {
+            $type = $item['attendeeType'] === 'Host' ? AttendeeType::$HOST : AttendeeType::$GUEST;
+            Attendee::addAttendee($item['id'], $eventId, $type, AttendeeStatus::$NOT_ATTENDING);
         });
 
         return response()->json(true);

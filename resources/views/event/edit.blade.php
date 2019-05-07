@@ -82,38 +82,41 @@
 									<h3 ><i class="fas fa-user-friends" ></i >Attendees</h3 >
 
 									<div class="mx-2" >
-										<inv-attendee-modal :event-id="{{ $event->id }}" ></inv-attendee-modal >
+										<inv-attendee-modal :event-id="{{ $event->id }}" is-host ></inv-attendee-modal >
 									</div >
 								</div >
 							</div >
 							<hr >
 
 
-							<div class="list-group" >
+							<div class="list-group-scrollable" >
 								@foreach($attendees as $attendee)
 									<div class="list-group-item" >
 										<div class="col-12" >
 											<div class="row" >
-												<div class="col-10" >
-													<div class="font-bold text-grey-darkest" >
-														{{ $attendee->user->name }}
-													</div >
-													<div class="text-grey-dark text-sm" >
-														{{ $attendee->user->email }}
-													</div >
-												</div >
-												<div class="col-2">
-													<form action="{{ route('attendee.destroy',  $attendee ) }}" method="POST" >
+												<div class="col-1" >
+													<form action="{{ route('attendee.destroy',  $attendee ) }}"
+													      method="POST" >
 														@csrf
 														@method('DELETE')
-														<button class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow mx-2 justify-end" >
-															<i class="fa fa-user-times" ></i>
+														<button class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow my-1" >
+															<i class="fa fa-user-times" ></i >
 														</button >
-													</form>
-												</div>
+													</form >
+												</div >
+												<div class="col-4" >
+													<div >
+														<div class="font-bold text-grey-darkest" >
+															{{ $attendee->user->name }}
+														</div >
+														<div class="text-grey-dark text-sm" >
+															{{ $attendee->user->email }}
+														</div >
+													</div >
+												</div >
+												<inv-attendee-status attendee-type="{{ $attendee->attendeeType->name }}"
+												                     attendee-status="{{ $attendee->attendeeStatus->name }}" ></inv-attendee-status >
 											</div >
-											<inv-attendee-status attendee-type="{{ $attendee->attendeeType->name }}"
-											                     attendee-status="{{ $attendee->attendeeStatus->name }}"></inv-attendee-status>
 										</div >
 									</div >
 								@endforeach

@@ -20,17 +20,7 @@
 
 										<div class="col-lg-12" >
 											<div class="row" >
-
-												<div class="col-6" >
-													<div class="font-bold text-grey-darkest" >
-														{{ $request->user->name }}
-													</div >
-													<div class="text-grey-dark text-sm" >
-														{{ $request->user->email }}
-													</div >
-												</div >
-
-												<div class="col-6 flex justify-end" >
+												<div class="col-2" >
 													<form action="{{ route('relationship-requests.accept', ['relationship' => $request]) }}"
 													      method="POST">
 														@csrf
@@ -41,11 +31,18 @@
 													</form >
 												</div >
 
+												<div class="col-4" >
+													<div class="font-bold text-grey-darkest" >
+														{{ $request->user->name }}
+													</div >
+													<div class="text-grey-dark text-sm" >
+														{{ $request->user->email }}
+													</div >
+												</div >
+
+												<inv-relationship-status relationship-type="{{ $request->type->name }}"
+												                         relationship-status="{{ $request->status->name }}"></inv-relationship-status>
 											</div >
-
-											<inv-relationship-status relationship-type="{{ $request->type->name }}"
-											                         relationship-status="{{ $request->status->name }}"></inv-relationship-status>
-
 										</div >
 
 									</div >
@@ -60,10 +57,3 @@
 		</div >
 	</div >
 @endsection
-
-<script >
-    import InvRelationshipStatus from "../../js/components/molecules/relationship/InvRelationshipStatus";
-    export default {
-        components: {InvRelationshipStatus}
-    }
-</script >

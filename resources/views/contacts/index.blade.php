@@ -10,7 +10,7 @@
                         <div class="card-body">
                             @include('contacts.partials._indexHeader')
 
-                            @include('contacts.partials._results')
+                            @include('contacts.partials._indexResults')
                             <div class="row">
                                 <div class="container flex justify-center my-3">
                                     {{ $contacts->links() }}

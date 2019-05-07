@@ -79,15 +79,18 @@
 							<div class="col mt-10" >
 								<div class="row" >
 									<h3 ><i class="fas fa-user-friends" ></i >Attendees</h3 >
+									<div class="mx-2" >
+										<inv-attendee-modal :event-id="{{ $event->id }}" is-host ></inv-attendee-modal >
+									</div >
 								</div >
 							</div >
 							<hr >
-							<div class="list-group" >
+							<div class="list-group-scrollable" >
 								@foreach($attendees as $attendee)
 									<div class="list-group-item" >
 										<div class="col-12" >
 											<div class="row" >
-												<div class="col-12" >
+												<div class="col-4" >
 													<div class="font-bold text-grey-darkest" >
 														{{ $attendee->user->name }}
 													</div >
@@ -95,9 +98,9 @@
 														{{ $attendee->user->email }}
 													</div >
 												</div >
+												<inv-attendee-status attendee-type="{{ $attendee->attendeeType->name }}"
+												                     attendee-status="{{ $attendee->attendeeStatus->name }}" ></inv-attendee-status >
 											</div >
-											<inv-attendee-status attendee-type="{{ $attendee->attendeeType->name }}"
-											                     attendee-status="{{ $attendee->attendeeStatus->name }}" ></inv-attendee-status >
 										</div >
 									</div >
 								@endforeach

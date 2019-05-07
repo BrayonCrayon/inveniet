@@ -40,6 +40,21 @@
                     <div class="col align-self-center">
                       <div>{{ user.name }}</div>
                     </div>
+
+                    <div class="col-4 relative">
+                      <select
+                        :ref="'ATTENDEE_OPT_' + user.id"
+                        class="form-control"
+                      >
+                        <option
+                          v-for="opt in attendeeTypeOptions"
+                          :value="opt"
+                        >
+                          {{ opt }}
+                        </option>
+                      </select>
+                    </div>
+
                     <div
                       v-if="userAlreadyAdded( user.id )"
                       class="col-4 "
@@ -109,6 +124,11 @@ export default {
       required: true,
       type: Number,
     },
+    isHost: {
+      required: false,
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -117,6 +137,7 @@ export default {
       userSearch: '',
       userInvites: [],
       modalVisible: false,
+      attendeeTypeOptions: ['Guest'],
     };
   },
 
@@ -125,6 +146,10 @@ export default {
       if (!newVal) return;
       this.getUsers();
     },
+  },
+
+  mounted() {
+    if (this.isHost) this.attendeeTypeOptions.push('Host');
   },
 
   methods: {
@@ -138,7 +163,6 @@ export default {
           eventId: this.eventId,
           userInvites: this.userInvites,
         });
-
         if (data) this.hideModal();
         location.reload();
       } catch (err) {
@@ -168,7 +192,12 @@ export default {
      */
     addUser(userId) {
       if (!this.userAlreadyAdded(userId)) {
-        this.userInvites.push(userId);
+        this.userInvites.push(
+          {
+            id: userId,
+            attendeeType: this.$refs[`ATTENDEE_OPT_${userId}`][0].value,
+          },
+        );
       }
     },
 
@@ -177,7 +206,7 @@ export default {
      * @param userId
      */
     removeUser(userId) {
-      this.userInvites = this.userInvites.filter(invitedUserId => invitedUserId !== userId);
+      this.userInvites = this.userInvites.filter(invitedUser => invitedUser.id !== userId);
     },
 
     /**
@@ -186,7 +215,7 @@ export default {
      * @returns {boolean}
      */
     userAlreadyAdded(userId) {
-      const index = this.userInvites.findIndex(invitedUserId => invitedUserId === userId);
+      const index = this.userInvites.findIndex(invitedUser => invitedUser.id === userId);
       return index !== -1;
     },
 

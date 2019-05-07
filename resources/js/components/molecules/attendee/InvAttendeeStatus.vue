@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="col row">
     <div class="col-6 text-grey-darkest">
       <div class="font-bold">
         Attendee Type:
