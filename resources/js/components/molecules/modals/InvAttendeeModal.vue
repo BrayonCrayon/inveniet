@@ -45,6 +45,7 @@
                       <select
                         :ref="'ATTENDEE_OPT_' + user.id"
                         class="form-control"
+                        :disabled="userAlreadyAdded( user.id ) == 1"
                       >
                         <option
                           v-for="opt in attendeeTypeOptions"
@@ -149,7 +150,8 @@ export default {
   },
 
   mounted() {
-    if (this.isHost) this.attendeeTypeOptions.push('Host');
+    console.log(this.isHost);
+    if (this.isHost === true) this.attendeeTypeOptions.push('Host');
   },
 
   methods: {

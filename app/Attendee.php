@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attendee extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'user_id',
+        'event_id',
+        'attendee_type_id',
+        'attendee_status_id',
+    ];
+
+    protected $with = ['user', 'event', 'attendeeType', 'attendeeStatus'];
 
     /**
      * Retrieves the associated user
@@ -38,7 +45,7 @@ class Attendee extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function attendingEvent()
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
@@ -58,6 +65,12 @@ class Attendee extends Model
             'attendee_type_id' => $attendee_type,
             'attendee_status_id' => $attendee_status,
         ]);
+    }
+
+    public function scopePendingInvites($query)
+    {
+        return $query->where('user_id', '=', auth()->user()->id)
+            ->where('attendee_status_id', '=', AttendeeStatus::$NOT_ATTENDING);
     }
 
 }

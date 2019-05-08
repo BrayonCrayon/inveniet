@@ -46,6 +46,10 @@
                         <li class="nav-item hover:bg-primary-dark rounded">
                             <a class="nav-link text-white " href="{{ route('relationship-requests.index') }}">Contact Requests</a>
                         </li>
+
+                        <li class="nav-item hover:bg-primary-dark rounded">
+                            <a class="nav-link text-white " href="{{ route('attendee-requests.index') }}">Event Requests</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -82,7 +82,8 @@
 									<h3 ><i class="fas fa-user-friends" ></i >Attendees</h3 >
 
 									<div class="mx-2" >
-										<inv-attendee-modal :event-id="{{ $event->id }}" is-host ></inv-attendee-modal >
+										<inv-attendee-modal :event-id="{{ $event->id }}"
+										                    :is-host="{{auth()->user()->isEventHost($event->id) === 1 ? 'true' : 'false'}}" ></inv-attendee-modal >
 									</div >
 								</div >
 							</div >
@@ -94,16 +95,18 @@
 									<div class="list-group-item" >
 										<div class="col-12" >
 											<div class="row" >
-												<div class="col-1" >
-													<form action="{{ route('attendee.destroy',  $attendee ) }}"
-													      method="POST" >
-														@csrf
-														@method('DELETE')
-														<button class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow my-1" >
-															<i class="fa fa-user-times" ></i >
-														</button >
-													</form >
-												</div >
+												@if(auth()->user()->isEventHost($event->id))
+													<div class="col-1" >
+														<form action="{{ route('attendee.destroy',  $attendee ) }}"
+														      method="POST" >
+															@csrf
+															@method('DELETE')
+															<button class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow my-1" >
+																<i class="fa fa-user-times" ></i >
+															</button >
+														</form >
+													</div >
+												@endif
 												<div class="col-4" >
 													<div >
 														<div class="font-bold text-grey-darkest" >
