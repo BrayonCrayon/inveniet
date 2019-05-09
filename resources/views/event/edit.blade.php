@@ -83,7 +83,7 @@
 
 									<div class="mx-2" >
 										<inv-attendee-modal :event-id="{{ $event->id }}"
-										                    :is-host="{{auth()->user()->isEventHost($event->id) === 1 ? 'true' : 'false'}}" ></inv-attendee-modal >
+										                    :is-host="{{auth()->user()->isEventHost($event->id) ? 'true' : 'false'}}" ></inv-attendee-modal >
 									</div >
 								</div >
 							</div >

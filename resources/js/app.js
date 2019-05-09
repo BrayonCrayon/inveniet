@@ -22,7 +22,9 @@ const headers = {
   'X-CSRF-TOKEN': window.CSRF.csrfToken,
   'X-Requested-With': 'XMLHttpRequest',
 };
-console.log(headers);
+
+// TODO: REMEMBER TO REMOVE THIS LINE.
+// console.log(headers);
 
 axios.interceptors.request.use(({
   header: headers,

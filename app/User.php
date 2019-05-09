@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone_number',
         'password',
         'address'
     ];
@@ -131,6 +132,10 @@ class User extends Authenticatable
         return UserRelationship::findRelationship($related_user_id)->first();
     }
 
+    /**
+     * @param $eventId
+     * @return mixed
+     */
     public function getUserAttendee($eventId)
     {
         return $this->attendingEvents()
