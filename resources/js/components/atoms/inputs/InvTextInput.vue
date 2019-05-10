@@ -2,7 +2,7 @@
   <input
     v-if="show"
     :id="name"
-    v-model="inputValue"
+    v-model="value"
     type="text"
     class="form-control"
     :name="name"
@@ -33,22 +33,10 @@ export default {
   data() {
     return {
       show: false,
-      inputValue: '',
     };
   },
   mounted() {
     this.show = true;
-  },
-  updated() {
-    this.inputValue = this.value;
-  },
-  beforeUpdate() {
-    this.inputValue = this.value;
-  },
-  methods: {
-    emitInput() {
-      this.$emit('input', this.inputValue);
-    },
   },
 };
 </script>

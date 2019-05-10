@@ -16,19 +16,7 @@
 						<div class="list-group-item">
 							<div class="col-lg-12">
 								<div class="row">
-
-									<div class="col-2" >
-										<form action="{{ route('attendee-requests.accept', ['attendee' => $request]) }}"
-										      method="POST">
-											@csrf
-											@method('PUT')
-											<button class="btn bg-green-dark hover:bg-green-darker text-green-lightest py-1" >
-												<i class="fas fa-check-square fa-2x mx-6"></i>
-											</button >
-										</form >
-									</div >
-
-									<div class="col-4">
+									<div class="col-3">
 										<div class="font-bold text-grey-darkest" >
 											{{ $request->user->name }}
 										</div >
@@ -37,7 +25,7 @@
 										</div >
 									</div>
 
-									<div class="col-6">
+									<div class="col-7">
 										<div class="font-bold text-grey-darkest" >
 											{{ $request->event->name }}
 										</div >
@@ -46,6 +34,16 @@
 										</div >
 									</div>
 
+									<div class="col-2 d-flex align-items-center" >
+										<form action="{{ route('attendee-requests.accept', ['attendee' => $request]) }}"
+										      method="POST">
+											@csrf
+											@method('PUT')
+											<button class="btn bg-green-dark hover:bg-green-darker text-green-lightest " >
+												<i class="fas fa-check-square fa-2x mx-6"></i>
+											</button >
+										</form >
+									</div >
 								</div>
 							</div>
 						</div>
