@@ -35,13 +35,17 @@
 									</div>
 
 									<div class="col-2 d-flex align-items-center" >
+										<form action="" class="mr-2">
+											<button class="btn hover:bg-red-lightest text-red-dark text-2xl"><i class="fas fa-trash"></i>
+											</button>
+										</form>
 										<form action="{{ route('attendee-requests.accept', ['attendee' => $request]) }}"
 										      method="POST">
 											@csrf
 											@method('PUT')
-											<button class="btn bg-green-dark hover:bg-green-darker text-green-lightest " >
-												<i class="fas fa-check-square fa-2x mx-6"></i>
-											</button >
+											<button class="btn text-green-dark hover:bg-green-lightest text-2xl">
+												<i class="fas fa-check"></i>
+											</button>
 										</form >
 									</div >
 								</div>

@@ -50,6 +50,26 @@
   max-height: 400px;
   min-height: 400px;
   margin-bottom: 10px;
-  overflow-y: scroll;
+  @apply overflow-y-auto;
 }
+
+
+*::-webkit-scrollbar {
+  width: 0.65em;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: darken($primary, 20%);
+  outline: 1px solid slategrey;
+  border-radius: 1rem;
+}
+
+
+
+
+
 

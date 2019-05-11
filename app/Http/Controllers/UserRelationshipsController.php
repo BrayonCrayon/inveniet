@@ -66,7 +66,7 @@ class UserRelationshipsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param UserRelationship $userRelationship
      * @return \Illuminate\Http\Response
      */
     // TODO: Use UserRelationshipsRequest class for validation
@@ -76,7 +76,8 @@ class UserRelationshipsController extends Controller
         $relationshipType = UserRelationshipType::findOrFail(request('relationshipType'));
         $userRelationship->addRelationship($user->id, $relationshipType->id);
 
-        return redirect('contacts')->with('message', $relationshipType->name . ' ' . $user->name . ' added.');
+        return redirect()->action('UserRelationshipsController@search')->with('message',
+            $relationshipType->name . ' ' . $user->name . ' added.');
     }
 
     /**

@@ -42,13 +42,16 @@
                     </div>
 
                     <div class="col-4 relative">
+                      <label :for="'ATTENDEE_OPT_' + user.id" class="hidden">{{ user.name }}</label>
                       <select
                         :ref="'ATTENDEE_OPT_' + user.id"
+                        :id="'ATTENDEE_OPT_' + user.id"
                         class="form-control"
-                        :disabled="userAlreadyAdded( user.id ) == 1"
+                        :disabled="userAlreadyAdded( user.id )"
                       >
                         <option
                           v-for="opt in attendeeTypeOptions"
+                          :key="opt"
                           :value="opt"
                         >
                           {{ opt }}
@@ -150,7 +153,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.isHost);
     if (this.isHost === true) this.attendeeTypeOptions.push('Host');
   },
 

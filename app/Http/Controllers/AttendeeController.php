@@ -40,7 +40,7 @@ class AttendeeController extends Controller
     public function store(Request $request)
     {
         $event = Event::findOrFail($request->get('eventId'));
-        Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::$GUEST, AttendeeStatus::$ATTENDING);
+        Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::$HOST, AttendeeStatus::$ATTENDING);
 
         return redirect()->action('EventsController@index')->with('message', 'You are Attending: ' . $event->name );
     }

@@ -38,11 +38,6 @@ export default {
   },
   mounted() {
     this.show = true;
-  },
-  updated() {
-    this.inputValue = this.value;
-  },
-  beforeUpdate() {
     this.inputValue = this.value;
   },
   methods: {
