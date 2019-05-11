@@ -13,7 +13,6 @@ class Event extends Model
     protected $guarded = [];
 
 
-
     /**
      * @return string
      * (Returns a date that is in readable format.)
@@ -50,6 +49,20 @@ class Event extends Model
     public function scopeEventsCurrentlyNotIn($query)
     {
         return $query->whereNotIn('id', auth()->user()->attendingEvents->pluck('event_id'));
+    }
+
+
+
+    public function updateEvent($request)
+    {
+        Event::update([
+                          'name' => $request->get('name'),
+                          'address' => $request->get('address'),
+                          'description' => $request->get('description'),
+                          'rsvp_by' => Carbon::parse($request->get('rsvp_by')),
+                          'starts_at' => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
+                          'ends_at' => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
+                      ]);
     }
 
 }

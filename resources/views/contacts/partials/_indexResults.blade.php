@@ -20,7 +20,7 @@
 					<div class="col-2 d-flex align-items-center" >
 						<form id="DELETE_CONTACT_FORM_{{ $contact->id }}"
 						      method="POST"
-						      action="{{route('contacts.destroy', ['user_id' => $contact->id])}}" >
+						      action="{{route('contacts.destroy', $contact )}}" >
 							@csrf
 							@method('DELETE')
 

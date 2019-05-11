@@ -20,7 +20,7 @@
 								</form >
 							</div >
 							<hr >
-							<form action="{{ route('event.update', ['id' => $event->id ]) }}" method="POST" >
+							<form action="{{ route('event.update', $event ) }}" method="POST" >
 								@csrf
 								@method('PUT')
 

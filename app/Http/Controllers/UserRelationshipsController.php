@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\StartAnnoyingBrady;
-use App\User;
+use \App\User;
 use App\UserRelationship;
 use App\UserRelationshipType;
 use Carbon\Carbon;
@@ -119,13 +119,11 @@ class UserRelationshipsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($user_id)
+    public function destroy(User $contact)
     {
-        $user = User::findOrFail($user_id);
-
-        $relationship = UserRelationship::findRelationship($user->id)->first();
+        $relationship = UserRelationship::findRelationship($contact->id)->first();
         $relationship->delete();
 
-        return redirect('contacts')->with('message', $user->name . ' was deleted.');
+        return redirect('contacts')->with('message', $contact->name . ' was deleted.');
     }
 }
