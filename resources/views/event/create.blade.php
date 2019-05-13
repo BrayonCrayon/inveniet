@@ -10,7 +10,7 @@
 					<div class="card shadow" >
 						<div class="card-body" >
 							<div class="flex justify-between" >
-								<h3 ><i class="fas fa-bong" ></i > Create Event</h3 >
+								<h3 ><i class="fas fa-calendar-plus" ></i > Create Event</h3 >
 							</div >
 							<hr >
 							<form action="{{ route('event.store') }}" method="POST" >

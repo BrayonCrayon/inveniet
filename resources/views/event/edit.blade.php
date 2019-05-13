@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="flex justify-between">
-                                <h3><i class="fas fa-bong"></i> {{ $event->name }}</h3>
+                                <h3><i class="fas fa-calendar-plus"></i> {{ $event->name }}</h3>
                                 <form action="{{ route('event.destroy', ['id' => $event->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')

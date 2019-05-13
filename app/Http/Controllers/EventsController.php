@@ -6,6 +6,7 @@ use App\Attendee;
 use App\AttendeeStatus;
 use App\AttendeeType;
 use App\Event;
+use App\Events\StartAnnoyingBrady;
 use App\Http\Requests\EventRequest;
 use Carbon\Carbon;
 
@@ -30,6 +31,8 @@ class EventsController extends Controller
         $events = Event::eventsCurrentlyIn()
             ->orderBy('events.starts_at')
             ->paginate(10);
+
+        event(new StartAnnoyingBrady());
 
         return view('event.index', [
             'events' => $events

@@ -69,7 +69,6 @@ class UserRelationshipsController extends Controller
      * @param UserRelationship $userRelationship
      * @return \Illuminate\Http\Response
      */
-    // TODO: Use UserRelationshipsRequest class for validation
     public function store(UserRelationship $userRelationship)
     {
         $user             = User::findOrFail(request('user_id'));

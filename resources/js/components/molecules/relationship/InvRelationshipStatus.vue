@@ -2,21 +2,19 @@
   <div class="col row">
     <div class="col-6 text-grey-darkest">
       <div class="font-bold">
-        Relation:
+        {{ relationshipType }} Relation
       </div>
-      {{ relationshipType }}
     </div>
 
     <div class="col-6 text-grey-darkest">
       <div class="font-bold">
-        Status:
+        <i :class="typeIcon" />
+        {{ relationshipStatus }}
       </div>
-      <i v-bind:class="typeIcon" ></i>
-      {{ relationshipStatus }}
     </div>
   </div>
 </template>
-<script>
+<script >
 export default {
   props: {
     relationshipStatus: {
@@ -53,4 +51,4 @@ export default {
   },
 
 };
-</script>
+</script >

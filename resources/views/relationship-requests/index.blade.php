@@ -10,7 +10,7 @@
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col">
-                                        <h3 class="card-title"><i class="fas fa-inbox"></i>Requests</h3>
+                                        <h3 class="card-title"><i class="fas fa-archive pr-2"></i>Requests</h3>
                                     </div>
                                 </div>
                             </div>

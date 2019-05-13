@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="flex justify-between">
-                                <h3><i class="fas fa-bong"></i> {{ $event->name }}</h3>
+                                <h3><i class="fas fa-calendar-plus"></i> {{ $event->name }}</h3>
                                 @if(!auth()->user()->isAttending($event->id ))
                                     <form action="{{ route('attendee.store', ['userInvites' => [auth()->user()->id], 'eventId' => $event->id ]) }}"
                                           method="POST">

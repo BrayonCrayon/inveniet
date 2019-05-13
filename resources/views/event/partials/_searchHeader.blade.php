@@ -1,6 +1,6 @@
 <div class="ml-5 mb-3">
 	<div class="flex justify-between">
-		<h2>Events</h2>
+		<h2><i class="fas fa-calendar-day pr-2"></i>Events</h2>
 
 		<div class="col-6">
 			<div class="row">

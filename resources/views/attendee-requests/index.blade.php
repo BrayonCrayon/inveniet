@@ -7,7 +7,7 @@
 			<div class="card-body">
 				<div class="col-12">
 					<div class="row col">
-						<h3 class="card-title" ><i class="fas fa-inbox"></i>Event Requests</h3 >
+						<h3 class="card-title" ><i class="fas fa-archive pr-2"></i>Event Requests</h3 >
 					</div>
 				</div>
 
@@ -16,22 +16,17 @@
 						<div class="list-group-item">
 							<div class="col-lg-12">
 								<div class="row">
-									<div class="col-3">
-										<div class="font-bold text-grey-darkest" >
-											{{ $request->user->name }}
-										</div >
-										<div class="text-grey-dark text-sm" >
-											{{ $request->user->email }}
-										</div >
-									</div>
 
-									<div class="col-7">
+									<div class="col-10 rounded hover:bg-grey-light ">
+											<a href="{{ route('event.show', $request->event ) }}"
+												class="text-decoration-none">
 										<div class="font-bold text-grey-darkest" >
-											{{ $request->event->name }}
+												{{ $request->event->name }}
 										</div >
-										<div class="text-grey-dark text-sm" >
+										<div class="text-grey-darker text-sm" >
 											{{ $request->event->description }}
 										</div >
+											</a>
 									</div>
 
 									<div class="col-2 d-flex align-items-center" >

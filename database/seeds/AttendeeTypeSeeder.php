@@ -14,12 +14,12 @@ class AttendeeTypeSeeder extends Seeder
     {
         DB::table('attendee_types')->insert([
             [
-                'name'       => 'host',
+                'name'       => 'Host',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'guest',
+                'name'       => 'Guest',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

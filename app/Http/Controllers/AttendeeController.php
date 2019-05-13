@@ -52,11 +52,11 @@ class AttendeeController extends Controller
     public function storeMany(Request $request)
     {
         $userInvites = collect($request->get('userInvites'));
-        $eventId = $request->get('eventId');
+        $event = Event::findOrFail($request->get('eventId'));
 
-        $userInvites->each(function ($item, $key) use ($eventId) {
+        $userInvites->each(function ($item, $key) use ($event) {
             $type = $item['attendeeType'] === 'Host' ? AttendeeType::$HOST : AttendeeType::$GUEST;
-            Attendee::addAttendee($item['id'], $eventId, $type, AttendeeStatus::$NOT_ATTENDING);
+            Attendee::addAttendee($item['id'], $event->id, $type, AttendeeStatus::$NOT_ATTENDING);
         });
 
         return response()->json(true);

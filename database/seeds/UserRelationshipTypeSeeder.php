@@ -15,32 +15,32 @@ class UserRelationshipTypeSeeder extends Seeder
     {
         DB::table('user_relationship_types')->insert([
             [
-                'name'       => 'friend',
+                'name'       => 'Friend',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'best friend',
+                'name'       => 'Best Friend',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'spouse',
+                'name'       => 'Spouse',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'sibling',
+                'name'       => 'Sibling',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'co-worker',
+                'name'       => 'Co-Worker',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name'       => 'pet',
+                'name'       => 'Pet',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
