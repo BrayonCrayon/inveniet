@@ -12,6 +12,13 @@ class Event extends Model
 
     protected $guarded = [];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attendees()
+    {
+        return $this->hasMany(Attendee::class);
+    }
 
     /**
      * @return string
@@ -22,7 +29,6 @@ class Event extends Model
         return Carbon::parse($this->starts_at)->diffForHumans();
     }
 
-
     /**
      *  Retrieves all Attendees(Users) that are attending the specified Event
      */
@@ -30,7 +36,6 @@ class Event extends Model
     {
         return Attendee::where('event_id', '=', $this->id)->get();
     }
-
 
     /**
      * @param $query
@@ -41,7 +46,6 @@ class Event extends Model
         return $query->whereIn('id', auth()->user()->attendingEvents->pluck('event_id'));
     }
 
-
     /**
      * @param $query
      * @return mixed (Finds all Events the logged in user is not attending)
@@ -51,18 +55,36 @@ class Event extends Model
         return $query->whereNotIn('id', auth()->user()->attendingEvents->pluck('event_id'));
     }
 
-
-
-    public function updateEvent($request)
+    /**
+     * @param $query
+     * @param $days
+     * @return mixed
+     */
+    public function scopeWithinDays($query, $days)
     {
-        Event::update([
-                          'name' => $request->get('name'),
-                          'address' => $request->get('address'),
-                          'description' => $request->get('description'),
-                          'rsvp_by' => Carbon::parse($request->get('rsvp_by')),
-                          'starts_at' => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
-                          'ends_at' => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
-                      ]);
+        return $query->whereBetween('starts_at', [now(), now()->addDays($days)]);
+    }
+
+    /**
+     * @param $user
+     */
+    private function sendMessage($user)
+    {
+        $this->info("Sending Message to {$user->name}");
+
+        if (config('app.env') === 'production') {
+            Twilio::message('5198597787', "Here is a test");
+        }
+    }
+
+    /**
+     * Send SMS notification to attendees of the current event
+     */
+    public function notifyAttendees()
+    {
+        $this->attendees->each(function ($attendee) {
+            $this->sendMessage($attendee->user);
+        });
     }
 
 }
