@@ -39,11 +39,7 @@ class RoleSetup extends Command
      */
     public function handle()
     {
-        $adminUser = User::create([
-            'name' => 'System Admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('password')
-        ]);
+        $adminUser = User::where('email', 'admin@admin.com')->first();
 
         $adminRole = Role::create([
             'name' => 'admin'

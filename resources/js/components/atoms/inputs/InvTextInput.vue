@@ -6,6 +6,7 @@
     type="text"
     class="form-control"
     :name="name"
+    :placeholder="placeHolder"
     @input="emitInput"
   >
 </template>
@@ -23,6 +24,11 @@ export default {
       type: String,
       default: '',
     },
+    placeHolder: {
+      required: false,
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -31,9 +37,8 @@ export default {
     };
   },
   mounted() {
-    console.log(this.value);
-    this.inputValue = this.value;
     this.show = true;
+    this.inputValue = this.value;
   },
   methods: {
     emitInput() {

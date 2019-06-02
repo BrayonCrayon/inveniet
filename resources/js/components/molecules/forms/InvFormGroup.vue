@@ -10,28 +10,28 @@
       :name="name"
       :disabled="isDisabled"
       @input="emitInput"
-    />
+    ></inv-text-input>
     <inv-date-input
       v-if="type === 'date'"
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
       @input="emitInput"
-    />
+    ></inv-date-input>
     <inv-time-input
       v-if="type === 'time'"
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
       @input="emitInput"
-    />
+    ></inv-time-input>
     <inv-textarea
       v-if="type === 'textarea'"
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
       @input="emitInput"
-    />
+    ></inv-textarea>
   </div>
 </template>
 
@@ -75,7 +75,6 @@ export default {
   },
   methods: {
     emitInput() {
-      console.log('formGroup emitInput');
       this.$emit('input', this.inputValue);
     },
   },

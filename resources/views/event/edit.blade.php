@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="flex justify-between">
-                                <h3><i class="fas fa-bong"></i> {{ $event->name }}</h3>
+                                <h3><i class="fas fa-calendar-plus"></i> {{ $event->name }}</h3>
                                 <form action="{{ route('event.destroy', ['id' => $event->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -20,7 +20,7 @@
                                 </form>
                             </div>
                             <hr>
-                            <form action="{{ route('event.update', ['id' => $event->id ]) }}" method="POST">
+                            <form action="{{ route('event.update', $event ) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
@@ -61,6 +61,7 @@
                                                         value="{{ Carbon::parse($event->ends_at)->toTimeString() }}">
                                         </inv-form-group>
                                     </div>
+
                                 </div>
 
                                 <div class="flex justify-end">
@@ -73,16 +74,63 @@
                                         Update
                                     </button>
                                 </div>
-
-
                             </form>
+
+
+                            <div class="col mt-10">
+                                <div class="row">
+                                    <h3><i class="fas fa-user-friends"></i>Attendees</h3>
+
+                                    <div class="mx-2">
+                                        <inv-attendee-modal :event-id="{{ $event->id }}"
+                                                            :is-host="{{auth()->user()->isEventHost($event->id) ? 'true' : 'false'}}"></inv-attendee-modal>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+
+                            <list-group-scrollable>
+                                @foreach($attendees as $attendee)
+                                    <div class="list-group-item border-0">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                @if(auth()->user()->isEventHost($event->id))
+                                                    <div class="col-1">
+                                                        <form action="{{ route('attendee.destroy',  $attendee ) }}"
+                                                              method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn bg-red-dark hover:bg-red text-white font-bold text-lg shadow my-1">
+                                                                <i class="fa fa-user-times"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                @endif
+                                                <div class="col-4">
+                                                    <div>
+                                                        <div class="font-bold text-grey-darkest">
+                                                            {{ $attendee->user->name }}
+                                                        </div>
+                                                        <div class="text-grey-dark text-sm">
+                                                            {{ $attendee->user->email }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <inv-attendee-status attendee-type="{{ $attendee->attendeeType->name }}"
+                                                                     attendee-status="{{ $attendee->attendeeStatus->name }}"></inv-attendee-status>
+                                            </div>
+                                        </div>
+                                        <hr class="p-0 mb-0">
+                                    </div>
+
+                                @endforeach
+                            </list-group-scrollable>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 
 @endsection

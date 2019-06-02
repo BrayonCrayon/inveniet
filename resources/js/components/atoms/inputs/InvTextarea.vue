@@ -33,7 +33,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.value);
     this.inputValue = this.value;
     this.show = true;
   },

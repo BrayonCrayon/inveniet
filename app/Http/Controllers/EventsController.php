@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Attendee;
+use App\AttendeeStatus;
+use App\AttendeeType;
 use App\Event;
+use App\Events\StartAnnoyingBrady;
 use App\Http\Requests\EventRequest;
 use Carbon\Carbon;
 
@@ -24,8 +28,28 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::orderByDesc('id')->paginate(10);
+        $events = Event::eventsCurrentlyIn()
+            ->orderBy('events.starts_at')
+            ->paginate(10);
+
+        event(new StartAnnoyingBrady());
+
         return view('event.index', [
+            'events' => $events
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search()
+    {
+        $events = Event::eventsCurrentlyNotIn()
+            ->where('events.name', 'like', request('search') . '%')
+            ->orderBy('events.starts_at')
+            ->paginate(10);
+
+        return view('event.search', [
             'events' => $events
         ]);
     }
@@ -48,43 +72,43 @@ class EventsController extends Controller
      */
     public function store(EventRequest $request)
     {
-        Event::create([
-            'name'        => $request->get('name'),
-            'address'     => $request->get('address'),
-            'description' => $request->get('description'),
-            'rsvp_by'     => Carbon::parse($request->get('rsvp_by')),
-            'starts_at'   => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
-            'ends_at'     => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
-        ]);
-
+        $event = Event::create([
+                          'name' => $request->get('name')  ,
+                          'address' =>   $request->get('address')  ,
+                          'description' =>   $request->get('description')  ,
+                          'rsvp_by' =>   Carbon::parse($request->get('rsvp_by'))  ,
+                          'starts_at' =>   Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time'))  ,
+                          'ends_at' =>   Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time'))  ,
+                      ]);
+        Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::$GUEST, AttendeeStatus::$ATTENDING);
         return redirect()->action('EventsController@index')->with('message', 'Event Created! :D');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        $event = Event::findOrFail($id);
         return view('event.show', [
-            'event' => $event
+            'event' => $event,
+            'attendees' => $event->eventAttendees,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        $event = Event::findOrFail($id);
         return view('event.edit', [
-            'event' => $event
+            'event' => $event,
+            'attendees' => $event->eventAttendees,
         ]);
     }
 
@@ -92,36 +116,31 @@ class EventsController extends Controller
      * Update the specified resource in storage.
      *
      * @param EventRequest $request
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EventRequest $request, $id)
+    public function update(Event $event)
     {
-        $event = Event::findOrFail($id);
-
         $event->update([
-            'name'        => $request->get('name'),
-            'address'     => $request->get('address'),
-            'description' => $request->get('description'),
-            'rsvp_by'     => Carbon::parse($request->get('rsvp_by')),
-            'starts_at'   => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
-            'ends_at'     => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
-        ]);
-
+                          'name' => request('name'),
+                          'address' => request('address'),
+                          'description' => request('description'),
+                          'rsvp_by' => Carbon::parse(request('rsvp_by')),
+                          'starts_at' => Carbon::parse(request('start_date') . ' ' . request('start_time')),
+                          'ends_at' => Carbon::parse(request('end_date') . ' ' . request('end_time')),
+                      ]);
         return back()->with('message', 'Event Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        $event = Event::findOrFail($id);
         $event->delete();
-
         return redirect()->action('EventsController@index');
     }
 }
