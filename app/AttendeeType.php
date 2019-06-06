@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AttendeeType extends Model
 {
     protected $fillable = [];
-    public static $HOST = 1;
-    public static $GUEST = 2;
+    public const HOST = 1;
+    public const GUEST = 2;
 
 }

@@ -102,6 +102,16 @@ class User extends Authenticatable
 
 
     /**
+     * @param $query
+     * @return mixed ()
+     */
+    public function scopeMyContacts($query)
+    {
+        return $query->whereIn('id', $this->relationships->pluck('related_user_id'));
+    }
+
+
+    /**
      * @param $related_user_id
      * @return bool ( Determines if you have a relation with the provided $related_user_id )
      */
@@ -110,16 +120,6 @@ class User extends Authenticatable
         $contact = $this->relationships->where('related_user_id', '=', $related_user_id)->first();
 
         return isset($contact) ? true : false;
-    }
-
-
-    /**
-     * @param $query
-     * @return mixed ()
-     */
-    public function scopeMyContacts($query)
-    {
-        return $query->whereIn('id', $this->relationships->pluck('related_user_id'));
     }
 
 
@@ -152,7 +152,7 @@ class User extends Authenticatable
     public function isEventHost($eventId)
     {
         $userAttendee = $this->getUserAttendee($eventId);
-        return isset($userAttendee) && $userAttendee->attendeeType->id == AttendeeType::$HOST;
+        return isset($userAttendee) && $userAttendee->attendeeType->id == AttendeeType::HOST;
     }
 
 

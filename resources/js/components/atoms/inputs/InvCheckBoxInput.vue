@@ -1,0 +1,52 @@
+<template>
+  <input
+    v-if="show"
+    :id="name"
+    v-model="inputValue"
+    type="checkbox"
+    class="form-control cursor-pointer"
+    :name="name"
+    :placeHodler="placeHolder"
+    @input="emitInput"
+  >
+</template>
+
+<script>
+export default {
+  props: {
+    value: {
+      required: false,
+      type: Boolean,
+      default: false,
+    },
+    name: {
+      required: false,
+      type: String,
+      default: '',
+    },
+    placeHolder: {
+      required: false,
+      type: String,
+      default: '',
+    },
+  },
+  data() {
+    return {
+      show: false,
+      inputValue: '',
+    };
+  },
+  mounted() {
+    this.inputValue = this.value;
+    this.show = true;
+  },
+  methods: {
+    emitInput() {
+      this.$emit('input', this.inputValue);
+    },
+  },
+};
+</script>
+
+<style scoped>
+</style>

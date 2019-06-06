@@ -10,7 +10,20 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $guarded = [];
+    protected $casts = [
+        'repeated' => 'boolean'
+    ];
+    
+    protected $fillable = [
+        'name',
+        'address',
+        'description',
+        'rsvp_by',
+        'starts_at',
+        'ends_at',
+        'repeated',
+        'repeated_type_id',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -18,6 +31,11 @@ class Event extends Model
     public function attendees()
     {
         return $this->hasMany(Attendee::class);
+    }
+
+    public function repeatedType()
+    {
+        return $this->hasOne(RepeatedType::class, 'repeated_type_id');
     }
 
     /**

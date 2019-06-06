@@ -23,8 +23,13 @@ class CreateEventsTable extends Migration
             $table->timestamp('starts_at');
             $table->timestamp('ends_at')->nullable();
             $table->timestamp('rsvp_by')->nullable();
+            $table->boolean('repeated')->default(false);
+            $table->unsignedBigInteger('repeated_type_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            /* CONSTRAINTS */
+            $table->foreign('repeated_type_id')->references('id')->on('repeated_types');
         });
     }
 

@@ -24,9 +24,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-
         $schedule->command('reminder:event-reminder 7')->daily()->withoutOverlapping();
         $schedule->command('reminder:event-reminder 1')->daily()->withoutOverlapping();
     }

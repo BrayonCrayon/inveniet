@@ -40,7 +40,7 @@ class AttendeeController extends Controller
     public function store(Request $request)
     {
         $event = Event::findOrFail($request->get('eventId'));
-        Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::$HOST, AttendeeStatus::$ATTENDING);
+        Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::HOST, AttendeeStatus::ATTENDING);
 
         return redirect()->action('EventsController@index')->with('message', 'You are Attending: ' . $event->name );
     }
@@ -55,8 +55,8 @@ class AttendeeController extends Controller
         $event = Event::findOrFail($request->get('eventId'));
 
         $userInvites->each(function ($item, $key) use ($event) {
-            $type = $item['attendeeType'] === 'Host' ? AttendeeType::$HOST : AttendeeType::$GUEST;
-            Attendee::addAttendee($item['id'], $event->id, $type, AttendeeStatus::$NOT_ATTENDING);
+            $type = $item['attendeeType'] === 'Host' ? AttendeeType::HOST : AttendeeType::GUEST;
+            Attendee::addAttendee($item['id'], $event->id, $type, AttendeeStatus::NOT_ATTENDING);
         });
 
         return response()->json(true);
