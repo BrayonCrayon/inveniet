@@ -10,10 +10,6 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $casts = [
-        'repeated' => 'boolean'
-    ];
-    
     protected $fillable = [
         'name',
         'address',

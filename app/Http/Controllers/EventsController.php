@@ -69,6 +69,7 @@ class EventsController extends Controller
     public function store(EventRequest $request)
     {
         $repeatedTypeId = RepeatedType::findOrFail($request->get('repeated_type_id'))->id;
+        // Upon request 'repeated' will be either; null="Not Checked", on="Checked"
         $event = Event::create([
                                    'name' => $request->get('name'),
                                    'address' => $request->get('address'),
@@ -76,7 +77,7 @@ class EventsController extends Controller
                                    'rsvp_by' => Carbon::parse($request->get('rsvp_by')),
                                    'starts_at' => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
                                    'ends_at' => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
-                                   'repeated' => $request->get('repeated'),
+                                   'repeated' => $request->get('repeated') === null ? false : true,
                                    'repeated_type_id' => $repeatedTypeId
                                ]);
         Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::HOST, AttendeeStatus::ATTENDING);
@@ -121,6 +122,7 @@ class EventsController extends Controller
     public function update(Event $event)
     {
         $repeatedTypeId = RepeatedType::findOrFail(request('repeatedType'))->id;
+        // Upon request 'repeated' will be either; null="Not Checked", on="Checked"
         $event->update([
                            'name' => request('name'),
                            'address' => request('address'),
@@ -128,7 +130,7 @@ class EventsController extends Controller
                            'rsvp_by' => Carbon::parse(request('rsvp_by')),
                            'starts_at' => Carbon::parse(request('start_date') . ' ' . request('start_time')),
                            'ends_at' => Carbon::parse(request('end_date') . ' ' . request('end_time')),
-                           'repeated' => request('repeated') != null ? true : false,
+                           'repeated' => request('repeated') === null ? false : true,
                            'repeated_type_id' => $repeatedTypeId
                        ]);
         return back()->with('message', 'Event Updated');
