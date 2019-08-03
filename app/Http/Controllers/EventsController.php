@@ -87,7 +87,7 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Event $event
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
@@ -101,7 +101,7 @@ class EventsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Event $event
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
@@ -116,22 +116,23 @@ class EventsController extends Controller
      * Update the specified resource in storage.
      *
      * @param EventRequest $request
-     * @param int $id
+     * @param Event $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        $repeatedTypeId = RepeatedType::findOrFail(request('repeatedType'))->id;
-        // Upon request 'repeated' will be either; null="Not Checked", on="Checked"
+//        dd($request->get('repeatedType'));
+//        $repeatedTypeId = RepeatedType::findOrFail(request('repeatedType'))->id;
+//        dd($request->get('repeated'));
         $event->update([
-                           'name' => request('name'),
-                           'address' => request('address'),
-                           'description' => request('description'),
-                           'rsvp_by' => Carbon::parse(request('rsvp_by')),
-                           'starts_at' => Carbon::parse(request('start_date') . ' ' . request('start_time')),
-                           'ends_at' => Carbon::parse(request('end_date') . ' ' . request('end_time')),
-                           'repeated' => request('repeated') === null ? false : true,
-                           'repeated_type_id' => $repeatedTypeId
+                           'name' => $request->get('name'),
+                           'address' => $request->get('address'),
+                           'description' => $request->get('description'),
+                           'rsvp_by' => Carbon::parse($request->get('rsvp_by')),
+                           'starts_at' => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
+                           'ends_at' => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
+                           'repeated' => $request->get('repeated'),
+                           'repeated_type_id' => $request->get('repeatedType')
                        ]);
         return back()->with('message', 'Event Updated');
     }

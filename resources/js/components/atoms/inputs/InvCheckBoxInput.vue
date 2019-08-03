@@ -8,6 +8,7 @@
     class="form-check-input cursor-pointer"
     :placeHodler="placeHolder"
     :disabled="disabled"
+    @input="emitInput"
   >
 </template>
 
@@ -16,8 +17,8 @@ export default {
   props: {
     value: {
       required: false,
-      type: Number,
-      default: 0,
+      type: Boolean,
+      default: false,
     },
     name: {
       required: false,
@@ -41,12 +42,15 @@ export default {
       inputValue: false,
     };
   },
-  mounted() {
+
+  created() {
     this.inputValue = this.value;
     this.show = true;
   },
+
   methods: {
     emitInput() {
+      this.inputValue = !this.inputValue;
       this.$emit('input', this.inputValue);
     },
   },

@@ -64,34 +64,10 @@
 
 								</div>
 								<div class="form-group">
-									<div class="row">
-										<div class="col-1">
-											{{--											<div class="form-check">--}}
+									<inv-event-repeated :value="{{ $event->repeated }}"
+									                    :current-type="{{ $event->repeated_type_id  }}"
+									                    :types="{{ \App\RepeatedType::all() }}"></inv-event-repeated>
 
-											{{--												<inv-check-box-input :value="{{ $event->repeated }}" name="repeated"--}}
-											{{--												                     id="repeatedCBO"></inv-check-box-input>--}}
-											{{--												<label class="form-check-label" for="repeatedCBO">--}}
-											{{--													Repeat--}}
-											{{--												</label>--}}
-											{{--											</div>--}}
-											<inv-event-repeated :value="{{ $event->repeated }}"
-											                    :currentType="{{ $event->repeated_type_id }}"
-											                    :types="{{ \App\RepeatedType::all() }}"></inv-event-repeated>
-
-										</div>
-										<div class="col-5">
-											{{-- TODO: FIGURE OUT ANOTHER WAY TO GRAB ALL TYPES --}}
-											<select class="form-control cursor-pointer hover:bg-grey-lightest"
-											        name="repeatedType">
-												@foreach(\App\RepeatedType::all() as $repeatedType)
-													<option value="{{ $repeatedType->id }}"
-															{{ $event->repeated_type_id == $repeatedType->id ? 'selected="selected"' : '' }}>
-														{{ $repeatedType->name }}
-													</option>
-												@endforeach
-											</select>
-										</div>
-									</div>
 								</div>
 
 								<div class="flex justify-end">

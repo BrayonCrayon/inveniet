@@ -6,6 +6,14 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property mixed eventAttendees
+ * @property mixed repeated
+ * @property mixed rsvp_by
+ * @property mixed description
+ * @property mixed address
+ * @property mixed name
+ */
 class Event extends Model
 {
     use SoftDeletes;
@@ -29,9 +37,29 @@ class Event extends Model
         return $this->hasMany(Attendee::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function repeatedType()
     {
         return $this->hasOne(RepeatedType::class, 'repeated_type_id');
+    }
+
+    /**
+     * @param $val
+     * (Sets the repeated value )
+     */
+    public function setRepeatedAttribute($val)
+    {
+        $this->attributes['repeated'] = (bool)$val;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRepeatedTypeIdAttribute()
+    {
+        return $this->attributes['repeated_type_id'] === null ? 0 : $this->attributes['repeated_type_id'];
     }
 
     /**

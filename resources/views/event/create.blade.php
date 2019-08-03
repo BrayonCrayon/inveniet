@@ -52,6 +52,12 @@
 									</div >
 								</div >
 
+
+								<div class="form-group">
+									<inv-event-repeated :types="{{ \App\RepeatedType::all() }}"></inv-event-repeated>
+
+								</div>
+
 								<div class="flex justify-end" >
 									<a href="{{ route('event.index') }}"
 									   class="btn bg-red-dark hover:bg-red text-red-lightest font-bold text-lg shadow mx-2" >

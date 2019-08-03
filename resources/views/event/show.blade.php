@@ -75,29 +75,12 @@
 									</inv-form-group>
 								</div>
 							</div>
+
 							<div class="form-group">
-								<div class="row">
-									<div class="col-1 ">
-										<div class="form-group form-check">
-											<inv-check-box-input id="repeated" name="repeated"
-											                     value="{{ $event->repeated }}" disabled>
-											</inv-check-box-input>
-											<label for="repeated" class="form-check-label">Repeat</label>
-										</div>
-									</div>
-									<div class="col-5">
-										<select class="form-control cursor-pointer hover:bg-grey-lightest"
-										        name="repeatedType"
-										        selectedIndex="{{ $event->repeated_type_id }}" disabled>
-											@foreach(\App\RepeatedType::all() as $repeatedType)
-												<option value="{{ $repeatedType->id }}"
-														{{ $event->repeated_type_id == $repeatedType->id ? 'selected="selected"' : '' }}>
-													{{ $repeatedType->name }}
-												</option>
-											@endforeach
-										</select>
-									</div>
-								</div>
+								<inv-event-repeated :value="{{ $event->repeated }}"
+								                    :current-type="{{ $event->repeated_type_id  }}"
+								                    :types="{{ \App\RepeatedType::all() }}" disabled></inv-event-repeated>
+
 							</div>
 
 							<div class="col mt-10">
