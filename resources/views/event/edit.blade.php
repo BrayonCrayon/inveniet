@@ -101,8 +101,8 @@
 									<div class="list-group-item border-0">
 										<div class="col-12">
 											<div class="row">
-												@if(auth()->user()->isEventHost($event->id) && auth()->user()->id !== $attendee->user_id)
-													<div class="col-1">
+												<div class="col-1">
+													@if(auth()->user()->isEventHost($event->id) && auth()->user()->id !== $attendee->user_id)
 														<form action="{{ route('attendee.destroy',  $attendee ) }}"
 														      method="POST">
 															@csrf
@@ -111,8 +111,8 @@
 																<i class="fa fa-user-times"></i>
 															</button>
 														</form>
-													</div>
-												@endif
+													@endif
+												</div>
 												<div class="col-4">
 													<div>
 														<div class="font-bold text-grey-darkest">
