@@ -68,7 +68,6 @@ class EventsController extends Controller
      */
     public function store(EventRequest $request)
     {
-        $repeatedTypeId = RepeatedType::findOrFail($request->get('repeated_type_id'))->id;
         // Upon request 'repeated' will be either; null="Not Checked", on="Checked"
         $event = Event::create([
                                    'name' => $request->get('name'),
@@ -78,7 +77,7 @@ class EventsController extends Controller
                                    'starts_at' => Carbon::parse($request->get('start_date') . ' ' . $request->get('start_time')),
                                    'ends_at' => Carbon::parse($request->get('end_date') . ' ' . $request->get('end_time')),
                                    'repeated' => $request->get('repeated') === null ? false : true,
-                                   'repeated_type_id' => $repeatedTypeId
+                                   'repeated_type_id' => $request->get('repeatedType')
                                ]);
         Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::HOST, AttendeeStatus::ATTENDING);
         return redirect()->action('EventsController@index')->with('message', 'Event Created! :D');
@@ -121,9 +120,6 @@ class EventsController extends Controller
      */
     public function update(EventRequest $request, Event $event)
     {
-//        dd($request->get('repeatedType'));
-//        $repeatedTypeId = RepeatedType::findOrFail(request('repeatedType'))->id;
-//        dd($request->get('repeated'));
         $event->update([
                            'name' => $request->get('name'),
                            'address' => $request->get('address'),

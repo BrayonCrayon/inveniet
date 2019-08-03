@@ -101,7 +101,7 @@
 									<div class="list-group-item border-0">
 										<div class="col-12">
 											<div class="row">
-												@if(auth()->user()->isEventHost($event->id))
+												@if(auth()->user()->isEventHost($event->id) && auth()->user()->id !== $attendee->user_id)
 													<div class="col-1">
 														<form action="{{ route('attendee.destroy',  $attendee ) }}"
 														      method="POST">
