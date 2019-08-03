@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\StartAnnoyingBrady;
 use \App\User;
 use App\UserRelationship;
 use App\UserRelationshipType;

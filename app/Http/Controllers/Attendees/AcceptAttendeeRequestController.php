@@ -20,7 +20,7 @@ class AcceptAttendeeRequestController extends Controller
     public function __invoke(Request $request, Attendee $attendee)
     {
         $attendee->update([
-            'attendee_status_id' => AttendeeStatus::$ATTENDING
+            'attendee_status_id' => AttendeeStatus::ATTENDING
         ]);
 
         return redirect()->route($attendee->attendeeType->id === AttendeeType::$HOST ? 'event.edit' : 'event.show', ['id' => $attendee->event->id]);

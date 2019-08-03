@@ -70,7 +70,7 @@ class Attendee extends Model
     public function scopePendingInvites($query)
     {
         return $query->where('user_id', '=', auth()->user()->id)
-            ->where('attendee_status_id', '=', AttendeeStatus::$NOT_ATTENDING);
+            ->where('attendee_status_id', '=', AttendeeStatus::NOT_ATTENDING);
     }
 
 }

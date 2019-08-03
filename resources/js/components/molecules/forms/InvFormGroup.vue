@@ -32,6 +32,13 @@
       :disabled="isDisabled"
       @input="emitInput"
     ></inv-textarea>
+    <inv-check-box-input
+      v-if="type === 'checkbox'"
+      v-model="inputValue"
+      :name="name"
+      :disabled="isDisabled"
+      @input="emitInput"
+    ></inv-check-box-input>
   </div>
 </template>
 
@@ -80,7 +87,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>
