@@ -12,16 +12,16 @@ class RepeatedTypeSeeder extends Seeder
     public function run()
     {
         DB::table('repeated_types')->insert([
-            [
-                'name'=> 'Yearly',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name'=> 'Monthly',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+//            [
+//                'name'=> 'Yearly',
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ],
+//            [
+//                'name'=> 'Monthly',
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ],
             [
                 'name'=> 'Weekly',
                 'created_at' => now(),
