@@ -1,42 +1,84 @@
 <template>
-  <nav class="flex items-center  justify-between flex-wrap bg-primary p-2">
-    <div class="flex items-center  text-white mr-6">
-      <a
-        class="hover:bg-primary-dark text-2xl text-center rounded nav-link text-white"
-        href="/"
-      >{{ title }}</a>
-    </div>
-    <div class="block lg:hidden">
+  <div class="w-2/4 flex justify-end flex-wrap">
+    <!--  <div class="w-full bg-primary">-->
+    <div class="w-full flex justify-end lg:hidden">
       <button
-        class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+        class="text-white items-center px-3 py-2 border rounded"
         @click="open"
       >
         Test
       </button>
     </div>
     <div :class="navStyle">
-      <div class="text-sm lg:flex-grow">
-        <a
-          href="#responsive-header"
-          class="block mt-4 text-white lg:inline-block lg:mt-0 text-teal-200 mr-4"
-        >
-          Docs
-        </a>
-        <a
-          href="#responsive-header"
-          class="block mt-4 text-white lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-        >
-          Examples
-        </a>
-        <a
-          href="#responsive-header"
-          class="block mt-4 text-white lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
-        >
-          Blog
-        </a>
-      </div>
+      <!-- Left Side Of Navbar -->
+      <ul class="navbar-nav">
+        <li class="self-start mb-2">
+          <div class="dropdown">
+            <button
+              id="EVENT_DD_BTN"
+              type="button"
+              class="btn text-white text-sm dropdown-toggle pb-0 px-0"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Events
+            </button>
+            <div
+              class="dropdown-menu text-center py-1 min-w-0"
+              aria-labelledby="EVENT_DD_BTN"
+            >
+              <a
+                href="/events/search"
+                class="dropdown-item text-xs"
+              >
+                Search
+              </a>
+              <a
+                href="/contacts/search"
+                class="dropdown-item text-xs"
+              >Requests</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="self-start mb-2">
+          <div class="dropdown">
+            <button
+              id="RELATION_SHIP_DD_BTN"
+              type="button"
+              class="btn text-white text-sm dropdown-toggle pb-0 px-0"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Contacts
+            </button>
+            <div
+              class="dropdown-menu text-center py-1 min-w-0"
+              aria-labelledby="RELATION_SHIP_DD_BTN"
+            >
+              <a
+                href="/contacts/search"
+                class="dropdown-item text-xs"
+              >
+                Relationships
+              </a>
+              <a
+                href="/contacts/search"
+                class="dropdown-item text-xs"
+              >Search</a>
+              <a
+                href="/contacts/search"
+                class="dropdown-item text-xs"
+              >Requests</a>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-  </nav>
+    <!--  </div>-->
+  </div>
 </template>
 
 <script>
@@ -56,7 +98,7 @@ export default {
 
   computed: {
     navStyle() {
-      return `w-full flex-grow lg:block lg:flex lg:items-center lg:w-auto ${this.toggle ? ' hidden' : ''}`;
+      return `w-full lg:block lg:flex lg:items-center lg:w-auto ${this.toggle ? ' hidden' : ''}`;
     },
   },
 
