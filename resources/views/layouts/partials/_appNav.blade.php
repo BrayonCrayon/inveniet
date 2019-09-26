@@ -1,4 +1,8 @@
-<inv-nav></inv-nav>
+<inv-nav
+    @auth
+    auth
+    @endauth
+></inv-nav>
 {{--<ul class="navbar-nav">--}}
 {{--	<div class="btn-group mx-2 rounded bg-primary">--}}
 {{--		<a href="{{ route('event.index') }}" class="hover:bg-primary-dark rounded">--}}

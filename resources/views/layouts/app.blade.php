@@ -19,19 +19,17 @@
 <body>
 <div id="app">
 {{--	<inv-nav title="{{ config('app.name', 'Inveniet') }}" ></inv-nav>--}}
-	<nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-primary shadow text-white">
-		<div class="w-full flex">
-				<div class="w-2/4">
-					<a class=" text-center hover:bg-primary-dark rounded nav-link text-white md:text-2xl"
-					   href="{{ url('/') }}">
-						{{ config('app.name', 'Inveniet') }}
-					</a>
-				</div>
+	<nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-primary shadow text-white p-0">
+{{--				<div class="w-2/4">--}}
+{{--					<a class=" text-center hover:bg-primary-dark rounded nav-link text-white md:text-2xl"--}}
+{{--					   href="{{ url('/') }}">--}}
+{{--						{{ config('app.name', 'Inveniet') }}--}}
+{{--					</a>--}}
+{{--				</div>--}}
 {{--				<div class="w-2/4 flex justify-end">--}}
 					<!-- Left Side Of Navbar -->
-				@auth
+
 					@include("layouts.partials._appNav")
-				@endauth
 
 				<!-- Right Side Of Navbar -->
 {{--					<ul class="navbar-nav ml-auto text-white rounded">--}}
@@ -47,7 +45,6 @@
 {{--					</ul>--}}
 {{--				</div>--}}
 
-			</div>
 	</nav>
 
 	<main class="py-4">
