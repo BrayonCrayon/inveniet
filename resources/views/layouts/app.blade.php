@@ -18,33 +18,8 @@
 </head>
 <body>
 <div id="app">
-{{--	<inv-nav title="{{ config('app.name', 'Inveniet') }}" ></inv-nav>--}}
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-primary shadow text-white p-0">
-{{--				<div class="w-2/4">--}}
-{{--					<a class=" text-center hover:bg-primary-dark rounded nav-link text-white md:text-2xl"--}}
-{{--					   href="{{ url('/') }}">--}}
-{{--						{{ config('app.name', 'Inveniet') }}--}}
-{{--					</a>--}}
-{{--				</div>--}}
-{{--				<div class="w-2/4 flex justify-end">--}}
-					<!-- Left Side Of Navbar -->
-
-					@include("layouts.partials._appNav")
-
-				<!-- Right Side Of Navbar -->
-{{--					<ul class="navbar-nav ml-auto text-white rounded">--}}
-
-
-{{--						<!-- Authentication Links -->--}}
-{{--						@guest--}}
-{{--							@include("layouts.partials._userNotAuthenticated")--}}
-{{--						@else--}}
-{{--							@include("layouts.partials._userAuthenticated")--}}
-{{--						@endguest--}}
-
-{{--					</ul>--}}
-{{--				</div>--}}
-
+		@include("layouts.partials._appNav")
 	</nav>
 
 	<main class="py-4">
