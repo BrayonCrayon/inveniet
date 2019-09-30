@@ -27,7 +27,7 @@
 
 
 			@if(!auth()->user()->isEventHost($event->id))
-				<div class="flex my-2" >
+				<div class="flex my-2 text-xs md:text-base" >
 					<inv-button link="{{ route('event.show', ['id' => $event->id]) }}"
 					            color="grey" >
 						<i class="fas fa-search-location" ></i > Check it out

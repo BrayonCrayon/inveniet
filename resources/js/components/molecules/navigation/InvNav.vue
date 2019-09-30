@@ -92,13 +92,13 @@
                 <a
                         href="/event"
                         class="dropdown-item text-xs"
-                >Hosting</a>
+                >Attending</a>
                 <a
                   href="/attendee-requests"
                   class="dropdown-item text-xs"
                 >Invites</a>
                 <a
-                  href="/events/search"
+                  href="/event/search"
                   class="dropdown-item text-xs"
                 >
                   Search
@@ -192,7 +192,7 @@ export default {
   },
   computed: {
     navStyle() {
-      return `w-full ${this.toggle ? ' hidden' : 'animated fadeInDown'}`;
+      return `w-full ${this.toggle ? ' hidden' : 'animated fadeIn'}`;
     },
   },
 
