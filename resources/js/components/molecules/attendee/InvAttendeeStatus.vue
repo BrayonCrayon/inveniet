@@ -1,29 +1,29 @@
-<template >
-	<div class="col row" >
-		<div class="col-6 text-grey-darkest align-items-center" >
-			<div class="font-bold" >
-				{{ attendeeType }} Access
-			</div >
-		</div >
+<template>
+  <div class="flex flex-wrap">
+    <div class="w-1/4 text-grey-darkest align-items-center">
+      <div class="text-xs md:text-base font-bold">
+        {{ attendeeType }}
+      </div>
+    </div>
 
-		<div class="col-6 text-grey-darkest" >
-			<div class="font-bold" >
-				{{ attendeeStatus }}
-			</div >
-		</div >
-	</div >
-</template >
+    <div class="w-3/4 flex justify-end text-grey-darkest">
+      <div class="text-xs md:text-base  font-bold">
+        {{ attendeeStatus }}
+      </div>
+    </div>
+  </div>
+</template>
 <script >
-    export default {
-        props: {
-            attendeeStatus: {
-                required: true,
-                type: String,
-            },
-            attendeeType: {
-                required: true,
-                type: String,
-            },
-        },
-    };
+export default {
+  props: {
+    attendeeStatus: {
+      required: true,
+      type: String,
+    },
+    attendeeType: {
+      required: true,
+      type: String,
+    },
+  },
+};
 </script >

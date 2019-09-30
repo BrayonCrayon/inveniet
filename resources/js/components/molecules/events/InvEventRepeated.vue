@@ -1,6 +1,6 @@
 <template>
-  <div class="row">
-    <div class="col-1">
+  <div class="flex">
+    <div class="flex-shrink mr-2">
       <div class="form-group form-check">
         <inv-check-box-input
           id="repeatedCBO"
@@ -20,7 +20,7 @@
 
     <div
       v-if="disableOptions"
-      class="col-5"
+      class="w-3/4 md:w-2/4 lg:w-1/4"
     >
       <select
         class="form-control cursor-pointer hover:bg-grey-lightest"

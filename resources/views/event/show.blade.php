@@ -9,14 +9,18 @@
 				<div class="col">
 					<div class="card">
 						<div class="card-body">
-							<div class="flex justify-between">
-								<h3><i class="fas fa-calendar-plus"></i> {{ $event->name }}</h3>
+							<div class="flex flex-wrap justify-between">
+								<div class="w-1/2 self-center text-sm md:text-lg lg:text-2xl ">
+									<i class="fas fa-calendar-plus"></i> {{ $event->name }}
+								</div>
+								<div class="w-1/2 self-center flex justify-end">
+
 								@if(!auth()->user()->isAttending($event->id ))
 									<form action="{{ route('attendee.store', ['userInvites' => [auth()->user()->id], 'eventId' => $event->id ]) }}"
 									      method="POST">
 										@method('POST')
 										@csrf
-										<button class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow">
+										<button class="btn bg-green-dark hover:bg-green text-white font-bold shadow text-sm md:text-base lg:text-lg ">
 											<i class="fas fa-calendar-plus mr-2"></i>Attend
 										</button>
 									</form>
@@ -25,11 +29,12 @@
 									      method="POST">
 										@method('DELETE')
 										@csrf
-										<button class="btn hover:bg-red-lightest text-red-darkest text-lg">
-											<i class="fas fa-dumpster-fire mr-2"></i>Leave Event
+										<button class="btn text-sm md:text-base hover:bg-red-lightest text-red-darkest lg:text-lg">
+											<i class="fas fa-dumpster-fire mr-2"></i>Leave
 										</button>
 									</form>
 								@endif
+								</div>
 							</div>
 							<hr>
 							<inv-form-group label="Name" name="name" value="{{ $event->name }}"
@@ -47,34 +52,30 @@
 							                value="{{ Carbon::parse($event->rsvp_by)->toDayDateTimeString() }}"
 							                is-disabled></inv-form-group>
 
-							<div class="form-group">
-								<div class="row">
-									<inv-form-group label="Start Date" name="start_date" class="col-6"
+							<div class="flex flex-wrap">
+									<inv-form-group label="Start Date" name="start_date" class="w-full md:w-1/2 md:pr-2"
 									                type="date"
 									                value="{{  Carbon::parse($event->starts_at)->toDateString() }}"
 									                is-disabled>
 									</inv-form-group>
-									<inv-form-group label="Start Time" name="start_time" class="col-6"
+									<inv-form-group label="Start Time" name="start_time"  class="w-full md:w-1/2"
 									                type="time"
 									                value="{{ Carbon::parse($event->starts_at)->toTimeString() }}"
 									                is-disabled>
 									</inv-form-group>
-								</div>
 							</div>
-							<div class="form-group">
-								<div class="row">
-									<inv-form-group label="End Date" name="end_date" class="col-6"
+							<div class="flex flex-wrap">
+									<inv-form-group label="End Date" name="end_date" class="w-full md:w-1/2 md:pr-2"
 									                type="date"
 									                value="{{  Carbon::parse($event->ends_at)->toDateString() }}"
 									                is-disabled>
 									</inv-form-group>
-									<inv-form-group label="End Time" name="end_time" class="col-6"
+									<inv-form-group label="End Time" name="end_time" class="w-full md:w-1/2"
 									                type="time"
 									                value="{{ Carbon::parse($event->ends_at)->toTimeString() }}"
 									                is-disabled>
 									</inv-form-group>
 								</div>
-							</div>
 
 							<div class="form-group">
 								<inv-event-repeated :value="{{ $event->repeated }}"
@@ -83,31 +84,31 @@
 
 							</div>
 
-							<div class="col mt-10">
-								<div class="row">
-									<h3><i class="fas fa-user-friends"></i>Attendees</h3>
+							<div class="flex flex-row justify-between mt-10">
+								<div class="self-center text-sm md:text-lg lg:text-2xl">
+									<i class="fas fa-user-friends"></i>Attendees
 								</div>
 							</div>
 							<hr>
 							<list-group-scrollable>
 								@foreach($attendees as $attendee)
 									<div class="list-group-item border-0">
-										<div class="col-12">
-											<div class="row">
-												<div class="col-4">
-													<div class="font-bold text-grey-darkest">
+										<div class="flex flex-wrap">
+												<div class="w-full md:w-1/2">
+													<div class="text-sm font-bold text-grey-darkest md:text-base">
 														{{ $attendee->user->name }}
 													</div>
-													<div class="text-grey-dark text-sm">
+													<div class="text-grey-dark text-xs md:text-sm">
 														{{ $attendee->user->email }}
 													</div>
 												</div>
-												<inv-attendee-status attendee-type="{{ $attendee->attendeeType->name }}"
-												                     attendee-status="{{ $attendee->attendeeStatus->name }}"></inv-attendee-status>
+												<div class="w-full md:w-1/2">
+													<inv-attendee-status attendee-type="{{ $attendee->attendeeType->name }}"
+													                     attendee-status="{{ $attendee->attendeeStatus->name }}"></inv-attendee-status>
+												</div>
 											</div>
 										</div>
 										<hr>
-									</div>
 								@endforeach
 							</list-group-scrollable>
 

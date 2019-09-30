@@ -4,7 +4,7 @@
     :id="name"
     v-model="inputValue"
     type="text"
-    class="form-control"
+    class="text-sm md:text-base form-control"
     :name="name"
     :placeholder="placeHolder"
     @input="emitInput"

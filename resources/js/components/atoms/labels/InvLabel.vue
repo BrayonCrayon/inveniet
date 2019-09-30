@@ -1,8 +1,7 @@
 <template>
   <label
     :for="target"
-    :class="`text-${size} font-${weight}`"
-    class="text-grey-darkest"
+    class="font-normal text-sm md:text-base lg:text-lg text-grey-darkest mb-0"
   >
     <slot />
   </label>
@@ -15,16 +14,6 @@ export default {
       required: false,
       type: String,
       default: null,
-    },
-    size: {
-      required: false,
-      type: String,
-      default: 'base',
-    },
-    weight: {
-      required: false,
-      type: String,
-      default: 'normal',
     },
   },
 };
