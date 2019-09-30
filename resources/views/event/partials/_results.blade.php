@@ -11,14 +11,14 @@
 						{{ $event->starts_at_diff }}
 					</div >
 				</div >
-				@if(auth()->user()->isEventHost($event->id))
-					<div class="contents-baseline text-grey-darkest ml-2 flex" >
-						<a href="{{ route('event.edit', ['id' => $event->id]) }}"
-						   class="btn text-md hover:bg-green-lightest text-grey-darkest md:text-lg" >
-							Edit
-						</a >
-					</div >
-				@endif
+{{--				@if(auth()->user()->isEventHost($event->id))--}}
+{{--					<div class="contents-baseline text-grey-darkest ml-2 flex" >--}}
+{{--						<a href="{{ route('event.edit', ['id' => $event->id]) }}"--}}
+{{--						   class="btn text-md hover:bg-green-lightest text-grey-darkest md:text-lg" >--}}
+{{--							Edit--}}
+{{--						</a >--}}
+{{--					</div >--}}
+{{--				@endif--}}
 			</div >
 
 			<div class="hidden w-full md:inline-block">
@@ -38,6 +38,14 @@
 					{{--				</inv-button>--}}
 
 
+				</div >
+			@else
+
+				<div class="contents-baseline text-grey-darkest ml-2 flex" >
+					<a href="{{ route('event.edit', ['id' => $event->id]) }}"
+					   class="btn text-md hover:bg-green-lightest text-grey-darkest md:text-lg" >
+						Edit
+					</a >
 				</div >
 			@endif
 		</div >
