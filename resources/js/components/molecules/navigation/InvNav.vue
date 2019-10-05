@@ -31,7 +31,7 @@
               Events
             </button>
             <div class="dropdown-menu" aria-labelledby="EVENT_DD">
-              <a class="dropdown-item hover:bg-red-lightest" href="/event">Hosting</a>
+              <a class="dropdown-item hover:bg-red-lightest" href="/event">Attending</a>
               <a class="dropdown-item hover:bg-red-lightest" href="/attendee-requests">Invites</a>
               <a class="dropdown-item hover:bg-red-lightest" href="/event/search">Search</a>
             </div>
