@@ -1,11 +1,11 @@
 <?php
 
-use \App\User;
+use App\Models\Attendee;
+use App\Models\AttendeeStatus;
+use App\Models\AttendeeType;
+use App\Models\Event;
+use App\Models\User;
 use Faker\Generator as Faker;
-use \App\Attendee;
-use \App\Event;
-use \App\AttendeeType;
-use \App\AttendeeStatus;
 
 $factory->define(Attendee::class, function (Faker $faker) {
     return [

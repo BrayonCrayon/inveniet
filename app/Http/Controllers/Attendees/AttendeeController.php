@@ -1,20 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Attendees;
 
-use \App\Attendee;
-use \App\AttendeeStatus;
-use \App\AttendeeType;
-use \App\Event;
+use App\Http\Controllers\Controller;
+use App\Models\Attendee;
+use App\Models\AttendeeStatus;
+use App\Models\AttendeeType;
+use App\Models\Event;
 use \Carbon\Carbon;
+use Exception;
 use \Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AttendeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -24,7 +32,7 @@ class AttendeeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -35,7 +43,7 @@ class AttendeeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -66,7 +74,7 @@ class AttendeeController extends Controller
      * Display the specified resource.
      *
      * @param \App\Attendee $attendee
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Attendee $attendee)
     {
@@ -77,7 +85,7 @@ class AttendeeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Attendee $attendee
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Attendee $attendee)
     {
@@ -89,7 +97,7 @@ class AttendeeController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Attendee $attendee
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, Attendee $attendee)
     {
@@ -99,8 +107,9 @@ class AttendeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Attendee $attendee
-     * @return \Illuminate\Http\Response
+     * @param Attendee $attendee
+     * @return Response
+     * @throws Exception
      */
     public function destroy(Attendee $attendee)
     {

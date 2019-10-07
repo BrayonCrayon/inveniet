@@ -1,13 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Relationships;
 
-use App\Http\Requests\UserRelationshipsRequest;
-use App\UserRelationship;
+use App\Http\Controllers\Controller;
+use App\Models\RelationshipStatus;
 use Illuminate\Http\Request;
 
-class UserRelationshipRequestsController extends Controller
+class RelationshipStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +20,7 @@ class UserRelationshipRequestsController extends Controller
      */
     public function index()
     {
-        $requests = UserRelationship::pendingRequests()->get();
-        return view('relationship-requests.index', [
-            'requests' => $requests
-        ]);
+        //
     }
 
     /**
@@ -45,10 +47,10 @@ class UserRelationshipRequestsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\RelationshipStatus  $relationshipStatus
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(RelationshipStatus $relationshipStatus)
     {
         //
     }
@@ -56,10 +58,10 @@ class UserRelationshipRequestsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\RelationshipStatus  $relationshipStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(RelationshipStatus $relationshipStatus)
     {
         //
     }
@@ -68,10 +70,10 @@ class UserRelationshipRequestsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\RelationshipStatus  $relationshipStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, RelationshipStatus $relationshipStatus)
     {
         //
     }
@@ -79,10 +81,10 @@ class UserRelationshipRequestsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\RelationshipStatus  $relationshipStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(RelationshipStatus $relationshipStatus)
     {
         //
     }

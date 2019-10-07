@@ -20,9 +20,9 @@ class CreateEventsTable extends Migration
             $table->decimal('latitude')->nullable();
             $table->decimal('longitude')->nullable();
             $table->longText('description');
-            $table->timestamp('starts_at');
-            $table->timestamp('ends_at')->nullable();
-            $table->timestamp('rsvp_by')->nullable();
+            $table->dateTimeTz('starts_at');
+            $table->dateTimeTz('ends_at');
+            $table->dateTimeTz('rsvp_by');
             $table->boolean('repeated')->default(false);
             $table->unsignedBigInteger('repeated_type_id')->nullable();
             $table->timestamps();

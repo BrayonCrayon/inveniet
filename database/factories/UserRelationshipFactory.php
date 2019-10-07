@@ -1,11 +1,12 @@
 <?php
 
-use App\RelationshipStatus;
-use App\User;
-use App\UserRelationshipType;
+use App\Models\RelationshipStatus;
+use App\Models\User;
+use App\Models\UserRelationship;
+use App\Models\UserRelationshipType;
 use Faker\Generator as Faker;
 
-$factory->define(App\UserRelationship::class, function (Faker $faker) {
+$factory->define(UserRelationship::class, function (Faker $faker) {
     $userId = $faker->randomElement(User::all()->pluck('id'));
     return [
         'user_id'                   => $userId,

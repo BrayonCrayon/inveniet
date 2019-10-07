@@ -24,7 +24,7 @@
     >
       <select
         class="form-control cursor-pointer hover:bg-grey-lightest"
-        name="repeatedType"
+        name="repeated_type_id"
         :disabled="disabled"
       >
         <option
@@ -58,7 +58,6 @@ export default {
     currentType: {
       required: true,
       type: Number,
-      default: 0,
     },
   },
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\UserRelationship;
 use Illuminate\Database\Seeder;
 
 class UserRelationshipSeeder extends Seeder
@@ -11,6 +12,6 @@ class UserRelationshipSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\UserRelationship::class, 500)->create();
+        factory(UserRelationship::class, 500)->create();
     }
 }

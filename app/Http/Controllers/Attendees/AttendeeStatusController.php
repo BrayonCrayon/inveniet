@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Attendees;
 
-use App\AttendeeStatus;
+use App\Http\Controllers\Controller;
+use App\Models\AttendeeStatus;
 use Illuminate\Http\Request;
 
 class AttendeeStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

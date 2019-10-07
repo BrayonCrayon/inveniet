@@ -1,14 +1,22 @@
 <template>
-  <input
-    v-if="show"
-    :id="name"
-    v-model="inputValue"
-    type="date"
-    class="form-control cursor-pointer"
-    :name="name"
-    :placeHodler="placeHolder"
-    @input="emitInput"
-  >
+  <div>
+    <input
+      v-if="show"
+      :id="name"
+      v-model="inputValue"
+      type="date"
+      class="form-control cursor-pointer"
+      :name="name"
+      :placeHodler="placeHolder"
+      @input="emitInput"
+    >
+    <div
+      class="alert p-0 text-red-dark text-sm"
+      :class="{ hidden : errorText === ''}"
+    >
+      {{ errorText }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -25,6 +33,11 @@ export default {
       default: '',
     },
     placeHolder: {
+      required: false,
+      type: String,
+      default: '',
+    },
+    errorText: {
       required: false,
       type: String,
       default: '',
@@ -49,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    input:disabled{
-        @apply shadow-inner cursor-not-allowed;
-    }
+	input:disabled {
+		@apply shadow-inner cursor-not-allowed;
+	}
 </style>

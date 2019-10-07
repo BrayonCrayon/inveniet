@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Reminders;
 
-use App\Event;
+use App\Models\Event;
 use Illuminate\Console\Command;
 
 class EventReminderMessage extends Command

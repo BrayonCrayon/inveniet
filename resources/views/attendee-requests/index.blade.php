@@ -13,21 +13,24 @@
 				<div class="list-group">
 					@forelse($requests as $request)
 						<div class="list-group-item px-2">
-							<div class="flex flex-row">
+							<div class="flex flex-col md:flex-row">
 
-									<div class="w-2/4 self-center shadow-md p-2 rounded hover:bg-grey-light md:w-3/4">
+									<div class="w-full flex self-center p-2 rounded hover:bg-grey-light md:shadow-md md:w-3/4">
 										<a href="{{ route('event.show', $request->event ) }}"
-										   class="text-decoration-none">
-											<div class="text-sm font-bold text-grey-darkest">
+										   class="text-decoration-none flex flex-row flex-wrap">
+											<div class="text-sm text-grey-darkest px-2 md:text-lg md:flex-shrink">
+												<i class="far fa-eye"></i>
+											</div>
+											<div class="text-sm font-bold align-self-center text-grey-darkest md:w-5/6">
 												{{ $request->event->name }}
 											</div>
-											<div class="hidden text-grey-darker text-sm md:block">
+											<div class="hidden text-grey-darker text-sm md:block md:w-full">
 												{{ $request->event->description }}
 											</div>
 										</a>
 									</div>
 
-									<div class="w-2/4 flex justify-end md:w-1/4">
+									<div class="w-full flex justify-around md:justify-end md:w-1/4">
 										<form action="" class="mr-2">
 											<button class="btn hover:bg-red-lightest text-red-dark text-2xl"><i
 														class="fas fa-trash"></i>

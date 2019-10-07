@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Attendees;
 
-use App\User;
+use App\Http\Controllers\Controller;
+use App\Models\Attendee;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AttendeeRequestsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,20 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $usersToInvite = [];
-        return view('user.index', compact('usersToInvite'));
+        $requests = Attendee::pendingInvites()->get();
+        return view('attendee-requests.index', compact('requests'));
     }
-
-    public function search()
-    {
-        $users = User::where('id', '!=', auth()->user()->id)
-            ->where('name', 'like', request('search') . '%')
-            ->orderBy('name')
-            ->get(['id','name']);
-
-        return response()->json($users);
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -42,7 +37,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,7 +48,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -64,7 +59,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,8 +70,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,7 +82,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

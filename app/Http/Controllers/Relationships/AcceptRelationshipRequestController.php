@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Relationships;
 
 use App\Http\Controllers\Controller;
-use App\RelationshipStatus;
-use App\UserRelationship;
+use App\Models\RelationshipStatus;
+use App\Models\UserRelationship;
 use Illuminate\Http\Request;
 
 class AcceptRelationshipRequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Handle the incoming request.
      *

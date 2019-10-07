@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\RelationshipStatus;
+use App\Http\Requests\UserRelationshipsRequest;
+use App\Models\UserRelationship;
 use Illuminate\Http\Request;
 
-class RelationshipStatusController extends Controller
+class UserRelationshipRequestsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,10 @@ class RelationshipStatusController extends Controller
      */
     public function index()
     {
-        //
+        $requests = UserRelationship::pendingRequests()->get();
+        return view('relationship-requests.index', [
+            'requests' => $requests
+        ]);
     }
 
     /**
@@ -41,10 +50,10 @@ class RelationshipStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RelationshipStatus  $relationshipStatus
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(RelationshipStatus $relationshipStatus)
+    public function show($id)
     {
         //
     }
@@ -52,10 +61,10 @@ class RelationshipStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RelationshipStatus  $relationshipStatus
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(RelationshipStatus $relationshipStatus)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +73,10 @@ class RelationshipStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RelationshipStatus  $relationshipStatus
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelationshipStatus $relationshipStatus)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +84,10 @@ class RelationshipStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RelationshipStatus  $relationshipStatus
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelationshipStatus $relationshipStatus)
+    public function destroy($id)
     {
         //
     }

@@ -12,11 +12,11 @@
 			</div>
 		</div>
 
-		<div class="w-full flex flex-row mt-2 rounded-full border-grey-darkest border-2">
+		<div class="w-full flex flex-row mt-2 rounded-full border-grey-dark border-2">
 			<form method="GET" action="{{ route('event.search') }}" class="w-full">
 				@csrf
 				<div class="text-xs flex flex-row md:text-base">
-					<button class="btn text-sm align-self-center text-grey-darkest md:text-lg hover:text-grey-dark">
+					<button class="btn text-sm align-self-center text-grey md:text-lg hover:text-grey-dark">
 						<i class="fas fa-search"></i>
 					</button>
 					<inv-text-input name="search" placeholder="Search Events" no-border no-padding></inv-text-input>
@@ -24,7 +24,7 @@
 			</form>
 			<div class="align-self-center">
 				<a href="{{ route('event.search') }}"
-				   class="btn text-sm text-black outline-none border-0 border-none hover:text-red md:text-lg">
+				   class="btn text-sm text-grey outline-none border-0 border-none hover:text-red md:text-lg">
 					<i class="fas fa-ban"></i>
 				</a>
 			</div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      class="btn bg-green-dark hover:bg-green text-white font-bold text-lg shadow"
+      class="btn bg-green-dark hover:bg-green text-white text-sm font-bold md:text-lg shadow"
       @click="showModal"
     >
       <i class="fas fa-user-plus" />

@@ -3,22 +3,24 @@
 	<div class="flex  w-full" >
 		<div class="timeline-ball  md:mt-5 mt-8" ></div >
 		<div class="py-3 pl-5 w-full flex-col" >
-			<div class="flex justify-between  mb-3 items-baseline" >
+			<div class="flex w-full justify-between  mb-3 " >
 
-				<div class="flex flex-col items-baseline" >
+				<div class="flex flex-col" >
 					<h4 class="text-sm md:text-base md:font-bold lg:text-lg font-semibold text-grey-darker" >{{ $event->name }}</h4 >
 					<div class="text-sm md:text-base text-grey-dark" >
 						{{ $event->starts_at_diff }}
 					</div >
 				</div >
-{{--				@if(auth()->user()->isEventHost($event->id))--}}
-{{--					<div class="contents-baseline text-grey-darkest ml-2 flex" >--}}
-{{--						<a href="{{ route('event.edit', ['id' => $event->id]) }}"--}}
-{{--						   class="btn text-md hover:bg-green-lightest text-grey-darkest md:text-lg" >--}}
-{{--							Edit--}}
-{{--						</a >--}}
-{{--					</div >--}}
-{{--				@endif--}}
+				@if(auth()->user()->isEventHost($event->id))
+					<div class="text-grey-darkest " >
+						<inv-button link="{{ route('event.edit', ['id' => $event->id])}}" color="grey-outline " >
+							<i class="far fa-edit p-1"></i>
+							<div class="md:inline-block hidden">
+								Edit
+							</div>
+						</inv-button>
+					</div >
+				@endif
 			</div >
 
 			<div class="hidden w-full md:inline-block">
@@ -38,14 +40,6 @@
 					{{--				</inv-button>--}}
 
 
-				</div >
-			@else
-
-				<div class="contents-baseline text-grey-darkest ml-2 flex" >
-					<a href="{{ route('event.edit', ['id' => $event->id]) }}"
-					   class="btn text-md hover:bg-green-lightest text-grey-darkest md:text-lg" >
-						Edit
-					</a >
 				</div >
 			@endif
 		</div >

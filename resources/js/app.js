@@ -8,7 +8,9 @@
 
 import BootstrapVue from 'bootstrap-vue';
 import Vue from 'vue';
+import Datetime from 'vue-datetime';
 import axios from 'axios';
+import 'vue-datetime/dist/vue-datetime.css';
 
 
 require('./bootstrap');
@@ -16,6 +18,7 @@ window.Vue = require('vue');
 
 window.Axios = axios;
 
+Vue.use(Datetime);
 Vue.use(BootstrapVue);
 
 const headers = {

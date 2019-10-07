@@ -9,6 +9,7 @@
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
+      :error-text="errorText"
       @input="emitInput"
     ></inv-text-input>
     <inv-date-input
@@ -16,6 +17,7 @@
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
+      :error-text="errorText"
       @input="emitInput"
     ></inv-date-input>
     <inv-time-input
@@ -23,6 +25,7 @@
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
+      :error-text="errorText"
       @input="emitInput"
     ></inv-time-input>
     <inv-textarea
@@ -30,6 +33,7 @@
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
+      :error-text="errorText"
       @input="emitInput"
     ></inv-textarea>
     <inv-check-box-input
@@ -37,8 +41,17 @@
       v-model="inputValue"
       :name="name"
       :disabled="isDisabled"
+      :error-text="errorText"
       @input="emitInput"
     ></inv-check-box-input>
+
+    <inv-date-time-input
+      v-if="type === 'dateTime'"
+      v-model="inputValue"
+      :error-text="errorText"
+      :name="name"
+      @input="emitInput"
+    ></inv-date-time-input>
   </div>
 </template>
 
@@ -68,6 +81,11 @@ export default {
       required: false,
       type: String,
       default: 'text',
+    },
+    errorText: {
+      required: false,
+      type: String,
+      default: '',
     },
   },
   data() {

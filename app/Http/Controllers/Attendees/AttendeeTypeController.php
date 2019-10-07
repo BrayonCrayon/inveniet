@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Attendees;
 
-use App\AttendeeType;
+use App\Http\Controllers\Controller;
+use App\Models\AttendeeType;
 use Illuminate\Http\Request;
 
 class AttendeeTypeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

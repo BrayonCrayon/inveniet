@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\RelationshipStatus;
-use App\UserRelationship;
+use App\Models\RelationshipStatus;
+use App\Models\UserRelationship;
 
 class UserRelationshipObserver
 {

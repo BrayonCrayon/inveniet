@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\UserRelationship;
 use App\Observers\UserRelationshipObserver;
-use App\UserRelationship;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
