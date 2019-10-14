@@ -7,10 +7,9 @@
 		<div class="flex w-full justify-center">
 			<div class="card shadow w-full sm:w-3/4 lg:w-1/2">
 				<div class="card-body">
-					<div class="flex justify-between">
-						<h3><i class="fas fa-calendar-plus"></i> Create Event</h3>
+					<div class="self-center text-warm-grey-0 text-sm border-warm-grey-500 border-b-2 mb-2 p-2 md:text-lg lg:text-2xl ">
+						<i class="fas fa-calendar-plus"></i> Create Event
 					</div>
-					<hr>
 					<form action="{{ route('event.store') }}" method="POST">
 						@csrf
 
@@ -53,11 +52,11 @@
 
 						<div class="flex justify-end">
 							<a href="{{ route('event.index') }}"
-							   class="btn bg-red-dark hover:bg-red text-white font-bold shadow text-sm md:text-base lg:text-lg mr-2">
+							   class="btn bg-yellow-lighter hover:bg-yellow-light text-red-darkest font-bold shadow text-sm md:text-base lg:text-lg mr-2">
 								Cancel
 							</a>
 
-							<button class="btn bg-green-dark hover:bg-green text-green-lightest font-bold text-sm md:text-base lg:text-lg shadow">
+							<button class="btn bg-yellow-dark hover:bg-yellow text-white font-bold text-sm md:text-base lg:text-lg shadow">
 								<i class="fas fa-save"></i> Save
 							</button>
 						</div>

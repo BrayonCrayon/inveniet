@@ -8,6 +8,7 @@
       class="form-control cursor-pointer"
       :name="name"
       :placeHodler="placeHolder"
+      :disabled="disabled"
       @input="emitInput"
     >
     <div
@@ -41,6 +42,11 @@ export default {
       required: false,
       type: String,
       default: '',
+    },
+    disabled: {
+    	required: false,
+      type: Boolean,
+      default: false,
     },
   },
   data() {

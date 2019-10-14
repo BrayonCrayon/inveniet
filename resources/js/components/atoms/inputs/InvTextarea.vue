@@ -5,12 +5,13 @@
       :id="name"
       v-model="inputValue"
       type="time"
-      class="form-control"
+      class="form-control text-sm md:text-md"
       :name="name"
       cols="30"
       rows="4"
-      @input="emitInput"
       required
+      :disabled="disabled"
+      @input="emitInput"
     />
     <div
       class="alert p-0 text-red-dark text-sm"
@@ -38,6 +39,11 @@ export default {
       required: false,
       type: String,
       default: '',
+    },
+    disabled: {
+    	required: false,
+      type: Boolean,
+      default: false,
     },
   },
   data() {

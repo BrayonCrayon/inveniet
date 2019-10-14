@@ -33,24 +33,24 @@
     content: ' ';
     border-radius: 90%;
     margin-left: -1rem;
-    @apply bg-grey-darker;
+    @apply bg-warm-grey-300;
   }
 }
 
 .timeline-border-gradient {
-  @apply border-l-4 border-grey-darker;
+  @apply border-l-4 border-warm-grey-500;
   border-image: linear-gradient(
                   to bottom,
                   transparent,
-                  #606f7b 20%,
-                  #606f7b 80%,
+                  #D3CEC4 10%,
+                  #423D33 100%,
                   rgba(0, 0, 0, 0)
   ) 90 100%;
 }
 
 .list-group-scrollable {
-  max-height: 400px;
-  min-height: 400px;
+  max-height: 350px;
+  min-height: 350px;
   margin-bottom: 10px;
   @apply overflow-y-auto;
 }

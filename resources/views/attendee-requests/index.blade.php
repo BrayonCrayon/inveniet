@@ -2,10 +2,10 @@
 
 @section('content')
 	<div class="container">
-		<div class="card">
+		<div class="card shadow">
 			<div class="card-body">
-				<div class="flex flex-row">
-					<div class="card-title md:text-2xl">
+				<div class="flex flex-row border-b-2 border-warm-grey-500">
+					<div class="card-title text-warm-grey-0 text-xl md:text-2xl">
 						<i class="fas fa-archive pr-2"></i>Event Requests
 					</div>
 				</div>
@@ -32,8 +32,8 @@
 
 									<div class="w-full flex justify-around md:justify-end md:w-1/4">
 										<form action="" class="mr-2">
-											<button class="btn hover:bg-red-lightest text-red-dark text-2xl"><i
-														class="fas fa-trash"></i>
+											<button class="btn hover:bg-red-lightest text-red-dark text-2xl">
+                                                <i class="far fa-2x fa-calendar-times"></i>
 											</button>
 										</form>
 										<form action="{{ route('attendee-requests.accept', ['attendee' => $request]) }}"
@@ -41,14 +41,16 @@
 											@csrf
 											@method('PUT')
 											<button class="btn text-green-dark hover:bg-green-lightest text-2xl">
-												<i class="fas fa-check"></i>
+                                                <i class="far fa-2x fa-calendar-check"></i>
 											</button>
 										</form>
 									</div>
 							</div>
 						</div>
 					@empty
-						<i class="fas fa-sad-cry"></i> No Contact Requests
+                        <div class="p-2">
+						    No Contact Requests
+                        </div>
 					@endforelse
 				</div>
 			</div>

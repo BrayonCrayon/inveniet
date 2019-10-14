@@ -2,7 +2,7 @@
   <div class="dropdown self-center">
     <a
       id="ADMIN_DROP_DOWN"
-      class="nav-link dropdown-toggle text-white"
+      class="nav-link dropdown-toggle text-red-darkest hover:bg-red-lightest rounded"
       href="#"
       data-toggle="dropdown"
       aria-haspopup="true"
@@ -15,7 +15,7 @@
       aria-labelledby="ADMIN_DROP_DOWN"
     >
       <a
-        class="dropdown-item cursor-pointer hover:bg-primary-lightest"
+        class="dropdown-item cursor-pointer text-red-darkest hover:bg-red-lightest"
         @click="logout"
       >
         Logout

@@ -50,7 +50,7 @@ class AttendeeController extends Controller
         $event = Event::findOrFail($request->get('eventId'));
         Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::GUEST, AttendeeStatus::ATTENDING);
 
-        return redirect()->action('EventsController@index')->with('message', 'You are Attending: ' . $event->name );
+        return redirect()->action('Events\EventsController@index')->with('message', 'You are Attending: ' . $event->name );
     }
 
     /**

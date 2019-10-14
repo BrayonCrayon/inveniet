@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col">
-                    <div class="card text-grey-darkest">
+                    <div class="card shadow-md text-grey-darkest">
                         <div class="card-body">
                             <div class="timeline-border-gradient">
                                 @include('event.partials._indexHeader')

@@ -8,11 +8,11 @@
           type="datetime"
           :hidden-name="name"
           use12-hour
-          @input="emitInput"
           required
+          :disabled="disabled"
+          @input="emitInput"
         />
       </div>
-      <i class="far fa-hand-point-up self-center p-2 md:hidden"></i>
     </div>
     <div
       class="alert p-0 text-red-dark text-sm"
@@ -45,6 +45,11 @@ export default {
       required: false,
       type: String,
       default: '',
+    },
+    disabled: {
+    	required: false,
+      type: Boolean,
+      default: false,
     },
   },
   data() {

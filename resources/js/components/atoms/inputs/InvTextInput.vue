@@ -5,14 +5,15 @@
       :id="name"
       v-model="inputValue"
       type="text"
-      class="text-sm md:text-base form-control"
-      :class="{'border-none outline-none border-0' : noBorder,
+      class="text-sm md:text-base form-control bg-white"
+      :class="{'border-none focus:outline-none border-0' : noBorder,
                'p-0' : noPadding
       }"
       :name="name"
       :placeholder="placeHolder"
+      :required="!notRequired"
+      :disabled="disabled"
       @input="emitInput"
-      required
     >
     <div
       class="alert p-0 text-red-dark text-sm"
@@ -55,6 +56,16 @@ export default {
       required: false,
       type: String,
       default: '',
+    },
+    notRequired: {
+    	required: false,
+      type: Boolean,
+      default: true,
+    },
+    disabled: {
+    	required: false,
+      type: Boolean,
+      default: false,
     },
   },
   data() {

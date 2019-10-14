@@ -7,15 +7,18 @@
 		<div class="flex w-full justify-center">
 			<div class="card shadow w-full sm:w-3/4 lg:w-1/2">
 				<div class="card-body">
-					<div class="flex self-end justify-between border-grey-dark border-b-2 mb-2">
-						<div class="self-center text-sm md:text-lg lg:text-2xl ">
+					<div class="flex self-end justify-between border-warm-grey-500 border-b-2 mb-2 p-2">
+						<div class="self-center text-warm-grey-0 text-sm md:text-lg lg:text-2xl ">
 							<i class="fas fa-calendar-plus"></i> {{ $event->name }}
 						</div>
 						<form action="{{ route('event.destroy', ['id' => $event->id]) }}" method="POST">
 							@csrf
 							@method('DELETE')
-							<button class="btn text-sm md:text-base hover:bg-red-lightest text-red-darkest lg:text-lg">
-								<i class="fas fa-dumpster-fire"></i> Delete
+							<button class="btn text-sm text-white font-semibold bg-red hover:bg-red-dark rounded md:text-base lg:text-lg">
+								<i class="fas fa-dumpster-fire"></i>
+                                <div class="hidden md:inline-block">
+                                    Delete
+                                </div>
 							</button>
 						</form>
 					</div>
@@ -59,11 +62,11 @@
 
 						<div class="flex justify-end">
 							<a href="{{ route('event.index') }}"
-							   class="btn bg-red-dark hover:bg-red text-white font-bold shadow text-sm md:text-base lg:text-lg mr-2">
+							   class="btn bg-yellow-lighter hover:bg-yellow-light font-semibold text-red-darkest shadow-md text-sm md:text-base lg:text-lg mr-2">
 								Cancel
 							</a>
 
-							<button class="btn bg-green-dark hover:bg-green text-white font-bold shadow text-sm md:text-base lg:text-lg">
+							<button class="btn bg-yellow-dark hover:bg-yellow text-white font-semibold shadow-md text-sm md:text-base lg:text-lg">
 								Update
 							</button>
 						</div>
@@ -100,7 +103,7 @@
 											      method="POST">
 												@csrf
 												@method('DELETE')
-												<button class="btn bg-red-dark hover:bg-red text-white font-bold text-xs md:text-base lg:text-lg shadow my-1">
+												<button class="btn bg-red hover:bg-red-dark text-white font-bold text-xs md:text-base lg:text-lg shadow my-1">
 													<i class="fa fa-user-times"></i>
 												</button>
 											</form>

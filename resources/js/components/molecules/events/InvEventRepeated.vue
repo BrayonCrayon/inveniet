@@ -1,29 +1,24 @@
 <template>
-  <div class="flex">
-    <div class="flex-shrink mr-2">
-      <div class="form-group form-check">
-        <inv-check-box-input
-          id="repeatedCBO"
-          v-model="inputValue"
-          name="repeated"
-          @input="emitInput"
-          :disabled=disabled
-        />
-        <label
-          class="form-check-label cursor-pointer"
-          for="repeatedCBO"
-        >
-          Repeat
-        </label>
-      </div>
+  <div class="flex flex-col w-full">
+    <div class="flex">
+      <inv-label>Repeat</inv-label>
+      <b-form-checkbox
+        id="repeatedCBO"
+        v-model="inputValue"
+        switch
+        name="repeated"
+        :disabled="disabled"
+        class="mx-2"
+        @input="emitInput"
+      />
     </div>
 
     <div
       v-if="disableOptions"
-      class="w-3/4 md:w-2/4 lg:w-1/4"
+      class="flex w-full md:w-2/4 lg:w-1/4"
     >
       <select
-        class="form-control cursor-pointer hover:bg-grey-lightest"
+        class="form-control cursor-pointer hover:bg-grey-lightest text-sm md:text-base"
         name="repeated_type_id"
         :disabled="disabled"
       >
