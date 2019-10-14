@@ -49,7 +49,8 @@ Route::put('relationship-requests/{relationship}/accept', 'Relationships\AcceptR
 /*********************************/
 /*  ATTENDEE REQUEST ROUTES     */
 /*********************************/
-Route::resource('attendee-requests', 'Attendees\AttendeeRequestsController');
+Route::get('attendee-requests', 'Attendees\FetchAttendeeRequestsController');
+Route::delete('attendee-request/{attendee}/decline', 'Attendees\DeclineAttendeeRequestController')->name('attendee-requests.decline');
 Route::put('attendee-requests/{attendee}/accept', 'Attendees\AcceptAttendeeRequestController')->name('attendee-requests.accept');
 
 /*********************************/

@@ -1,14 +1,14 @@
 <template>
-  <div class="col row">
-    <div class="col-6 text-grey-darkest">
-      <div class="font-bold">
-        {{ relationshipType }} Relation
+  <div class="flex flex-col py-3">
+    <div class="text-warm-grey-200 text-sm md:text-base">
+      <div class="font-semibold">
+        {{ relationshipType }}
       </div>
     </div>
 
-    <div class="col-6 text-grey-darkest">
-      <div class="font-bold">
-        <i :class="typeIcon" />
+    <div class="text-warm-grey-200 flex text-sm md:text-base">
+        Status:
+      <div class="font-semibold px-2">
         {{ relationshipStatus }}
       </div>
     </div>

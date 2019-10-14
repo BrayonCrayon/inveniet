@@ -4,8 +4,8 @@
 	<div class="container">
 		<div class="card shadow">
 			<div class="card-body">
-				<div class="flex flex-row border-b-2 border-warm-grey-500">
-					<div class="card-title text-warm-grey-0 text-xl md:text-2xl">
+				<div class="flex flex-row border-b-2 border-warm-grey-500  mb-2 p-2">
+					<div class="text-warm-grey-0 text-xl md:text-2xl">
 						<i class="fas fa-archive pr-2"></i>Event Requests
 					</div>
 				</div>
@@ -30,20 +30,26 @@
 										</a>
 									</div>
 
-									<div class="w-full flex justify-around md:justify-end md:w-1/4">
-										<form action="" class="mr-2">
-											<button class="btn hover:bg-red-lightest text-red-dark text-2xl">
-                                                <i class="far fa-2x fa-calendar-times"></i>
-											</button>
-										</form>
-										<form action="{{ route('attendee-requests.accept', ['attendee' => $request]) }}"
-										      method="POST">
-											@csrf
-											@method('PUT')
-											<button class="btn text-green-dark hover:bg-green-lightest text-2xl">
-                                                <i class="far fa-2x fa-calendar-check"></i>
-											</button>
-										</form>
+									<div class="w-full flex md:w-1/4">
+                                        <div class="mx-2 w-1/2 flex self-center justify-center">
+                                            <form action="{{ route('attendee-requests.decline', $request->id ) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn bg-red hover:bg-red-dark text-white text-sm shadow md:text-lg">
+                                                    <i class="far fa-2x fa-calendar-times"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="w-1/2 flex self-center justify-center">
+                                            <form action="{{ route('attendee-requests.accept', ['attendee' => $request]) }}"
+                                                  method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="btn text-white bg-yellow-dark hover:bg-yellow text-sm shadow md:text-lg">
+                                                    <i class="far fa-2x fa-calendar-check"></i>
+                                                </button>
+                                            </form>
+                                        </div>
 									</div>
 							</div>
 						</div>

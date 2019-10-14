@@ -27,7 +27,8 @@ class EventSearchController extends Controller
             ->paginate(10);
 
         return view('event.search', [
-            'events' => $events
+            'events' => $events,
+            'search' => $request->get('search'),
         ]);
     }
 }

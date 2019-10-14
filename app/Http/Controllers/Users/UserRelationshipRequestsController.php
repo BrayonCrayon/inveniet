@@ -89,6 +89,6 @@ class UserRelationshipRequestsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd('herer');
     }
 }

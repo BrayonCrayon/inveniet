@@ -8,7 +8,7 @@
             <div class="card shadow w-full sm:w-3/4 lg:w-1/2">
                 <div class="card-body">
                     <div class="flex justify-between border-b-2 border-warm-grey-700 mb-2 p-2">
-                        <div class="flex-grow self-center text-xl lg:w-3/4 lg:text-2xl ">
+                        <div class="flex-grow self-center text-xl lg:w-3/4 lg:text-xl ">
                             <i class="fas fa-calendar-plus"></i> {{ $event->name }}
                         </div>
                         <div class="self-center flex justify-end lg:w-1/4">

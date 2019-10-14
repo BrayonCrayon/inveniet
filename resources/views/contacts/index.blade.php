@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body">
                             @include('contacts.partials._indexHeader')
 

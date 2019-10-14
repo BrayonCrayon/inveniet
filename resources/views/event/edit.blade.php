@@ -8,7 +8,7 @@
 			<div class="card shadow w-full sm:w-3/4 lg:w-1/2">
 				<div class="card-body">
 					<div class="flex self-end justify-between border-warm-grey-500 border-b-2 mb-2 p-2">
-						<div class="self-center text-warm-grey-0 text-sm md:text-lg lg:text-2xl ">
+						<div class="self-center text-warm-grey-0 text-sm md:text-lg lg:text-xl ">
 							<i class="fas fa-calendar-plus"></i> {{ $event->name }}
 						</div>
 						<form action="{{ route('event.destroy', ['id' => $event->id]) }}" method="POST">

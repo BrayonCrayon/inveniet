@@ -48,6 +48,7 @@ class UserRelationshipsController extends Controller
         return view('contacts.search', [
             'contacts' => $searchedContacts,
             'relationshipTypes' => $relationshipTypes,
+            'search' => request('search'),
         ]);
     }
 
@@ -120,8 +121,9 @@ class UserRelationshipsController extends Controller
     public function destroy(User $contact)
     {
         $relationship = UserRelationship::findRelationship($contact->id)->first();
+        dd($relationship);
         $relationship->delete();
 
-        return redirect('contacts')->with('message', $contact->name . ' was deleted.');
+        return redirect('contacts')->with('message', $contact->name . ' was Removed.');
     }
 }

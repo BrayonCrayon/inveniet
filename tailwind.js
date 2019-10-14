@@ -94,7 +94,7 @@ const colors = {
   'yellow-light': '#F0B429',
   'yellow-lighter': '#FCE588',
   'yellow-lightest': '#FFFBEA',
-  'yellow-whitest': '#fffbfb',
+  'yellow-whitest': '#fffef6',
 
   'green-darkest': '#0f2f21',
   'green-darker': '#1a4731',

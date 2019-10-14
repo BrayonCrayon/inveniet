@@ -1,7 +1,5 @@
-<div class="col-12">
-	<div class="row">
-		<div class="col">
-			<h3 class="card-title "><i class="fas fa-user-friends pr-2"></i>My Relationships</h3>
-		</div>
-	</div>
+<div class="flex w-full border-warm-grey-500 border-b-2 mb-2 p-2">
+    <div class="self-center text-warm-grey-0 text-lg md:text-xl lg:text-2xl">
+        <i class="fas fa-user-friends pr-2"></i>My Relationships
+    </div>
 </div>

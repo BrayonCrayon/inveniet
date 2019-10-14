@@ -15,7 +15,7 @@
 
         <form method="GET" action="{{ route('event.search') }}" class="w-full">
             @csrf
-            <inv-input-search url-path="{{ route('event.search') }}" value="{{ old('search', '' ) }}"></inv-input-search>
+            <inv-input-search url-path="{{ route('event.search') }}" value="{{ isset($search) ? $search : '' }}"></inv-input-search>
         </form>
 
 
