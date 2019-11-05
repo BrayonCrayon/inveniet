@@ -62,7 +62,7 @@
 
 						<div class="flex justify-end">
 							<a href="{{ route('event.index') }}"
-							   class="btn bg-yellow-lighter hover:bg-yellow-light font-semibold text-red-darkest shadow-md text-sm md:text-base lg:text-lg mr-2">
+							   class="btn bg-warm-grey-700 hover:bg-warm-grey-500 font-semibold text-warm-grey-0 shadow-md text-sm md:text-base lg:text-lg mr-2">
 								Cancel
 							</a>
 

@@ -23,17 +23,6 @@ class UserController extends Controller
         return view('user.index', compact('usersToInvite'));
     }
 
-    public function search()
-    {
-        $users = User::where('id', '!=', auth()->user()->id)
-            ->where('name', 'like', request('search') . '%')
-            ->orderBy('name')
-            ->get(['id','name']);
-
-        return response()->json($users);
-    }
-
-
     /**
      * Show the form for creating a new resource.
      *

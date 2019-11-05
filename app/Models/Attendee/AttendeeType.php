@@ -9,5 +9,4 @@ class AttendeeType extends Model
     protected $fillable = [];
     public const HOST = 1;
     public const GUEST = 2;
-
 }

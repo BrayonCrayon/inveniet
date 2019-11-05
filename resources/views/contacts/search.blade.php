@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="flex w-full justify-center">
-            <div class="card w-full shadow md:w-3/4">
+            <div class="card w-5/6 shadow lg:w-3/4">
                 <div class="card-body">
                     @include('contacts.partials._searchHeader')
 

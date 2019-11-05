@@ -23,21 +23,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('user', 'UserController');
 
 /*  EVENT ROUTES  */
-Route::get('event/search', [
-    'uses' => 'Events\EventSearchController',
-])->name('event.search');
-
+Route::get('event/search', 'Events\EventSearchController')->name('event.search');
 Route::resource('event', 'Events\EventsController');
 
 
 /*********************************/
 /*  CONTACT ROUTES              */
 /*********************************/
-Route::get('contacts/search', [
-    'uses' => 'UserRelationshipsController@search',
-])->name('contacts.search');
-
-Route::resource('contacts', 'UserRelationshipsController');
+Route::get('contacts/search', 'Users\UserRelationshipSearchController')->name('contacts.search');
+Route::resource('contacts', 'UserRelationshipsController')->only(['index', 'store', 'destroy']);
 
 /*********************************/
 /*  RELATIONSHIP REQUEST ROUTES  */
@@ -57,12 +51,8 @@ Route::put('attendee-requests/{attendee}/accept', 'Attendees\AcceptAttendeeReque
 /*  ATTENDEE ROUTES              */
 /*********************************/
 Route::post('/attendee/search', 'Events\SearchNewAttendeesController');
-
-Route::post('/attendee/storeMany', [
-    'uses' => 'Attendees\AttendeeController@storeMany'
-])->name('attendee.storeMany');
-
-Route::resource('attendee', 'Attendees\AttendeeController');
+Route::post('/attendee/storeMany', 'Attendees\StoreManyAttendeeController')->name('attendee.storeMany');
+Route::resource('attendee', 'Attendees\AttendeeController')->only(['store', 'destroy']);
 
 
 

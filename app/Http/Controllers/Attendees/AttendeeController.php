@@ -50,24 +50,7 @@ class AttendeeController extends Controller
         $event = Event::findOrFail($request->get('eventId'));
         Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::GUEST, AttendeeStatus::ATTENDING);
 
-        return redirect()->action('Events\EventsController@index')->with('message', 'You are Attending: ' . $event->name );
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function storeMany(Request $request)
-    {
-        $userInvites = collect($request->get('userInvites'));
-        $event = Event::findOrFail($request->get('eventId'));
-
-        $userInvites->each(function ($item, $key) use ($event) {
-            $type = $item['attendeeType'] === 'Host' ? AttendeeType::HOST : AttendeeType::GUEST;
-            Attendee::addAttendee($item['id'], $event->id, $type, AttendeeStatus::NOT_ATTENDING);
-        });
-
-        return response()->json(true);
+        return redirect()->action('event.index')->with('message', 'You are Attending: ' . $event->name );
     }
 
     /**
@@ -114,6 +97,7 @@ class AttendeeController extends Controller
     public function destroy(Attendee $attendee)
     {
         $attendee->delete();
-        return redirect()->route((auth()->user()->id === $attendee->user_id) ? 'event.show' : 'event.edit', ['id' => $attendee->event_id]);
+        $route = (auth()->user()->id === $attendee->user_id) ? 'event.show' : 'event.edit';
+        return redirect()->route($route, $attendee->event_id);
     }
 }

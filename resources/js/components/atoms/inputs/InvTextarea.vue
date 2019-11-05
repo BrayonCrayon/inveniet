@@ -11,6 +11,7 @@
       rows="4"
       required
       :disabled="disabled"
+      :class="{ 'resize-none' : disabled, }"
       @input="emitInput"
     />
     <div

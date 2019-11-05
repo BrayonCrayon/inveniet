@@ -4,7 +4,7 @@
 
             <div class="flex flex-wrap w-full rounded">
 
-                    <div class="w-full self-center md:w-1/3">
+                    <div class="w-full self-center md:w-2/4">
                         <div class="font-semibold text-warm-grey-0 text-sm md:text-lg lg:text-xl">
                             {{ $request->user->name }}
                         </div>
@@ -13,11 +13,11 @@
                         </div>
                     </div>
 
-                    <inv-relationship-status class="w-full md:w-1/3"
+                    <inv-relationship-status class="w-full md:w-1/4"
                         relationship-type="{{ $request->type->name }}"
                         relationship-status="{{ $request->status->name }}"></inv-relationship-status>
 
-                    <div class="w-full flex self-center justify-around md:w-1/3">
+                    <div class="w-full flex self-center justify-around md:w-1/4">
                         <div class="w-1/2 flex self-center justify-center">
                             <form action="{{ route('contacts.destroy', $request->user_id ) }}" method="POST">
                                 @csrf

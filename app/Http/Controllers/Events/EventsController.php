@@ -44,6 +44,7 @@ class EventsController extends Controller
      */
     public function create()
     {
+        $this->authorize('events.create');
         return view('event.create', [
             'repeatedTypes' => RepeatedType::all(),
         ]);
@@ -57,6 +58,7 @@ class EventsController extends Controller
      */
     public function store(EventRequest $request)
     {
+        $this->authorize('events.create');
         $event = Event::create($request->all());
         Attendee::addAttendee(auth()->user()->id, $event->id, AttendeeType::HOST, AttendeeStatus::ATTENDING);
         return redirect()->route('event.index')->with('message', 'Event Created!');
@@ -70,6 +72,7 @@ class EventsController extends Controller
      */
     public function show(Event $event)
     {
+        $this->authorize('events.view', $event);
         return view('event.show', [
             'event' => $event,
             'attendees' => $event->eventAttendees,
@@ -85,6 +88,7 @@ class EventsController extends Controller
      */
     public function edit(Event $event)
     {
+        $this->authorize('events.update', $event);
         return view('event.edit', [
             'event' => $event,
             'attendees' => $event->eventAttendees,
@@ -101,6 +105,7 @@ class EventsController extends Controller
      */
     public function update(EventRequest $request, Event $event)
     {
+        $this->authorize('events.update', $event);
         $event->update($request->all());
         return back()->with('message', 'Event Updated!');
     }
@@ -114,6 +119,7 @@ class EventsController extends Controller
      */
     public function destroy(Event $event)
     {
+        $this->authorize('events.delete', $event);
         $event->delete();
         return redirect()->route('event.index')->with('message', 'Event Removed!');
     }

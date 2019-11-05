@@ -28,6 +28,8 @@ class AcceptAttendeeRequestController extends Controller
             'attendee_status_id' => AttendeeStatus::ATTENDING
         ]);
 
-        return redirect()->route($attendee->attendeeType->id === AttendeeType::HOST ? 'event.edit' : 'event.show', ['id' => $attendee->event->id]);
+        $route = $attendee->attendeeType->id === AttendeeType::HOST ? 'event.edit' : 'event.show';
+
+        return redirect()->route($route, $attendee->event->id);
     }
 }

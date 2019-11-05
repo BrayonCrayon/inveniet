@@ -30,29 +30,6 @@ class UserRelationshipsController extends Controller
     }
 
     /**
-     * Display a listing of Users that are
-     *      not related to the current user.
-     *
-     * NOTE: (... ?? '') If search is not defined
-     *          have it default to an empty string.
-     * @return Response
-     */
-    public function search()
-    {
-        $searchedContacts = User::orderBy('name', 'asc')
-            ->notMe()
-            ->nameLike(request('search') ?? '')
-            ->notMyContacts()->paginate();
-        $relationshipTypes = UserRelationshipType::all(['id', 'name']);
-
-        return view('contacts.search', [
-            'contacts' => $searchedContacts,
-            'relationshipTypes' => $relationshipTypes,
-            'search' => request('search'),
-        ]);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return void

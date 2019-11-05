@@ -19,7 +19,7 @@
             v-model="userSearch"
             type="text"
             placeholder="Search For Users"
-            class="form-control text-sm md:text-lg"
+            class="form-control text-sm my-2 md:text-lg"
           >
         </div>
         <div>
@@ -85,7 +85,7 @@
       <div class="w-full flex justify-between md:justify-center">
         <div class="md:flex md:w-1/2 px-2">
           <button
-            class="btn bg-yellow-lighter hover:bg-yellow-light text-red-darkest font-semibold text-sm shadow w-full md:text-lg"
+            class="btn bg-warm-grey-700 hover:bg-warm-grey-500 text-warm-grey-0 font-semibold text-sm shadow w-full md:text-lg"
             block
             @click="hideModal"
           >
