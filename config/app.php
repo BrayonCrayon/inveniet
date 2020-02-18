@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Inveniet'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'GMT',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,13 +165,14 @@ return [
         /*
          * Package Service Providers...
          */
+        Aloha\Twilio\Support\Laravel\ServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
@@ -226,6 +227,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * |--------------------------------------------------------------------------
+         * | Package Aliases
+         * |--------------------------------------------------------------------------
+         */
+        'Twilio' => Aloha\Twilio\Support\Laravel\Facade::class,
 
     ],
 

@@ -1,12 +1,20 @@
-
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/src/index';
+// Animate Css
+@import '~animate.css';
+
+
+@tailwind preflight;
+
+@tailwind components;
+
+@tailwind utilities;
+
 
 .navbar-laravel {
   background-color: #fff;
@@ -17,7 +25,53 @@
   transition: all 0.2s;
 }
 
+.timeline-ball {
+  margin-top: 6%;
 
-body {
-  background: #fbf4f4;
+  &::after {
+    padding: 0.25rem 0.85rem;
+    content: ' ';
+    border-radius: 90%;
+    margin-left: -1rem;
+    @apply bg-warm-grey-300;
+  }
 }
+
+.timeline-border-gradient {
+  @apply border-l-4 border-warm-grey-500;
+  border-image: linear-gradient(
+                  to bottom,
+                  transparent,
+                  #D3CEC4 10%,
+                  #423D33 100%,
+                  rgba(0, 0, 0, 0)
+  ) 90 100%;
+}
+
+.list-group-scrollable {
+  max-height: 350px;
+  min-height: 350px;
+  margin-bottom: 10px;
+  @apply overflow-y-auto;
+}
+
+
+*::-webkit-scrollbar {
+  width: 0.65em;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: darken($primary, 20%);
+  outline: 1px solid slategrey;
+  border-radius: 1rem;
+}
+
+
+
+
+
+
