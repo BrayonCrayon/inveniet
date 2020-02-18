@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Mail\MailEventReminder;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * @property mixed eventAttendees
@@ -115,7 +117,7 @@ class Event extends Model
         $this->info("Sending Message to {$user->name}");
 
         if (config('app.env') === 'production') {
-            Twilio::message('5198597787', "Here is a test");
+            Mail::to($user->email)->send(new MailEventReminder($this, $user->name));
         }
     }
 

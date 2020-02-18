@@ -11,6 +11,18 @@
 |
 */
 
+use App\Models\Event;
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/send-mail', function () {
+
+    $event = Event::findOrFail(44);
+    $event->notifyAttendees();
+    return 'A message has been sent to Mailtrap!';
+
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
